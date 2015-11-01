@@ -8,7 +8,7 @@
 			"url"=>"appointment/create","method" => "POST","files" => true,"class" => "form-register"
 		])
 !!} 
-		<h2 class="text-center">Make Appointment rev 0.3 alpha</h2>
+		<h2 class="text-center">Make Appointment rev 0.4 alpha</h2>
 		
 		<!-- header -->
 		<!-- <form action="" method="POST" class="form-horizontal" role="form">
@@ -19,13 +19,13 @@
 
 
 		<!-- old -->
-		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
 					
 					<form action="" method="POST" role="form">
+						
 						<legend>โปรดกรอกข้อมูลการทำนัด</legend>
-	
+
 						<div class="form-group">
 							<!-- <label for="">Name</label> -->
 							<!-- <input type="text" class="form-control" name="Name" id="input" required="required" title="Name" placeholder="Name"> -->
@@ -102,7 +102,6 @@
 				</div>
 			</div>
 			
-		</div>
 
 		<!-- jQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
