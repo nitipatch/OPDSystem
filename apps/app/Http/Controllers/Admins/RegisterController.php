@@ -22,7 +22,7 @@ class RegisterController extends BaseController
 			,array('name'=>'required|min:4|max:100'
 			,'password'=>'required|min:4|max:15|confirmed'
 			,'password_confirmation'=>'required|min:4|max:15'
-			,'email'=>'required|email|max:100|unique:tbl_user')
+			,'email'=>'required|email|max:100|unique:users')
 			
 			,array('name.required'=>'Full Name ไม่สามารถเป็นค่าว่างได้'
 			,'email.required'=>'email ไม่สามารถเป็นค่าว่างได้'
