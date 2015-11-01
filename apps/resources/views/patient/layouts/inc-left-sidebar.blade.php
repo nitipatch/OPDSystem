@@ -14,7 +14,7 @@
 -->
 	
 	<li><a href="1.html"><i class="fa fa-cog fa-fw"></i>เปลี่ยนข้อมูลส่วนตัว</a></li>
-	<li><a href="3.html"><i class="fa fa-edit fa-fw"></i>ทำนัด</a></li>
+	<li><a href="make-appointment"><i class="fa fa-edit fa-fw"></i>ทำนัด</a></li>
 	<li><a href="4.html"><i class="fa fa-pencil fa-fw"></i>เลื่อนนัด</a></li>
 	<li><a href="5.html"><i class="fa fa-times fa-fw"></i>ยกเลิกนัด</a></li>
 	<li><a href="2.html"><i class="fa fa-table fa-fw"></i>ดูรายการนัด</a></li>

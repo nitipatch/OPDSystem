@@ -12,15 +12,8 @@
 	</div>
 </li> 
 -->
-	<li>
-		<a href="#"><i class="fa fa-child fa-fw"></i>สมัครสมาชิก<span class="fa arrow"></span></a>
-		<ul class="nav nav-second-level">
-			<li><a href="registerPatient">ผู้ป่วย</a></li>
-			<li><a href="2.html">เจ้าหน้าที่</a></li>
-		</ul>
-	</li>
+	<li><a href="register"><i class="fa fa-child fa-fw"></i>สมัครสมาชิก</a></li>
 	<li><a href="loginframe"><i class="fa fa-lock fa-fw"></i>เข้าสู่ระบบ</a></li>
-	<li><a href="logout"><i class="fa fa-unlock fa-fw"></i>ออกจากระบบ</a></li>
 
 <!--
 	<li>

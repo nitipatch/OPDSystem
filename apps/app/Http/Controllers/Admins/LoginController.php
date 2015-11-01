@@ -17,7 +17,11 @@ class LoginController extends Controller {
       else return redirect('/login/loginframe');
     }
 
-    public function success(){return view('patient.success');}
+    public function success()
+    {
+      //return view('patient.success');
+      return redirect('patient/loginsuccess');
+    }
     
     // ตรวจสอบค่าที่ส่งมาจาก Form login แล้วเรียนกใช้การ validate จาก LoginRequest
     public function postProcess(LoginRequest $request)

@@ -1,3 +1,5 @@
+@extends('patient.layouts.template')
+@section('content')
 <!DOCTYPE html>
 <?php echo csrf_field(); ?>
 {!!
@@ -6,18 +8,6 @@
 			"url"=>"appointment/create","method" => "POST","files" => true,"class" => "form-register"
 		])
 !!} 
-
-<html lang="">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Make Appointments | OPD Hospital System</title>
-
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
-	</head>
-	<body>
 		<h2 class="text-center">Make Appointment rev 0.3 alpha</h2>
 		
 		<!-- header -->
@@ -114,13 +104,8 @@
 			
 		</div>
 
-
-
-
-		
 		<!-- jQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<!-- Bootstrap JavaScript -->
 		<script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
-	</body>
-</html>
+@stop

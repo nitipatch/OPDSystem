@@ -12,10 +12,12 @@
 Route::get('/', 'Admins\LoginController@getIndexSlash');
 Route::get('login', 'Admins\LoginController@getIndexSlash');
 
-Route::get('login/registerPatient','patient\RegisterController@registerForm');
-Route::post('login/registerPatient/create', 'patient\RegisterController@registerCreate');
-// Route::get('appointment', 'patient\AppointmentController@appointmentForm');
-Route::get('make-appointment', 'patient\MakeAppointmentController@makeAppointmentForm');
+Route::get('login/register','Admins\RegisterController@registerForm');
+Route::post('login/register/create', 'Admins\RegisterController@registerCreate');
+
+Route::get('patient/loginsuccess', function(){return view('patient.success');});
+Route::get('patient/logout','Admins\LoginController@getLogout');
+Route::get('patient/make-appointment', 'patient\MakeAppointmentController@makeAppointmentForm');
 Route::get('prescribe', 'doctor\PrescribeController@PrescribeForm');
 
 
@@ -23,6 +25,5 @@ Route::controller('login/loginframe','Admins\LoginController');
 // Start Online Page
 Route::group(['prefix'=>'login','middleware'=>'auth','namespace'=>'Admins'],function(){
 	Route::get('index','LoginController@success');
-	Route::get('logout','LoginController@getLogout');
 });
 
