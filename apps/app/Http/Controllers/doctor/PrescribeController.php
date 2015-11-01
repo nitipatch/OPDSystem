@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\patients;
+namespace App\Http\Controllers\doctor;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 //use App\Http\Models\User;
-use App\App\patients;
+use App\App\doctor;
 use View;
 
-class AppointmentController extends BaseController
+class PrescribeController extends BaseController
 {
-	public function appointmentForm()
+	public function prescribeForm()
 	{
-		return View::make('patients.makeAppt');
+		return View::make('doctor.prescribe');
 	}
 	// public function registerCreate()
 	// {
