@@ -39,7 +39,7 @@ class RegisterController extends BaseController
 			$addUser->password = Hash::make(Input::get('password'));
 			$addUser->email = Input::get('email');
 			$addUser->created_at = date("Y-m-d H:i:s",time());
-			$addUser->type = 'patient';
+			$addUser->type = 'nurse';
 			$addUser->save();
 			return Redirect::to('login/register')->with('flash_notice','ดำเนินการสำเร็จ');}
 		else{return Redirect::to('login/register')->withErrors($validator)
