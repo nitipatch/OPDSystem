@@ -21,57 +21,64 @@
 
 		<!-- old -->
 
-			<div class="row">
+		<div class="row">
+				
+			<form action="" method="POST" role="form">
+				<legend>โปรดกรอกข้อมูลบันทึกการรักษา</legend>
+
+				<div class="form-group">
+					<!-- <label for="">Name</label> -->
+					<!-- <input type="text" class="form-control" name="Name" id="input" required="required" title="Name" placeholder="Name"> -->
 					
-				<form action="" method="POST" role="form">
-					<legend>โปรดกรอกข้อมูลการรักษา</legend>
-
-					<div class="form-group">
-						<!-- <label for="">Name</label> -->
-						<!-- <input type="text" class="form-control" name="Name" id="input" required="required" title="Name" placeholder="Name"> -->
-						
-						
-						<div class="row">
-							<div class="col-lg-5">
-								ชื่อยา<font color="red">*</font>
-								<input type="text" name="name" id="input" class="form-control" value="" required="required" pattern="" title="">
-							</div>
+					
+					<div class="row">
+						<div class="col-lg-5">
+							HN<font color="red">*</font><!--  (กรอกเอง หรือ ดึงจาก db) -->
+							<input type="text" name="HN" id="input" class="form-control" value="" required="required" pattern="" title="">
 						</div>
-						
-						<p></p>
-
-						<div class="row">
-							<div class="col-lg-5">
-								จำนวน<font color="red">*</font>
-								<input type="text" name="quantity" id="input" class="form-control" value="" required="required" pattern="" title="">
-							</div>
+						<div class="col-lg-5">
+							ชื่อผู้ป่วย<!--  (ดึงจาก db) -->
+							<input type="text" name="patName" id="input" class="form-control" value="" required="required" pattern="" title="">
 						</div>
-						
-						
-
-						<p></p>
-
-						<div class="row">
-							<div class="col-lg-5">
-								วิธีใช้<font color="red">*</font>
-								<textarea name="usage" id="input" class="form-control" rows="0" required="required"></textarea>
-							</div>
-						</div>
-						
-						<p></p>
 
 					</div>
-				
-				
-				
-				{!!
-				Form::submit('สั่งยา', ['class' => 'btn btn-primary'])
-				!!}
-				<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-				
+					
+					<p></p>
 
-				</form>
-			</div>
+					<div class="row">
+						<div class="col-lg-5">
+							อาการผู้ป่วย<font color="red">*</font>
+							<textarea name="" id="input" class="form-control" rows="3" required="required"></textarea>
+						</div>
+						<div class="col-lg-5">
+							การวินิจฉัยหลัก<font color="red">*</font>
+							<select name="" id="input" class="form-control">
+								<option value="">-- Select One --</option>
+								<option value="">test1</option>
+								<option value="">test2</option>
+								<option value="">test3</option>
+							</select>
+							<!-- <input type="text" name="icd10" id="inputIcd10" class="form-control" value="" required="required" pattern="" title=""> -->
+						</div>
+
+
+
+					</div>
+					
+					<br>
+
+				</div>
+			
+			
+			
+			{!!
+			Form::submit('บันทึกการรักษา', ['class' => 'btn btn-primary'])
+			!!}
+			<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+			
+
+			</form>
+		</div>
 		
 		<!-- jQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
