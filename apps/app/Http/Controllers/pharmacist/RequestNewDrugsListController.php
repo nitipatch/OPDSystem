@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admins;
+namespace App\Http\Controllers\pharmacist;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
@@ -10,13 +10,13 @@ use App\Http\Controllers\Controller;
 use App\User;
 use View;
 
-class RegisterController extends BaseController
+class RequestNewDrugsListController extends BaseController
 {
-	public function registerForm()
+	public function requestNewDrugsListForm()
 	{
-		return View::make('login.register');
+		return View::make('pharmacist.requestNewDrugsList');
 	}
-	public function registerCreate()
+	public function requestNewDrugsListCreate()
 	{
 		$validator = Validator::make(Input::all()
 			,array('name'=>'required|min:4|max:100'

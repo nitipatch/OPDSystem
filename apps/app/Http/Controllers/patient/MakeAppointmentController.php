@@ -46,6 +46,5 @@ class MakeAppointmentController extends BaseController
 			->withInput(Input::except('password'))
 			->withInput(Input::except('password_confirmation'))
 			->withInput();}}}
-}
-
+			
 ?>

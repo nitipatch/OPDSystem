@@ -8,7 +8,7 @@
  	<meta name="author" content="">
  	<title>Hospital OPD System</title>
 	<!-- Bootstrap Core CSS -->
- 	@include('login.layouts.inc-stylesheet')
+ 	@include('pharmacist.layouts.inc-stylesheet')
  	@yield('stylesheet')
 </head>
 
@@ -24,7 +24,8 @@
 				</button>
 				<a class="navbar-brand">Hospital OPD System</a>
 			</div>
-	 		@include('login.layouts.inc-left-sidebar')
+	 		@include('pharmacist.layouts.inc-header')
+	 		@include('pharmacist.layouts.inc-left-sidebar')
 	 	</nav>
 
 <!-- Page Content -->
@@ -34,7 +35,7 @@
 		</div><!-- /.container-fluid -->
 		</div><!-- /#page-wrapper -->
  	</div><!-- /#wrapper --><!-- jQuery -->
- 	@include('login.layouts.inc-scripts')
+ 	@include('pharmacist.layouts.inc-scripts')
  	@yield('scripts')
 
 </body>

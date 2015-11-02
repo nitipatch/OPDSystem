@@ -22,7 +22,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">Hospital OPD System</a>
+				<a class="navbar-brand">Hospital OPD System</a>
 			</div>
 	 		@include('nurse.layouts.inc-header')
 	 		@include('nurse.layouts.inc-left-sidebar')

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admins;
+namespace App\Http\Controllers\officer;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
@@ -10,13 +10,13 @@ use App\Http\Controllers\Controller;
 use App\User;
 use View;
 
-class RegisterController extends BaseController
+class MakeAppointmentController extends BaseController
 {
-	public function registerForm()
+	public function makeAppointmentForm()
 	{
-		return View::make('login.register');
+		return View::make('officer.makeAppt');
 	}
-	public function registerCreate()
+	public function makeAppointmentCreate()
 	{
 		$validator = Validator::make(Input::all()
 			,array('name'=>'required|min:4|max:100'
@@ -46,4 +46,5 @@ class RegisterController extends BaseController
 			->withInput(Input::except('password'))
 			->withInput(Input::except('password_confirmation'))
 			->withInput();}}}
+			
 ?>
