@@ -38,6 +38,7 @@
 		</ul>
 	</li>
 
+	<li><a href="logout"><i class="fa fa-table fa-fw"></i>ดูรายชื่อผู้ป่วยที่นัด</a></li>
 	<li><a href="logout"><i class="fa fa-unlock fa-fw"></i>ออกจากระบบ</a></li>
 
 <!--

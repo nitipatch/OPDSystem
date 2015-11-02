@@ -6,17 +6,12 @@
           <ul class="dropdown-menu dropdown-messages">
                <li>
                    <a href="#"><div><strong>John Smith</strong><span class="pull-right text-muted"><em>Yesterday</em></span></div>
-                   <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div></a>
+                   <div>first</div></a>
                </li>
                <li class="divider"></li>
                <li>
                     <a href="#"><div><strong>John Smith</strong><span class="pull-right text-muted"><em>Yesterday</em></span></div>
-                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div></a>
-               </li>
-               <li class="divider"></li>
-               <li>
-                    <a href="#"><div><strong>John Smith</strong><span class="pull-right text-muted"><em>Yesterday</em></span></div>
-                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div></a>
+                    <div>second</div></a>
                </li>
                <li class="divider"></li>
                <li>
@@ -170,7 +165,7 @@
 <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
 </li>
 <li class="divider"></li>
-<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+<li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 </li>
 </ul>
 <!-- /.dropdown-user -->
