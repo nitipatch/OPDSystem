@@ -1,3 +1,5 @@
+@extends('doctor.layouts.template')
+@section('content')
 <!DOCTYPE html>
 <?php echo csrf_field(); ?>
 {!!
@@ -7,18 +9,7 @@
 		])
 !!} 
 
-<html lang="">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Prescribe | Hospital OPD System</title>
-
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
-	</head>
-	<body>
-		<h2 class="text-center">Prescribe rev 0.1 alpha</h2>
+		<h2 class="text-center">Add Medical Record rev 0.1 alpha</h2>
 		
 		<!-- header -->
 		<!-- <form action="" method="POST" class="form-horizontal" role="form">
@@ -29,11 +20,11 @@
 
 
 		<!-- old -->
-		<div class="container">
+
 			<div class="row">
 					
 				<form action="" method="POST" role="form">
-					<legend>โปรดกรอกข้อมูลการสั่งยา</legend>
+					<legend>โปรดกรอกข้อมูลการรักษา</legend>
 
 					<div class="form-group">
 						<!-- <label for="">Name</label> -->
@@ -81,16 +72,9 @@
 
 				</form>
 			</div>
-			
-		</div>
-
-
-
-
 		
 		<!-- jQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<!-- Bootstrap JavaScript -->
 		<script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
-	</body>
-</html>
+@stop
