@@ -20,6 +20,7 @@ Route::controller('login/loginframe','Admins\LoginController');
 Route::group(['prefix'=>'login','middleware'=>'auth','namespace'=>'Admins'],function(){
 	Route::get('patient','LoginController@patient');
 	Route::get('doctor','LoginController@doctor');
+	Route::get('nurse','LoginController@nurse');
 });
 
 
@@ -28,6 +29,13 @@ Route::group(['prefix'=>'doctor','middleware'=>'auth','namespace'=>'doctor'],fun
 	Route::get('loginsuccess', function(){return view('doctor.success');});
 	Route::get('prescribe', 'PrescribeController@prescribeForm');
 	Route::get('addMedicalRecord', 'MedicalRecordController@addMedicalRecordForm');
+});
+
+
+Route::get('nurse/logout','Admins\LoginController@getLogout');
+Route::group(['prefix'=>'nurse','middleware'=>'auth','namespace'=>'nurse'],function(){
+	Route::get('loginsuccess', function(){return view('nurse.success');});
+	Route::get('addScreeningRecord', 'AddScreeningRecordController@addScreeningRecordForm');
 });
 
 

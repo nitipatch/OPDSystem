@@ -1,4 +1,4 @@
-@extends('patient.layouts.template')
+@extends('nurse.layouts.template')
 @section('content')
 <?php echo csrf_field(); ?>
 {!!

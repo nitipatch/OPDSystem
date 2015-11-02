@@ -19,16 +19,23 @@ class LoginController extends Controller {
 
     public function patient(){ return redirect('patient/loginsuccess'); }
     public function doctor(){ return redirect('doctor/loginsuccess'); }
+    public function nurse(){ return redirect('nurse/loginsuccess'); }
     
     // ตรวจสอบค่าที่ส่งมาจาก Form login แล้วเรียนกใช้การ validate จาก LoginRequest
     public function postProcess(LoginRequest $request)
     {
       $username = $request->input('username');
       $password = $request->input('password');
+
       if(Auth::attempt(['username' => $username,'password'=>$password,'type'=>'patient'],$request->has('remember')))
           return redirect()->intended('/login/patient');
+      
       if(Auth::attempt(['username' => $username,'password'=>$password,'type'=>'doctor'],$request->has('remember')))
           return redirect()->intended('/login/doctor');
+      
+      if(Auth::attempt(['username' => $username,'password'=>$password,'type'=>'nurse'],$request->has('remember')))
+          return redirect()->intended('/login/nurse');
+      
       else
           return redirect()->back()->with('message',"Error!! Username or Password Incorrect. \nPlease try again.");;
     }

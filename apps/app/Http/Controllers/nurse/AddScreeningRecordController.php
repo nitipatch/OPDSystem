@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\patient;
+namespace App\Http\Controllers\nurse;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
@@ -10,13 +10,13 @@ use App\Http\Controllers\Controller;
 use App\User;
 use View;
 
-class MakeAppointmentController extends BaseController
+class AddScreeningRecordController extends BaseController
 {
-	public function makeAppointmentForm()
+	public function addScreeningRecordForm()
 	{
-		return View::make('patient.makeAppt');
+		return View::make('nurse.addScreeningRecord');
 	}
-	public function makeAppointmentCreate()
+	public function addScreeningRecordCreate()
 	{
 		$validator = Validator::make(Input::all()
 			,array('name'=>'required|min:4|max:100'
@@ -46,6 +46,4 @@ class MakeAppointmentController extends BaseController
 			->withInput(Input::except('password'))
 			->withInput(Input::except('password_confirmation'))
 			->withInput();}}}
-}
-
 ?>
