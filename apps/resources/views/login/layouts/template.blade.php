@@ -24,7 +24,6 @@
 				</button>
 				<a class="navbar-brand" href="index.html">Hospital OPD System</a>
 			</div>
-	 		@include('login.layouts.inc-header')
 	 		@include('login.layouts.inc-left-sidebar')
 	 	</nav>
 
