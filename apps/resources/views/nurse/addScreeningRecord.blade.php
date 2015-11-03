@@ -4,7 +4,7 @@
 {!!
 	Form::open
 		([
-			"url"=>"appointment/create","method" => "POST","files" => true,"class" => "form-register"
+			"url"=>"addScreeningRecord/create","method" => "POST","files" => true,"class" => "form-register"
 		])
 !!} 
 		<h2 class="text-center">Make Appointment rev 0.4 alpha</h2>

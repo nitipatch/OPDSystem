@@ -29,22 +29,21 @@ class LoginController extends Controller {
       $username = $request->input('username');
       $password = $request->input('password');
 
-      if(Auth::attempt(['username' => $username,'password'=>$password,'type'=>'patient'],$request->has('remember')))
+      if(Auth::attempt(['username'=>$username,'password'=>$password,'type'=>'patient'],$request->has('remember')))
           return redirect()->intended('/login/patient');
       
-      if(Auth::attempt(['username' => $username,'password'=>$password,'type'=>'doctor'],$request->has('remember')))
+      if(Auth::attempt(['username'=>$username,'password'=>$password,'type'=>'doctor'],$request->has('remember')))
           return redirect()->intended('/login/doctor');
       
-      if(Auth::attempt(['username' => $username,'password'=>$password,'type'=>'nurse'],$request->has('remember')))
+      if(Auth::attempt(['username'=>$username,'password'=>$password,'type'=>'nurse'],$request->has('remember')))
           return redirect()->intended('/login/nurse');
       
-      if(Auth::attempt(['username' => $username,'password'=>$password,'type'=>'pharmacist'],$request->has('remember')))
+      if(Auth::attempt(['username'=>$username,'password'=>$password,'type'=>'pharmacist'],$request->has('remember')))
           return redirect()->intended('/login/pharmacist');
 
-      if(Auth::attempt(['username' => $username,'password'=>$password,'type'=>'officer'],$request->has('remember')))
+      if(Auth::attempt(['username'=>$username,'password'=>$password,'type'=>'officer'],$request->has('remember')))
           return redirect()->intended('/login/officer');
       
-      else
           return redirect()->back()->with('message',"Error!! Username or Password Incorrect. \nPlease try again.");;
     }
 
