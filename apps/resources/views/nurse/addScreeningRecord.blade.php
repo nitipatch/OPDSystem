@@ -4,100 +4,112 @@
 {!!
 	Form::open
 		([
-			"url"=>"appointment/create","method" => "POST","files" => true,"class" => "form-register"
+			"url"=>"screeningRecord/create","method" => "POST","files" => true,"class" => "form-register"
 		])
 !!} 
-		<h2 class="text-center">Make Appointment rev 0.4 alpha</h2>
+<h2 class="text-center">Add Screening Record rev 0.1 alpha</h2>
+
+<!-- header -->
+<!-- <form action="" method="POST" class="form-horizontal" role="form">
+
+		<img src="http://www.online-image-editor.com//styles/2014/images/example_image.png" class="img-responsive" alt="Image">
+
+</form> -->
+
+<div class="row">
+	<div class="col-lg-12">
 		
-		<!-- header -->
-		<!-- <form action="" method="POST" class="form-horizontal" role="form">
+		<form action="" method="POST" role="form">
+			
+			<legend>โปรดกรอกข้อมูลเพื่อบันทึกการตรวจคัดกรอง</legend>
 
-				<img src="http://www.online-image-editor.com//styles/2014/images/example_image.png" class="img-responsive" alt="Image">
+			<div class="form-group">
+				<!-- <label for="">Name</label> -->
+				<!-- <input type="text" class="form-control" name="Name" id="input" required="required" title="Name" placeholder="Name"> -->
+				
+				<div class="row">
+					<div class="col-lg-3">
+						HN<font color="red">*</font><!--  (กรอกเอง หรือ ดึงจาก db) -->
+						<input type="text" name="HN" id="input" class="form-control" value="" required="required" pattern="" title="">
+					</div>
+					<div class="col-lg-5">
+						ชื่อผู้ป่วย<!--  (กรอกเอง หรือ ดึงจาก db) -->
+						<input type="text" name="patName" id="input" class="form-control" value="" required="required" pattern="" title="">
+					</div>
 
-		</form> -->
-
-
-		<!-- old -->
-			<div class="row">
-				<div class="col-lg-12">
-					
-					<form action="" method="POST" role="form">
-						
-						<legend>โปรดกรอกข้อมูลการทำนัด</legend>
-
-						<div class="form-group">
-							<!-- <label for="">Name</label> -->
-							<!-- <input type="text" class="form-control" name="Name" id="input" required="required" title="Name" placeholder="Name"> -->
-							
-							
-							<div class="row">
-								<div class="col-lg-5">
-									อาการหรือสาเหตุที่ต้องการพบแพทย์<font color="red">*</font>
-									<textarea name="cause" id="input" class="form-control" rows="0" required="required"></textarea>
-								</div>
-							</div>
-							
-							<p></p>
-
-							<div class="row">
-								<div class="col-lg-5">
-									แพทย์ที่ท่านต้องการเข้าพบ
-									<select name="doctor" id="input" class="form-control">
-										<option value="">แพทย์</option>
-										<option value="A">หมอ A</option>
-										<option value="B">หมอ B</option>
-										<option value="C">หมอ C</option>
-									</select>
-								</div>
-								
-								<div class="col-lg-5">
-									แผนกของแพทย์ที่ท่านต้องการเข้าพบ<font color="red">*</font>
-									<select name="doctor" id="input" class="form-control" required="required">
-										<option value="deptA" color="blue">แผนก</option>
-										<option value="deptA">แผนก A</option>
-										<option value="deptB">แผนก B</option>
-									</select>
-								</div>
-							</div>
-								
-
-							<p></p>
-
-							<div class="row">
-								<div class="form-group">
-									<label for="input" class="col-sm-0 control-label"></label>
-									<div class="col-lg-3">
-										วันที่ท่านต้องการพบแพทย์<font color="red">*</font>
-										<input type="date" name="apptDate" id="input" class="form-control" value="" required="required" title="">
-									</div>
-
-									<div class="col-lg-3">
-										<div class="radio">
-											ช่วงเวลา<font color="red">*</font>
-											<label>
-												<input type="radio" name="morning" id="inputMorning" value="">
-												เช้า
-											</label>
-											<label>
-												<input type="radio" name="morning" id="inputMorning" value="">
-												บ่าย
-											</label>
-										</div>
-									</div>
-								</div>
-							</div>
-
-						</div>
-					
-					
-					
-					{!!
-					Form::submit('ทำนัด', ['class' => 'btn btn-primary'])
-					!!}
-					<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-					
-
-					</form>
 				</div>
+					
+				<br>
+
+				<div class="row">
+
+					<div class="col-lg-6">
+						อาการเบื้องต้น<font color="red">*</font>
+						<textarea name="sign" id="input" class="form-control" rows="0" required="required"></textarea>
+					</div>
+
+					<div class="col-lg-2">
+						น้ำหนัก<font color="red">*</font>
+						<input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" required="required" title="">
+					</div>
+
+					<div class="col-lg-2">
+						ส่วนสูง<font color="red">*</font>
+						<input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" required="required" title="">
+					</div>
+
+					<div class="col-lg-2">
+						ชีพจร
+						<input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" title="">
+					</div>
+
+				</div>
+				
+				<p></p>
+
+				<div class="row">
+					<div class="col-lg-2">
+						ความดันโลหิต<font color="red">*</font>
+						<input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" required="required" title="">
+						/
+						<input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" required="required" title="">
+					</div>
+
+					<div class="col-lg-2">
+						อุณหภูมิร่างกาย<font color="red">*</font>
+						<input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" required="required" title="">
+						
+					</div>
+
+					<div class="col-lg-5">
+						แพ้ยา (ถ้ามี)
+						<input type="text" name="" id="input" class="form-control" value=""  pattern="" title="">
+						
+					</div>
+					
+				</div>
+					
+
+				<!-- <p></p>
+
+				<div class="row">
+					
+				</div> -->
+
 			</div>
+		
+		<br>
+		
+		{!!
+		Form::submit('บันทึกการตรวจคัดกรอง', ['class' => 'btn btn-primary'])
+		!!}
+		<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+		<!-- <button type="button" class="btn btn-default">ยกเลิก</button> -->
+		
+		</form>
+
+
+
+	</div>
+</div>
 @stop
