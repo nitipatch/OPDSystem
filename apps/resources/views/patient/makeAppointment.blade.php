@@ -21,7 +21,8 @@
                     {!! Form::textarea('cause', Input::old('กรอกสาเหตุหรืออาการ'), [
                         'placeholder' => 'สาเหตุหรืออาการที่ต้องการพบแพทย์',
                         'class' => 'form-control',
-                        'maxlength' => 1000
+                        'maxlength' => 1000,
+                        'size' => '50x2'
                     ]) !!}
                     @if ($errors->has('cause'))
                         <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
@@ -85,9 +86,9 @@
                 </td>
             </tr>
             <tr>
-            <tr>
                 <td style="text-align:right;"></td>
                 <td>{!! Form::submit('ทำนัด', ['class' => 'btn']) !!}</td>
+                <td>{!! Form::button('ยกเลิก', ['class' => 'btn']) !!}</td>
             </tr>
         </table>
     </div>
