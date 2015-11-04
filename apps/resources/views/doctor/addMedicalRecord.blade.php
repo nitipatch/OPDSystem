@@ -32,11 +32,11 @@
 					
 					
 					<div class="row">
-						<div class="col-md-3 col-lg-3">
+						<div class="col-md-4 col-lg-4">
 							HN<font color="red">*</font><!--  (กรอกเอง หรือ ดึงจาก db) -->
 							<input type="text" name="HN" id="input" class="form-control" value="" required="required" pattern="" title="">
 						</div>
-						<div class="col-md-5 col-lg-5">
+						<div class="col-md-4 col-lg-4">
 							ชื่อผู้ป่วย<font color="red">*</font><!--  (ดึงจาก db) -->
 							<input type="text" name="patName" id="input" class="form-control" value="" required="required" pattern="" title="">
 						</div>
@@ -46,11 +46,11 @@
 					<br>
 
 					<div class="row">
-						<div class="col-md-5 col-lg-5">
+						<div class="col-md-4 col-lg-4">
 							อาการผู้ป่วย<font color="red">*</font>
 							<textarea name="" id="input" class="form-control" rows="3" required="required"></textarea>
 						</div>
-						<div class="col-md-5 col-lg-5">
+						<div class="col-md-4 col-lg-4">
 							การวินิจฉัยหลัก<font color="red">*</font>
 							<select name="" id="input" class="form-control">
 								<option value="">-- Select One --</option>
@@ -65,18 +65,21 @@
 
 					</div>
 					
-					<br>
+					
 
 				</div>
 			
-			
-			
+			<tr>
+			    <td style="text-align:left;"></td>
+			    <td>	
 			{!!
 			Form::submit('บันทึกการรักษา', ['class' => 'btn btn-primary'])
 			!!}
 			{!!
-			Form::button('ยกเลิก', ['class' => 'btn btn-primary'])
+			Form::button('ยกเลิก', ['class' => 'btn'])
 			!!}
+			</td>
+			</tr>
 			<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
 
 			</form>

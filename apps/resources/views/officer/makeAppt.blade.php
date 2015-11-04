@@ -7,7 +7,7 @@
 			"url"=>"appointment/create","method" => "POST","files" => true,"class" => "form-register"
 		])
 !!} 
-		<h2 class="text-center">Make Appointment rev 0.4 alpha</h2>
+		<h2 class="text-center"></h2>
 		
 		<!-- header -->
 		<!-- <form action="" method="POST" class="form-horizontal" role="form">
@@ -90,12 +90,21 @@
 						</div>
 					
 					
+					<tr>
+						    <td style="text-align:left;"></td>
+						    <td>
 					
 					{!!
 					Form::submit('ทำนัด', ['class' => 'btn btn-primary'])
 					!!}
 					<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-					
+					{!!
+					Form::button('ยกเลิก', ['class' => 'btn'])
+					!!}
+					<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+					<!-- <button type="button" class="btn btn-default">ยกเลิก</button> -->
+					</td>
+					</tr>
 
 					</form>
 				</div>

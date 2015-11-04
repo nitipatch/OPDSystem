@@ -7,7 +7,7 @@
 			"url"=>"requestNewDrugsList/create","method" => "POST","files" => true,"class" => "form-register"
 		])
 !!} 
-<h2 class="text-center">Request New Drugs List rev 0.1 alpha</h2>
+<h2 class="text-center"></h2>
 
 <!-- header -->
 <!-- <form action="" method="POST" class="form-horizontal" role="form">
@@ -21,13 +21,13 @@
 		
 		<form action="" method="POST" role="form">
 			
-			<!-- <legend>โปรดกรอกข้อมูลการขอรายการยาใหม่</legend> -->
+			<legend>โปรดกรอกข้อมูลการขอรายการยาใหม่</legend>
 
 			<div class="form-group">
 				<!-- <label for="">Name</label> -->
 				<!-- <input type="text" class="form-control" name="Name" id="input" required="required" title="Name" placeholder="Name"> -->
 				
-				<p>รายการยาที่แพทย์สั่งให้</p>
+				<!-- <p>รายการยาที่แพทย์สั่งให้</p> -->
 				<div class="row">
 					<div class="col-md-3 col-lg-3">
 						HN<!--  (ดึงจาก db) -->
@@ -42,32 +42,36 @@
 
 				<p></p>
 
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-md-8 col-lg-8">
 						มีดังนี้ //ก็อปของหมอมา
 					</div>
 				</div>
 
-				<br>
-
+				<br> -->
+				<p></p>
 				<div class="row">
 					<div class="col-md-8 col-lg-8">
 					โปรดระบุว่าต้องการเปลี่ยนแปลงรายการยาอย่างไร พร้อมทั้งเหตุผล<font color="red">*</font>
 					<textarea name="" id="input" class="form-control" rows="3" required="required"></textarea>
+					</div>
 				</div>
 
 			</div>
 		
-		<br>
+		<tr>
+                <td style="text-align:left;"></td>
+                <td>
 		
 		{!!
 		Form::submit('ตกลง', ['class' => 'btn btn-primary'])
 		!!}
 		{!!
-		Form::button('ยกเลิก', ['class' => 'btn btn-primary'])
+		Form::button('ยกเลิก', ['class' => 'btn'])
 		!!}
 		<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-		
+		</td>
+        </tr>
 
 		</form>
 	</div>

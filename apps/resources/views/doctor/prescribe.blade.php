@@ -31,7 +31,7 @@
 			
 			
 			<div class="row">
-				<div class="col-lg-5">
+				<div class="col-md-5 col-lg-5">
 					ชื่อยา<font color="red">*</font>
 					<input type="text" name="name" id="input" class="form-control" value="" required="required" pattern="" title="">
 				</div>
@@ -40,7 +40,7 @@
 			<p></p>
 
 			<div class="row">
-				<div class="col-lg-5">
+				<div class="col-md-5 col-lg-5">
 					จำนวน<font color="red">*</font>
 					<input type="text" name="quantity" id="input" class="form-control" value="" required="required" pattern="" title="">
 				</div>
@@ -51,7 +51,7 @@
 			<p></p>
 
 			<div class="row">
-				<div class="col-lg-5">
+				<div class="col-md-5 col-lg-5">
 					วิธีใช้<font color="red">*</font>
 					<textarea name="usage" id="input" class="form-control" rows="0" required="required"></textarea>
 				</div>
@@ -61,15 +61,19 @@
 
 		</div>
 	
-	<br>
 	
 	
-	{!!
-	Form::submit('สั่งยา', ['class' => 'btn btn-primary'])
-	!!}
-	{!!
-	Form::button('ยกเลิก', ['class' => 'btn btn-primary'])
-	!!}
+	<tr>
+	    <td style="text-align:left;"></td>
+	    <td>
+		{!!
+		Form::submit('สั่งยา', ['class' => 'btn btn-primary'])
+		!!}
+		{!!
+		Form::button('ยกเลิก', ['class' => 'btn'])
+		!!}
+		</td>
+	</tr>
 	<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
 	
 

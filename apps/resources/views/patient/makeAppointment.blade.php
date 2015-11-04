@@ -98,7 +98,7 @@
             </tr>
             <tr>
                 <td style="text-align:left;"></td>
-                <td>{!! Form::submit('ทำนัด', ['class' => 'btn']) !!}
+                <td>{!! Form::submit('ทำนัด', ['class' => 'btn btn-primary']) !!}
                 {!! Form::button('ยกเลิก', ['class' => 'btn']) !!}
                 </td>
             </tr>

@@ -7,7 +7,7 @@
 			"url"=>"addScreeningRecord/create","method" => "POST","files" => true,"class" => "form-register"
 		])
 !!} 
-<h2 class="text-center">Add Screening Record rev 0.1 alpha</h2>
+<h2 class="text-center"></h2>
 
 <!-- header -->
 <!-- <form action="" method="POST" class="form-horizontal" role="form">
@@ -113,17 +113,20 @@
 
 			</div>
 		
-		<br>
-		
+		<!-- <br> -->
+		<tr>
+			    <td style="text-align:left;"></td>
+			    <td>
 		{!!
 		Form::submit('บันทึกการตรวจคัดกรอง', ['class' => 'btn btn-primary'])
 		!!}
 		{!!
-		Form::button('ยกเลิก', ['class' => 'btn btn-primary'])
+		Form::button('ยกเลิก', ['class' => 'btn'])
 		!!}
 		<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
 		<!-- <button type="button" class="btn btn-default">ยกเลิก</button> -->
-		
+		</td>
+		</tr>
 		</form>
 
 
