@@ -1,6 +1,8 @@
 <link href="{{asset('/assets/bower_components/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
+<link href="{{asset('/assets/bower_components/bootstrap/dist/css/styles.css')}}" rel="stylesheet">
 <!-- MetisMenu CSS -->
-<link href="{{asset('/assets/bower_components/metisMenu/dist/metisMenu.min.css')}}" rel="stylesheet">
+<!-- <link href="{{asset('/assets/bower_components/metisMenu/dist/metisMenu.min.css')}}" rel="stylesheet"> -->
+<link href="{{asset('/assets/bower_components/metisMenu/css/app.css')}}" rel="stylesheet">
 <!-- Custom CSS -->
 <link href="{{asset('/assets/dist/css/sb-admin-2.css')}}" rel="stylesheet">
 <!-- Custom Fonts -->
