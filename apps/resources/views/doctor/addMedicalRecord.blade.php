@@ -37,7 +37,7 @@
 							<input type="text" name="HN" id="input" class="form-control" value="" required="required" pattern="" title="">
 						</div>
 						<div class="col-md-5 col-lg-5">
-							ชื่อผู้ป่วย<!--  (ดึงจาก db) -->
+							ชื่อผู้ป่วยย<font color="red">*</font><!--  (ดึงจาก db) -->
 							<input type="text" name="patName" id="input" class="form-control" value="" required="required" pattern="" title="">
 						</div>
 

@@ -31,11 +31,11 @@
 				<div class="row">
 					<div class="col-md-3 col-lg-3">
 						HN<!--  (ดึงจาก db) -->
-						<input type="text" name="HN" id="input" class="form-control" value="" required="required" pattern="" title="">
+						<input type="text" name="HN" id="input" class="form-control" value=""  pattern="" title="">
 					</div>
 					<div class="col-md-5 col-lg-5">
 						ชื่อผู้ป่วย<!--  (ดึงจาก db) -->
-						<input type="text" name="patName" id="input" class="form-control" value="" required="required" pattern="" title="">
+						<input type="text" name="patName" id="input" class="form-control" value=""  pattern="" title="">
 					</div>
 				</div>
 				
