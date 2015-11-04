@@ -9,7 +9,7 @@
 		])
 !!} 
 
-<h2 class="text-center">Prescribe rev 0.1 alpha</h2>
+<h2 class="text-center"></h2>
 
 <!-- header -->
 <!-- <form action="" method="POST" class="form-horizontal" role="form">
