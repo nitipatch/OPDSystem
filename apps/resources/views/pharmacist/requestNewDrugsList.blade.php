@@ -21,76 +21,47 @@
 		
 		<form action="" method="POST" role="form">
 			
-			<legend>โปรดกรอกข้อมูลการขอรายการยาใหม่</legend>
+			<!-- <legend>โปรดกรอกข้อมูลการขอรายการยาใหม่</legend> -->
 
 			<div class="form-group">
 				<!-- <label for="">Name</label> -->
 				<!-- <input type="text" class="form-control" name="Name" id="input" required="required" title="Name" placeholder="Name"> -->
 				
-				
+				<p>รายการยาที่แพทย์สั่งให้</p>
 				<div class="row">
+					<div class="col-lg-3">
+						HN<!--  (ดึงจาก db) -->
+						<input type="text" name="HN" id="input" class="form-control" value="" required="required" pattern="" title="">
+					</div>
 					<div class="col-lg-5">
-						อาการหรือสาเหตุที่ต้องการพบแพทย์<font color="red">*</font>
-						<textarea name="cause" id="input" class="form-control" rows="0" required="required"></textarea>
+						ชื่อผู้ป่วย<!--  (ดึงจาก db) -->
+						<input type="text" name="patName" id="input" class="form-control" value="" required="required" pattern="" title="">
 					</div>
 				</div>
 				
-				<p></p>
-
-				<div class="row">
-					<div class="col-lg-5">
-						แพทย์ที่ท่านต้องการเข้าพบ
-						<select name="doctor" id="input" class="form-control">
-							<option value="">แพทย์</option>
-							<option value="A">หมอ A</option>
-							<option value="B">หมอ B</option>
-							<option value="C">หมอ C</option>
-						</select>
-					</div>
-					
-					<div class="col-lg-5">
-						แผนกของแพทย์ที่ท่านต้องการเข้าพบ<font color="red">*</font>
-						<select name="doctor" id="input" class="form-control" required="required">
-							<option value="deptA" color="blue">แผนก</option>
-							<option value="deptA">แผนก A</option>
-							<option value="deptB">แผนก B</option>
-						</select>
-					</div>
-				</div>
-					
 
 				<p></p>
 
 				<div class="row">
-					<div class="form-group">
-						<label for="input" class="col-sm-0 control-label"></label>
-						<div class="col-lg-3">
-							วันที่ท่านต้องการพบแพทย์<font color="red">*</font>
-							<input type="date" name="apptDate" id="input" class="form-control" value="" required="required" title="">
-						</div>
-
-						<div class="col-lg-3">
-							<div class="radio">
-								ช่วงเวลา<font color="red">*</font>
-								<label>
-									<input type="radio" name="morning" id="inputMorning" value="">
-									เช้า
-								</label>
-								<label>
-									<input type="radio" name="morning" id="inputMorning" value="">
-									บ่าย
-								</label>
-							</div>
-						</div>
+					<div class="col-lg-8">
+						มีดังนี้ //ก็อปของหมอมา
 					</div>
+				</div>
+
+				<br>
+
+				<div class="row">
+					<div class="col-lg-8">
+					โปรดระบุว่าต้องการเปลี่ยนแปลงรายการยาอย่างไร พร้อมทั้งเหตุผล<font color="red">*</font>
+					<textarea name="" id="input" class="form-control" rows="3" required="required"></textarea>
 				</div>
 
 			</div>
 		
-		
+		<br>
 		
 		{!!
-		Form::submit('ทำนัด', ['class' => 'btn btn-primary'])
+		Form::submit('ตกลง', ['class' => 'btn btn-primary'])
 		!!}
 		<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
 		
