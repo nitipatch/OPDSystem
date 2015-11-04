@@ -72,29 +72,41 @@
 				<p></p>
 
 				<div class="row">
-					<div class="col-lg-1">
-						ความดันโลหิต<font color="red">*</font>
-						<input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" required="required" title="">
+					<div class="col-lg-4">
+						ความดันโลหิต<font color="red">*</font> (กรอกให้ครบ 2 ช่อง)
 					</div>
-					/
 
-					<div class="col-lg-1">
-						<input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" required="required" title="">
-					</div>
 
 					<div class="col-lg-2">
 						อุณหภูมิร่างกาย<font color="red">*</font>
-						<input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" required="required" title="">
-						
 					</div>
 
-					<div class="col-lg-5">
+					<div class="col-lg-6">
 						แพ้ยา (ถ้ามี)
-						<input type="text" name="" id="input" class="form-control" value=""  pattern="" title="">
-						
 					</div>
 					
 				</div>
+
+				<div class="row">
+					<div class="col-lg-2"> 
+						<input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" required="required" title="">
+					</div>
+					<!-- <div class="col-xs-1">/</div> -->
+					<div class="col-lg-2"> 
+						<input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" required="required" title="">
+					</div>
+					
+					<div class="col-lg-2">
+						<input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" required="required" title="">
+					</div>
+					
+					<div class="col-lg-6">
+						<input type="text" name="" id="input" class="form-control" value=""  pattern="" title="">
+					</div>
+
+				</div>
+
+
 					
 
 				<!-- <p></p>
