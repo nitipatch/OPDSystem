@@ -29,11 +29,11 @@
 				
 				<p>รายการยาที่แพทย์สั่งให้</p>
 				<div class="row">
-					<div class="col-lg-3">
+					<div class="col-md-3 col-lg-3">
 						HN<!--  (ดึงจาก db) -->
 						<input type="text" name="HN" id="input" class="form-control" value="" required="required" pattern="" title="">
 					</div>
-					<div class="col-lg-5">
+					<div class="col-md-5 col-lg-5">
 						ชื่อผู้ป่วย<!--  (ดึงจาก db) -->
 						<input type="text" name="patName" id="input" class="form-control" value="" required="required" pattern="" title="">
 					</div>
@@ -43,7 +43,7 @@
 				<p></p>
 
 				<div class="row">
-					<div class="col-lg-8">
+					<div class="col-md-8 col-lg-8">
 						มีดังนี้ //ก็อปของหมอมา
 					</div>
 				</div>
@@ -51,7 +51,7 @@
 				<br>
 
 				<div class="row">
-					<div class="col-lg-8">
+					<div class="col-md-8 col-lg-8">
 					โปรดระบุว่าต้องการเปลี่ยนแปลงรายการยาอย่างไร พร้อมทั้งเหตุผล<font color="red">*</font>
 					<textarea name="" id="input" class="form-control" rows="3" required="required"></textarea>
 				</div>

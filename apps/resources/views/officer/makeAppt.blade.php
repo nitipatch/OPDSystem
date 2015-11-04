@@ -31,7 +31,7 @@
 							
 							
 							<div class="row">
-								<div class="col-lg-5">
+								<div class="col-md-5 col-lg-5">
 									อาการหรือสาเหตุที่ต้องการพบแพทย์<font color="red">*</font>
 									<textarea name="cause" id="input" class="form-control" rows="0" required="required"></textarea>
 								</div>
@@ -40,7 +40,7 @@
 							<p></p>
 
 							<div class="row">
-								<div class="col-lg-5">
+								<div class="col-md-5 col-lg-5">
 									แพทย์ที่ท่านต้องการเข้าพบ
 									<select name="doctor" id="input" class="form-control">
 										<option value="">แพทย์</option>
@@ -50,7 +50,7 @@
 									</select>
 								</div>
 								
-								<div class="col-lg-5">
+								<div class="col-md-5 col-lg-5">
 									แผนกของแพทย์ที่ท่านต้องการเข้าพบ<font color="red">*</font>
 									<select name="doctor" id="input" class="form-control" required="required">
 										<option value="deptA" color="blue">แผนก</option>
@@ -66,12 +66,12 @@
 							<div class="row">
 								<div class="form-group">
 									<label for="input" class="col-sm-0 control-label"></label>
-									<div class="col-lg-3">
+									<div class="col-md-3 col-lg-3">
 										วันที่ท่านต้องการพบแพทย์<font color="red">*</font>
 										<input type="date" name="apptDate" id="input" class="form-control" value="" required="required" title="">
 									</div>
 
-									<div class="col-lg-3">
+									<div class="col-md-3 col-lg-3">
 										<div class="radio">
 											ช่วงเวลา<font color="red">*</font>
 											<label>

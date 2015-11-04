@@ -32,11 +32,11 @@
 					
 					
 					<div class="row">
-						<div class="col-lg-5">
+						<div class="col-md-5 col-lg-5">
 							HN<font color="red">*</font><!--  (กรอกเอง หรือ ดึงจาก db) -->
 							<input type="text" name="HN" id="input" class="form-control" value="" required="required" pattern="" title="">
 						</div>
-						<div class="col-lg-5">
+						<div class="col-md-5 col-lg-5">
 							ชื่อผู้ป่วย<!--  (ดึงจาก db) -->
 							<input type="text" name="patName" id="input" class="form-control" value="" required="required" pattern="" title="">
 						</div>
@@ -46,11 +46,11 @@
 					<p></p>
 
 					<div class="row">
-						<div class="col-lg-5">
+						<div class="col-md-5 col-lg-5">
 							อาการผู้ป่วย<font color="red">*</font>
 							<textarea name="" id="input" class="form-control" rows="3" required="required"></textarea>
 						</div>
-						<div class="col-lg-5">
+						<div class="col-md-5 col-lg-5">
 							การวินิจฉัยหลัก<font color="red">*</font>
 							<select name="" id="input" class="form-control">
 								<option value="">-- Select One --</option>
