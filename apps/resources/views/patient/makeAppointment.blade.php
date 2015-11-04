@@ -15,7 +15,7 @@
         <h3 style="color:red;text-align:center;"></h3>
         <table align="center">
             <tr><p>
-                <td style="text-align:right;" valign="top">
+                <td style="text-align:left;" valign="top">
                     <label>สาเหตุหรืออาการที่ต้องการพบแพทย์<font color="red">*</font></label></td>
                 <td>
                     {!! Form::textarea('cause', Input::old('กรอกสาเหตุหรืออาการ'), [
@@ -34,7 +34,7 @@
                 </td>
             </tr>
             <tr><p>
-                <td style="text-align:right;" valign="top">
+                <td style="text-align:left;" valign="top">
                     <label>ชื่อแพทย์ที่ต้องการพบ<font color="red">*</font></label></td>
                 <td>
                     <?php
@@ -53,7 +53,7 @@
                 </td>
             </tr>
             <tr><p>
-                <td style="text-align:right;" valign="top">
+                <td style="text-align:left;" valign="top">
                     <label>แผนกของแพทย์ที่ต้องการพบ<font color="red">*</font></label></td>
                 <td>
                     <?php
@@ -70,7 +70,7 @@
                 </td>
             </tr>  
             <tr><p>
-                <td style="text-align:right;" valign="top">
+                <td style="text-align:left;" valign="top">
                     <label>วันนัด<font color="red">*</font></label></td>
                 <td>
                     {!! Form::date('apptDate', \Carbon\Carbon::now()) !!}
@@ -83,7 +83,7 @@
                 </td>
             </tr>
             <tr><p>
-                <td style="text-align:right;" valign="top">
+                <td style="text-align:left;" valign="top">
                     <label>ช่วงเวลา<font color="red">*</font></label></td>
                 <td>
                     {!! Form::radio('morning',1) !!}เช้า
@@ -97,9 +97,10 @@
                 </td>
             </tr>
             <tr>
-                <td style="text-align:right;"></td>
-                <td>{!! Form::submit('ทำนัด', ['class' => 'btn']) !!}</td>
-                <td>{!! Form::button('ยกเลิก', ['class' => 'btn']) !!}</td>
+                <td style="text-align:left;"></td>
+                <td>{!! Form::submit('ทำนัด', ['class' => 'btn']) !!}
+                {!! Form::button('ยกเลิก', ['class' => 'btn']) !!}
+                </td>
             </tr>
         </table>
     </div>
