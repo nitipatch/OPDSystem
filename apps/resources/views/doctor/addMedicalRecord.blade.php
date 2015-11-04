@@ -5,7 +5,7 @@
 {!!
 	Form::open
 		([
-			"url"=>"prescribe/create","method" => "POST","files" => true,"class" => "form-register"
+			"url"=>"addMedicalRecord/create","method" => "POST","files" => true,"class" => "form-register"
 		])
 !!} 
 
@@ -75,18 +75,8 @@
 			Form::submit('บันทึกการรักษา', ['class' => 'btn btn-primary'])
 			!!}
 			<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-			
 
-<<<<<<< HEAD
 			</form>
 		</div>
-		
-		<!-- jQuery -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-		<!-- Bootstrap JavaScript -->
-		<script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
-=======
-				</form>
-			</div>
->>>>>>> 3fb78e23e307c044ce89bbc13bdd5d7c3cd58d99
+
 @stop

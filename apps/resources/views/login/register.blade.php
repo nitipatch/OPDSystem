@@ -16,10 +16,25 @@
         <h3 style="color:red;text-align:center;"></h3>
         <table align="center">
             <tr>
-                <td style="text-align:right;" valign="top"><label>Full Name</label></td>
+                <td style="text-align:right;" valign="top"><label>เลขบัตรประจำตัวประชาชน</label></td>
+                <td>
+                    {!! Form::text('idenCardNo', Input::old('idenCardNo'), [
+                        'placeholder' => 'เลขบัตรประจำตัวประชาชน',
+                        'class' => 'form-control',
+                        'maxlength' => 13
+                    ]) !!}
+                    @if ($errors->has('idenCardNo'))
+                        <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
+                            {{ $errors->first('idenCardNo') }}
+                        </p>
+                    @endif
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right;" valign="top"><label>ชื่อ</label></td>
                 <td>
                     {!! Form::text('name', Input::old('name'), [
-                        'placeholder' => 'Full Name',
+                        'placeholder' => 'ชื่อ',
                         'class' => 'form-control',
                         'maxlength' => 100
                     ]) !!}
@@ -31,50 +46,77 @@
                 </td>
             </tr>
             <tr>
-                <td style="text-align:right;" valign="top"><label>Email</label></td>
+                <td style="text-align:right;" valign="top"><label>นามสกุล</label></td>
                 <td>
-                    {!! Form::text('email', Input::old('email'), [
-                        'placeholder' => 'Email',
+                    {!! Form::text('surname', Input::old('surname'), [
+                        'placeholder' => 'นามสกุล',
                         'class' => 'form-control',
-                        'maxlength' => 100
+                        'maxlength' => 200
                     ]) !!}
-                    @if ($errors->has('email'))
+                    @if ($errors->has('surname'))
                         <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
-                            {{ $errors->first('email') }}
+                            {{ $errors->first('surname') }}
                         </p>
                     @endif
                 </td>
             </tr>
             <tr>
-                <td style="text-align:right;" valign="top"><label>Password</label></td>
+                <td style="text-align:right;" valign="top"><label>ที่อยู่</label></td>
                 <td>
-                    {!! Form::password('password', [
-                        'placeholder' => 'Password',
+                    {!! Form::text('address', Input::old('address'), [
+                        'placeholder' => 'ที่อยู่',
                         'class' => 'form-control',
-                        'maxlength' => 15
+                        'maxlength' => 1000
                     ]) !!}
-                    @if ($errors->has('password'))
+                    @if ($errors->has('address'))
                         <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
-                            {{ $errors->first('password') }}
+                            {{ $errors->first('address') }}
                         </p>
                     @endif
                 </td>
             </tr>
             <tr>
-                <td style="text-align:right;" valign="top"><label>Confirm Password</label></td>
+                <td style="text-align:right;" valign="top"><label>เบอร์โทรศัพท์</label></td>
                 <td>
-                    {!! Form::password('password_confirmation', [
-                        'placeholder' => 'Confirm Password',
+                    {!! Form::text('phoneNo', Input::old('phoneNo'), [
+                        'placeholder' => 'เบอร์โทรศัพท์',
                         'class' => 'form-control',
-                        'maxlength' => 15
+                        'maxlength' => 10
                     ]) !!}
-                    @if ($errors->has('password_confirmation'))
+                    @if ($errors->has('phoneNo'))
                         <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
-                            {{ $errors->first('password_confirmation') }}
+                            {{ $errors->first('phoneNo') }}
                         </p>
                     @endif
                 </td>
             </tr>
+            <tr>
+                <td style="text-align:right;" valign="top"><label>อีเมล</label></td>
+                <td>
+                    {!! Form::text('emailAddr', Input::old('emailAddr'), [
+                        'placeholder' => 'อีเมล',
+                        'class' => 'form-control',
+                        'maxlength' => 255
+                    ]) !!}
+                    @if ($errors->has('emailAddr'))
+                        <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
+                            {{ $errors->first('emailAddr') }}
+                        </p>
+                    @endif
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right;" valign="top"><label>วันเดือนปีเกิด</label></td>
+                <td>
+                    {!! Form::date('birthdate', \Carbon\Carbon::now()) !!}
+                    @if ($errors->has('birthdate'))
+                        <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
+                            {{ $errors->first('birthdate') }}
+                        </p>
+                    @endif
+                </td>
+            </tr>
+            
             <tr>
                 <td style="text-align:right;"></td>
                 <td>{!! Form::submit('Create', ['class' => 'btn']) !!}</td>
