@@ -1,13 +1,12 @@
 @extends('login.layouts.template')
 @section('content')
-<!DOCTYPE html>
 <?php echo csrf_field(); ?>
 {!! Form::open([
     "url" => "login/register/create",
     "method" => "POST",
     "files" => true,
     "class" => "form-register",
-]) !!}
+])  !!}
     <div class="box-login">
         <h2 style="text-align:center;">สมัครสมาชิก</h2>
         @if(Session::has('flash_notice'))

@@ -1,7 +1,10 @@
-<?php namespace App\Http\Controllers\Admins; //กำหนดให้ระบบทราบว่า Controller นี้อยู่ไหน
-     use Auth; // ทำการเรียกใช้ Auth เพื่อเอาไว้ตรวจสอบว่า มีการ Login อยู่แล้วหรือไม่
-     use Illuminate\Routing\Controller; // เรียกใช้ Controller ของ Laravel 5.0
-     use App\Http\Requests\Admins\LoginRequest; // สำหรับตรวจสอบ หรือสร้าง Validate ให้กับ Form
+<?php 
+namespace App\Http\Controllers\Admins; //กำหนดให้ระบบทราบว่า Controller นี้อยู่ไหน
+use Auth; // ทำการเรียกใช้ Auth เพื่อเอาไว้ตรวจสอบว่า มีการ Login อยู่แล้วหรือไม่
+use Illuminate\Routing\Controller; // เรียกใช้ Controller ของ Laravel 5.0
+use App\Http\Requests\Admins\LoginRequest; // สำหรับตรวจสอบ หรือสร้าง Validate ให้กับ Form
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
  
 class LoginController extends Controller {
   // ตรวจสอบว่า มีการ Login อยู่หรือไม่ ถ้า Login อยู่ ระบบจะทำการ redirect ไปหน้า Index ถ้ายัง ก็ให้อยู่ในหน้า Login
@@ -17,7 +20,6 @@ class LoginController extends Controller {
       else return redirect('/login/loginframe');
     }
 
-    //public function patient($name){ return redirect('patient/loginsuccess/{'.$GET_['name'].'}'); }
     public function patient(){ return redirect('patient/loginsuccess'); }
     public function doctor(){ return redirect('doctor/loginsuccess'); }
     public function nurse(){ return redirect('nurse/loginsuccess'); }
@@ -29,10 +31,14 @@ class LoginController extends Controller {
     {
       $username = $request->input('username');
       $password = $request->input('password');
-      $surname = $request->input('surname');      
+      
+      $user = DB::table('users')->where('username',$username)->first();
+      
+      Session::put('username', $user->username);
+      Session::put('name', $user->name);
+      Session::put('surname', $user->surname);
 
       if(Auth::attempt(['username'=>$username,'password'=>$password,'type'=>'patient'],$request->has('remember')))
-          //return redirect()->intended('/login/patient/{'.$surname.'}');
           return redirect()->intended('/login/patient');
       
       if(Auth::attempt(['username'=>$username,'password'=>$password,'type'=>'doctor'],$request->has('remember')))

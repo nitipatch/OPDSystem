@@ -4,47 +4,49 @@ namespace App\Http\Controllers\patient;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Appointment;
 use View;
 
 class MakeAppointmentController extends BaseController
 {
 	public function makeAppointmentForm()
 	{
-		return View::make('patient.makeAppt');
+		return View::make('patient.makeAppointment');
 	}
 	public function makeAppointmentCreate()
 	{
 		$validator = Validator::make(Input::all()
-			,array('name'=>'required|min:4|max:100'
-			,'password'=>'required|min:4|max:15|confirmed'
-			,'password_confirmation'=>'required|min:4|max:15'
-			,'email'=>'required|email|max:100|unique:users')
+			,array('cause'=>'max:1000'
+			,'doctor'=>'required'
+			,'apptDate'=>'required'
+			,'morning'=>'required')
 			
-			,array('name.required'=>'Full Name ไม่สามารถเป็นค่าว่างได้'
-			,'email.required'=>'email ไม่สามารถเป็นค่าว่างได้'
-			,'email.email'=>'รูปแบบ E-Mail ไม่ถูกต้อง'
-			,'email.unique'=>'email นี้มีอยู่ในระบบแล้ว'
-			,'password.required'=>'password ไม่สามารถเป็นค่าว่างได้'
-			,'password.confirmed'=>'รหัสผ่านไม่ตรงกัน'
-			,'password_confirmation.required'=>'confirm password ไม่สามารถเป็นค่าว่างได้'
-			,)
+			,array('cause.max'=>'สาเหตุหรืออาการยาวเกินไป'
+			,'doctor.required'=>'กรุณาเลือกแพทย์ที่ต้องการนัด'
+			,'apptDate.required'=>'กรุณาเลือกวันนัด'
+			,'morning.required'=>'กรุณาเลือกช่วงเวลานัด')
 		);
-		if ($validator->passes()) { $addUser = new User();
-			$addUser->name = Input::get('name');
-			$addUser->username = Input::get('name');
-			$addUser->password = Hash::make(Input::get('password'));
-			$addUser->email = Input::get('email');
-			$addUser->created_at = date("Y-m-d H:i:s",time());
-			$addUser->type = 'patient';
-			$addUser->save();
-			return Redirect::to('login/register')->with('flash_notice','ดำเนินการสำเร็จ');}
-		else{return Redirect::to('login/register')->withErrors($validator)
-			->withInput(Input::except('password'))
-			->withInput(Input::except('password_confirmation'))
-			->withInput();}}}
+		if ($validator->passes()) 
+		{ 
+			$user = DB::table('users')->where('name',Input::get('doctor'))->first();
+
+			$addAppointment = new Appointment();
+			$addAppointment->HN = Session::get('username');
+			$addAppointment->doctorEmpID = $user->username;
+			$addAppointment->appointmentDate = Input::get('apptDate');
+			$addAppointment->morning = Input::get('morning');
+			$addAppointment->symptomOrReason = Input::get('cause');
+			$addAppointment->dependOnDr = isset($user);
+			$addAppointment->save();
+			return Redirect::to('patient/makeAppointment')->with('flash_notice','ดำเนินการสำเร็จ');
+		}
+		else{return Redirect::to('patient/makeAppointment')->withErrors($validator)->withInput();}
+	}
+}
 			
 ?>

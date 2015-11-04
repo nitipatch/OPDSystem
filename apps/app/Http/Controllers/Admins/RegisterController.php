@@ -65,7 +65,7 @@ class RegisterController extends BaseController
     		$randomString = '';
     		for ($i = 0; $i < 8; $i++)
         		$randomString .= $characters[rand(0, $charactersLength - 1)];
-        	mail(Input::get('emailAddr'),"ตรวจสอบรหัสผ่านในการเข้าสู่เว็บไซต์ OPDSystem",$randomString ,'');
+        	//mail(Input::get('emailAddr'),"ตรวจสอบรหัสผ่านในการเข้าสู่เว็บไซต์ OPDSystem",$randomString ,'');
   
 			$addUser->password = Hash::make($randomString);	
 			$addUser->save();

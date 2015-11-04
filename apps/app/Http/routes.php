@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Session;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -28,9 +29,10 @@ Route::group(['prefix'=>'login','middleware'=>'auth','namespace'=>'Admins'],func
 
 Route::get('patient/logout','Admins\LoginController@getLogout');
 Route::group(['prefix'=>'patient','middleware'=>'auth','namespace'=>'patient'],function(){
-	//Route::get('loginsuccess/{name}', function($name){$data['name']=$name;return View::make('patient.success',$data);});
-	Route::get('loginsuccess', function(){return view('patient.success');});
-	Route::get('make-appointment', 'MakeAppointmentController@makeAppointmentForm');
+	Route::get('loginsuccess', function(){return \View::make('patient.success')->with('name',Session::get('name'))
+																			   ->with('surname',Session::get('surname'));});
+	Route::get('makeAppointment', 'MakeAppointmentController@makeAppointmentForm');
+	Route::post('makeAppointment/create', 'MakeAppointmentController@makeAppointmentCreate');
 });
 
 
