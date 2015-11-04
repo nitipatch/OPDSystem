@@ -72,10 +72,13 @@
 				<p></p>
 
 				<div class="row">
-					<div class="col-lg-2">
+					<div class="col-lg-1">
 						ความดันโลหิต<font color="red">*</font>
 						<input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" required="required" title="">
-						/
+					</div>
+					/
+
+					<div class="col-lg-1">
 						<input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" required="required" title="">
 					</div>
 
