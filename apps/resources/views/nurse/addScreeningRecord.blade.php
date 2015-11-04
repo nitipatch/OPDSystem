@@ -33,7 +33,7 @@
 						<input type="text" name="HN" id="input" class="form-control" value="" required="required" pattern="" title="">
 					</div>
 					<div class="col-lg-5">
-						ชื่อผู้ป่วย<!--  (กรอกเอง หรือ ดึงจาก db) -->
+						ชื่อผู้ป่วย<font color="red">*</font><!--  (กรอกเอง หรือ ดึงจาก db) -->
 						<input type="text" name="patName" id="input" class="form-control" value="" required="required" pattern="" title="">
 					</div>
 
