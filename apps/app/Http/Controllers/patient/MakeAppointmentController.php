@@ -21,27 +21,34 @@ class MakeAppointmentController extends BaseController
 	public function makeAppointmentCreate()
 	{
 		$validator = Validator::make(Input::all()
-			,array('cause'=>'max:1000'
-			,'doctor'=>'required'
+			,array('cause'=>'required|max:1000'
+			,'doctor'=>'required_without:department'
+			,'department'=>'required_without:doctor'
 			,'apptDate'=>'required'
 			,'morning'=>'required')
 			
-			,array('cause.max'=>'สาเหตุหรืออาการยาวเกินไป'
-			,'doctor.required'=>'กรุณาเลือกแพทย์ที่ต้องการนัด'
+			,array('cause.required'=>'กรุณากรอกสาเหตุหรืออาการ'
+			,'cause.max'=>'สาเหตุหรืออาการยาวเกินไป'
+			,'doctor.required_without'=>'กรุณาเลือกแพทย์หรือแผนกที่ต้องการนัด'
+			,'department.required_without'=>'กรุณาเลือกแพทย์หรือแผนกที่ต้องการนัด'
 			,'apptDate.required'=>'กรุณาเลือกวันนัด'
 			,'morning.required'=>'กรุณาเลือกช่วงเวลานัด')
 		);
 		if ($validator->passes()) 
 		{ 
-			$user = DB::table('users')->where('name',Input::get('doctor'))->first();
+			if(empty(Input::get('doctor')))
+			{$depentOnDr=1; $doctor = DB::table('users')->where('name',Input::get('doctor'))->first();}
+			//else if(!empty(Input::get('department')))
+			else
+			{$depentOnDr=0; $doctor = DB::table('users')->where('department',Input::get('department'))->first();}
 
 			$addAppointment = new Appointment();
 			$addAppointment->HN = Session::get('username');
-			$addAppointment->doctorEmpID = $user->username;
+			$addAppointment->doctorEmpID = $doctor->username;
 			$addAppointment->appointmentDate = Input::get('apptDate');
 			$addAppointment->morning = Input::get('morning');
 			$addAppointment->symptomOrReason = Input::get('cause');
-			$addAppointment->dependOnDr = isset($user);
+			$addAppointment->dependOnDr = $depentOnDr;
 			$addAppointment->save();
 			return Redirect::to('patient/makeAppointment')->with('flash_notice','ดำเนินการสำเร็จ');
 		}

@@ -37,12 +37,13 @@
                 <td style="text-align:right;" valign="top">
                     <label>ชื่อแพทย์ที่ต้องการพบ<font color="red">*</font></label></td>
                 <td>
-                    {!! Form::text('doctor', Input::old('กรอกชื่อแพทย์'), [
-                        'placeholder' => 'ชื่อแพทย์',
-                        'class' => 'form-control',
-                        'maxlength' => 100
-                    ]) !!}
-                    
+                    <?php
+                    $doctors = DB::table('users')->where('type','doctor')->get();
+                    $doctorsList = array();
+                    foreach($doctors as $doctor){array_push($doctorsList,$doctor->name." ".$doctor->surname);}
+                    function withEmpty1($selectList, $emptyLabel='--เลือกแพทย์--') {return array(''=>$emptyLabel) + $selectList;}
+                    ?>
+                    {!! Form::select('doctor', withEmpty1($doctorsList),null, array('class'=>'form-control')) !!}
                     @if ($errors->has('doctor'))
                         <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
                             {{ $errors->first('doctor') }}
@@ -55,12 +56,14 @@
                 <td style="text-align:right;" valign="top">
                     <label>แผนกของแพทย์ที่ต้องการพบ<font color="red">*</font></label></td>
                 <td>
-                    {!! Form::select('department', ['--เลือกแผนก--','อายุรกรรม','ศัลยกรรม','ออร์โธปีดิกส์','กุมารเวชกรรม','สูตินรีเวช'
-                    ,'ทันตกรรม','เวชปฏิบัติ','แพทย์เฉพาะทางอื่นๆ']) !!}
-
-                    @if ($errors->has('doctor'))
+                    <?php
+                    function withEmpty2($selectList, $emptyLabel='--เลือกแผนก--') {return array(''=>$emptyLabel) + $selectList;}
+                    $departmentsList=['อายุรกรรม','ศัลยกรรม','ออร์โธปีดิกส์','กุมารเวชกรรม','สูตินรีเวช','ทันตกรรม','เวชปฏิบัติ','แพทย์เฉพาะทางอื่นๆ'];
+                    ?>
+                    {!! Form::select('department', withEmpty2($departmentsList),null, array('class'=>'form-control')) !!}
+                    @if ($errors->has('department'))
                         <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
-                            {{ $errors->first('doctor') }}
+                            {{ $errors->first('department') }}
                         </p>
                     @endif
                     </p>  
