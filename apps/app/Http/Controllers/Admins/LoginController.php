@@ -17,6 +17,7 @@ class LoginController extends Controller {
       else return redirect('/login/loginframe');
     }
 
+    //public function patient($name){ return redirect('patient/loginsuccess/{'.$GET_['name'].'}'); }
     public function patient(){ return redirect('patient/loginsuccess'); }
     public function doctor(){ return redirect('doctor/loginsuccess'); }
     public function nurse(){ return redirect('nurse/loginsuccess'); }
@@ -28,8 +29,10 @@ class LoginController extends Controller {
     {
       $username = $request->input('username');
       $password = $request->input('password');
+      $surname = $request->input('surname');      
 
       if(Auth::attempt(['username'=>$username,'password'=>$password,'type'=>'patient'],$request->has('remember')))
+          //return redirect()->intended('/login/patient/{'.$surname.'}');
           return redirect()->intended('/login/patient');
       
       if(Auth::attempt(['username'=>$username,'password'=>$password,'type'=>'doctor'],$request->has('remember')))

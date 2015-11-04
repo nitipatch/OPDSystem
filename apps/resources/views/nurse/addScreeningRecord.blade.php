@@ -4,11 +4,7 @@
 {!!
 	Form::open
 		([
-<<<<<<< HEAD
-			"url"=>"screeningRecord/create","method" => "POST","files" => true,"class" => "form-register"
-=======
 			"url"=>"addScreeningRecord/create","method" => "POST","files" => true,"class" => "form-register"
->>>>>>> d28043e98e94984a6ef734d19c35ed9010e12603
 		])
 !!} 
 <h2 class="text-center">Add Screening Record rev 0.1 alpha</h2>

@@ -28,6 +28,7 @@ Route::group(['prefix'=>'login','middleware'=>'auth','namespace'=>'Admins'],func
 
 Route::get('patient/logout','Admins\LoginController@getLogout');
 Route::group(['prefix'=>'patient','middleware'=>'auth','namespace'=>'patient'],function(){
+	//Route::get('loginsuccess/{name}', function($name){$data['name']=$name;return View::make('patient.success',$data);});
 	Route::get('loginsuccess', function(){return view('patient.success');});
 	Route::get('make-appointment', 'MakeAppointmentController@makeAppointmentForm');
 });
