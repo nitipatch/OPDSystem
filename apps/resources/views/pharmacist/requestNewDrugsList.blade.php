@@ -63,6 +63,9 @@
 		{!!
 		Form::submit('ตกลง', ['class' => 'btn btn-primary'])
 		!!}
+		{!!
+		Form::button('ยกเลิก', ['class' => 'btn btn-primary'])
+		!!}
 		<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
 		
 

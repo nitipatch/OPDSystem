@@ -9,7 +9,7 @@
 		])
 !!} 
 
-		<h2 class="text-center">Add Medical Record rev 0.1 alpha</h2>
+		<!-- <h2 class="text-center">Add Medical Record rev 0.1 alpha</h2> -->
 		
 		<!-- header -->
 		<!-- <form action="" method="POST" class="form-horizontal" role="form">
@@ -20,7 +20,7 @@
 
 
 		<!-- old -->
-
+		<br>
 		<div class="row">
 				
 			<form action="" method="POST" role="form">
@@ -32,18 +32,18 @@
 					
 					
 					<div class="row">
-						<div class="col-md-5 col-lg-5">
+						<div class="col-md-3 col-lg-3">
 							HN<font color="red">*</font><!--  (กรอกเอง หรือ ดึงจาก db) -->
 							<input type="text" name="HN" id="input" class="form-control" value="" required="required" pattern="" title="">
 						</div>
 						<div class="col-md-5 col-lg-5">
-							ชื่อผู้ป่วยย<font color="red">*</font><!--  (ดึงจาก db) -->
+							ชื่อผู้ป่วย<font color="red">*</font><!--  (ดึงจาก db) -->
 							<input type="text" name="patName" id="input" class="form-control" value="" required="required" pattern="" title="">
 						</div>
 
 					</div>
 					
-					<p></p>
+					<br>
 
 					<div class="row">
 						<div class="col-md-5 col-lg-5">
@@ -73,6 +73,9 @@
 			
 			{!!
 			Form::submit('บันทึกการรักษา', ['class' => 'btn btn-primary'])
+			!!}
+			{!!
+			Form::button('ยกเลิก', ['class' => 'btn btn-primary'])
 			!!}
 			<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
 
