@@ -60,7 +60,8 @@ Route::group(['prefix'=>'pharmacist','middleware'=>'auth','namespace'=>'pharmaci
 
 Route::get('officer/logout','Admins\LoginController@getLogout');
 Route::group(['prefix'=>'officer','middleware'=>'auth','namespace'=>'officer'],function(){
-	Route::get('loginsuccess', function(){return view('officer.success');});
-	Route::get('make-appointment', 'MakeAppointmentController@makeAppointmentForm');
+	Route::get('loginsuccess', function(){return \View::make('officer.success')->with('name',Session::get('name'))
+																			   ->with('surname',Session::get('surname'));});
+	Route::get('makeAppointment', 'MakeAppointmentController@makeAppointmentForm');
+	Route::post('makeAppointment/create', 'MakeAppointmentController@makeAppointmentCreate');
 });
-

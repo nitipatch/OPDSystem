@@ -1,8 +1,8 @@
-@extends('patient.layouts.template')
+@extends('officer.layouts.template')
 @section('content')
 
 {!! Form::open([
-    "url" => "patient/makeAppointment/create",
+    "url" => "officer/makeAppointment/create",
     "method" => "POST",
     "files" => true,
     "class" => "form-register",
@@ -14,6 +14,24 @@
         @endif
         <h3 style="color:red;text-align:center;"></h3>
         <table align="center">
+            <tr><p>
+                <td style="text-align:left;" valign="top">
+                    <label>HN ของผู้ป่วยที่ต้องการทำนัด<font color="red">*</font></label></td>
+                <td>
+                    {!! Form::text('HN', Input::old('กรอก HN ของผู้ป่วย'), [
+                        'placeholder' => 'กรอก HN ของผู้ป่วย',
+                        'class' => 'form-control',
+                        'maxlength' => 8,
+                    ]) !!}
+                    
+                    @if ($errors->has('HN'))
+                        <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
+                            {{ $errors->first('HN') }}
+                        </p>
+                    @endif
+                    </p>
+                </td>
+            </tr>
             <tr><p>
                 <td style="text-align:left;" valign="top">
                     <label>สาเหตุหรืออาการที่ต้องการพบแพทย์<font color="red">*</font></label></td>

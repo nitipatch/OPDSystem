@@ -15,7 +15,7 @@
 	<li>
 		<a><i class="fa fa-bar-chart-o fa-fw"></i>การนัดหมาย<span class="fa arrow"></span></a>
 		<ul class="nav nav-second-level">
-			<li><a href="make-appointment"><i class="fa fa-edit fa-fw"></i>ทำนัด</a></li>
+			<li><a href="makeAppointment"><i class="fa fa-edit fa-fw"></i>ทำนัด</a></li>
 			<li><a href="4.html"><i class="fa fa-pencil fa-fw"></i>เลื่อนนัด</a></li>
 			<li><a href="5.html"><i class="fa fa-times fa-fw"></i>ยกเลิกนัด</a></li>
 			<li><a href="1.html"><i class="fa fa-table fa-fw"></i>พิมพ์ใบนัด</a></li>

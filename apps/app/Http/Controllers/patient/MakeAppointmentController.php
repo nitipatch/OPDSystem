@@ -34,23 +34,36 @@ class MakeAppointmentController extends BaseController
 			,'apptDate.required'=>'กรุณาเลือกวันนัด'
 			,'morning.required'=>'กรุณาเลือกช่วงเวลานัด')
 		);
+
 		if ($validator->passes()) 
 		{ 
-			if(empty(Input::get('doctor')))
-			{$depentOnDr=1; $doctor = DB::table('users')->where('name',Input::get('doctor'))->first();}
-			//else if(!empty(Input::get('department')))
-			else
-			{$depentOnDr=0; $doctor = DB::table('users')->where('department',Input::get('department'))->first();}
+			if(Input::get('doctor')>0)
+			{	
+				$depentOnDr = 1;
+				$n = Input::get('doctor');
+				$doctors = DB::table('users')->where('type','doctor')->get();
+				$i = 0; 
+				foreach($doctors as $doctor)
+					if(++$i==$n){ $doctorEmpID = $doctor->username; break; }
+			}
+			else if(Input::get('department')>0)
+			{
+				$depentOnDr = 0; 
+				$d = Input::get('department');
+				$departmentsList = ['','อายุรกรรม','ศัลยกรรม','ออร์โธปีดิกส์','กุมารเวชกรรม','สูตินรีเวช','ทันตกรรม','เวชปฏิบัติ','แพทย์เฉพาะทางอื่นๆ'];
+				$department = $departmentsList[$d];
+				$doctorEmpID = DB::table('users')->where('department',$department)->first()->username;
+			}
 
 			$addAppointment = new Appointment();
 			$addAppointment->HN = Session::get('username');
-			$addAppointment->doctorEmpID = $doctor->username;
+			$addAppointment->dependOnDr = $depentOnDr;
+			$addAppointment->doctorEmpID = $doctorEmpID;
 			$addAppointment->appointmentDate = Input::get('apptDate');
 			$addAppointment->morning = Input::get('morning');
 			$addAppointment->symptomOrReason = Input::get('cause');
-			$addAppointment->dependOnDr = $depentOnDr;
 			$addAppointment->save();
-			return Redirect::to('patient/makeAppointment')->with('flash_notice','ดำเนินการสำเร็จ');
+			return Redirect::to('patient/makeAppointment')->with('flash_notice','ดำเนินการทำนัดสำเร็จ');
 		}
 		else{return Redirect::to('patient/makeAppointment')->withErrors($validator)->withInput();}
 	}
