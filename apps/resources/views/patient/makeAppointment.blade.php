@@ -95,8 +95,8 @@
             </tr>
             <tr>
                 <td style="text-align:left;"></td>
-                <td>{!! Form::submit('ทำนัด', ['class' => 'btn']) !!}{!! Form::close() !!}</td>
-                <td><form action="loginsuccess"><input type="submit" class="btn btn-primary" value="ยกเลิก"></form></td>
+                <td>{!! Form::submit('ตกลง', ['class' => 'btn btn-primary']) !!}{!! Form::close() !!}</td>
+                <td><form action="loginsuccess"><input type="submit" class="btn" value="ยกเลิก"></form></td>
             </tr>
         </table>
     </div>

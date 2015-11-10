@@ -4,10 +4,12 @@ namespace App\Http\Controllers\nurse;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\User;
+use App\ScreeningRecord;
 use View;
 
 class AddScreeningRecordController extends BaseController
@@ -19,31 +21,49 @@ class AddScreeningRecordController extends BaseController
 	public function addScreeningRecordCreate()
 	{
 		$validator = Validator::make(Input::all()
-			,array('name'=>'required|min:4|max:100'
-			,'password'=>'required|min:4|max:15|confirmed'
-			,'password_confirmation'=>'required|min:4|max:15'
-			,'email'=>'required|email|max:100|unique:users')
+			,array('HN'=>'required|min:8|max:8'
+			,'symptom'=>'required|max:1000'
+			,'weight'=>'required'
+			,'height'=>'required|max:3'
+			,'bloodPressureS'=>'required|max:3'
+			,'bloodPressureD'=>'required|max:3'
+			,'bodyTemp'=>'required'
+			,'pulse'=>'required|max:3')
 			
-			,array('name.required'=>'Full Name ไม่สามารถเป็นค่าว่างได้'
-			,'email.required'=>'email ไม่สามารถเป็นค่าว่างได้'
-			,'email.email'=>'รูปแบบ E-Mail ไม่ถูกต้อง'
-			,'email.unique'=>'email นี้มีอยู่ในระบบแล้ว'
-			,'password.required'=>'password ไม่สามารถเป็นค่าว่างได้'
-			,'password.confirmed'=>'รหัสผ่านไม่ตรงกัน'
-			,'password_confirmation.required'=>'confirm password ไม่สามารถเป็นค่าว่างได้'
-			,)
+			,array('HN.required'=>'กรุณากรอก HN ของผู้ป่วย','HN.min'=>'กรุณากรอก HN ของผู้ป่วยให้ถูกต้อง','HN.max'=>'กรุณากรอก HN ของผู้ป่วยให้ถูกต้อง'
+			,'symptom.required'=>'กรุณากรอกอาการเบื้องต้น','symptom.max'=>'อาการเบื้องต้นยาวเกินไป'
+			,'weight.required'=>'กรุณากรอกส่วนสูง'
+			,'height.required'=>'กรุณากรอกนำ้หน้า','height.max'=>'กรอกน้ำหนักไม่ถูกต้อง'
+			,'bloodPressureS.required'=>'กรุณากรอกความดันโลหิต Systolic','bloodPressureS.max'=>'กรอกความดันโลหิต Systolic ไม่ถูกต้อง'
+			,'bloodPressureD.required'=>'กรุณากรอกความดันโลหิต Diastolic','bloodPressureD.max'=>'กรอกความดันโลหิต Diastolic ไม่ถูกต้อง'
+			,'bodyTemp.required'=>'กรุณากรอกอุณหภูมิร่างกาย'
+			,'pulse.required'=>'กรุณากรอกชีพจร','pulse.max'=>'กรอกชีพจรไม่ถูกต้อง')
 		);
-		if ($validator->passes()) { $addUser = new User();
-			$addUser->name = Input::get('name');
-			$addUser->username = Input::get('name');
-			$addUser->password = Hash::make(Input::get('password'));
-			$addUser->email = Input::get('email');
-			$addUser->created_at = date("Y-m-d H:i:s",time());
-			$addUser->type = 'patient';
-			$addUser->save();
-			return Redirect::to('login/register')->with('flash_notice','ดำเนินการสำเร็จ');}
-		else{return Redirect::to('login/register')->withErrors($validator)
-			->withInput(Input::except('password'))
-			->withInput(Input::except('password_confirmation'))
-			->withInput();}}}
+
+		if ($validator->passes()) 
+		{ 
+			$addScreeningRecord = new ScreeningRecord();
+			$allergicDrugsList = explode(',',Input::get('allergicDrug'));
+			for($i=0; $i<sizeof($allergicDrugsList) ;$i++)
+			if(!DB::table('HN_allergicDrug')->where('HN',Input::get('HN'))->where('allergicDrug',$allergicDrugsList[$i])->first())
+			DB::table('HN_allergicDrug')->insert(array('HN'=>Input::get('HN'), 'allergicDrug'=>$allergicDrugsList[$i]));
+
+			$addScreeningRecord->HN = Input::get('HN');
+			date_default_timezone_set('Asia/Bangkok');
+			$addScreeningRecord->screenDate = date("Y-m-d H:i:s",time());
+			$addScreeningRecord->symptom = Input::get('symptom');
+			$addScreeningRecord->weight = Input::get('weight');
+			$addScreeningRecord->height = Input::get('height');
+			$addScreeningRecord->bloodPressureS = Input::get('bloodPressureS');
+			$addScreeningRecord->bloodPressureD = Input::get('bloodPressureD');
+			$addScreeningRecord->bodyTemp = Input::get('bodyTemp');
+			$addScreeningRecord->pulse = Input::get('pulse');
+			
+			$addScreeningRecord->save();
+			return Redirect::to('nurse/addScreeningRecord')->with('flash_notice','ดำเนินการบันทึกการตรวจคัดกรองสำเร็จ');
+		}
+		else{return Redirect::to('nurse/addScreeningRecord')->withErrors($validator)->withInput();}
+	}
+}
+			
 ?>

@@ -1,136 +1,184 @@
 @extends('nurse.layouts.template')
 @section('content')
-<?php echo csrf_field(); ?>
-{!!
-	Form::open
-		([
-			"url"=>"addScreeningRecord/create","method" => "POST","files" => true,"class" => "form-register"
-		])
-!!} 
-<h2 class="text-center"></h2>
 
-<!-- header -->
-<!-- <form action="" method="POST" class="form-horizontal" role="form">
-
-		<img src="http://www.online-image-editor.com//styles/2014/images/example_image.png" class="img-responsive" alt="Image">
-
-</form> -->
-
-<div class="row">
-	<div class="col-md-12 col-lg-12">
-		
-		<form action="" method="POST" role="form">
-			
-			<legend>โปรดกรอกข้อมูลเพื่อบันทึกการตรวจคัดกรอง</legend>
-
-			<div class="form-group">
-				<!-- <label for="">Name</label> -->
-				<!-- <input type="text" class="form-control" name="Name" id="input" required="required" title="Name" placeholder="Name"> -->
-				
-				<div class="row">
-					<div class="col-md-3 col-lg-3">
-						HN<font color="red">*</font><!--  (กรอกเอง หรือ ดึงจาก db) -->
-						<input type="text" name="HN" id="input" class="form-control" value="" required="required" pattern="" title="">
-					</div>
-					<div class="col-md-5 col-lg-5">
-						ชื่อผู้ป่วย<font color="red">*</font><!--  (กรอกเอง หรือ ดึงจาก db) -->
-						<input type="text" name="patName" id="input" class="form-control" value="" required="required" pattern="" title="">
-					</div>
-
-				</div>
-					
-				<br>
-
-				<div class="row">
-
-					<div class="col-md-6 col-lg-6">
-						อาการเบื้องต้น<font color="red">*</font>
-						<textarea name="sign" id="input" class="form-control" rows="0" required="required"></textarea>
-					</div>
-
-					<div class="col-md-2 col-lg-2">
-						น้ำหนัก<font color="red">*</font>
-						<input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" required="required" title="">
-					</div>
-
-					<div class="col-md-2 col-lg-2">
-						ส่วนสูง<font color="red">*</font>
-						<input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" required="required" title="">
-					</div>
-
-					<div class="col-md-2 col-lg-2">
-						ชีพจร
-						<input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" title="">
-					</div>
-
-				</div>
-				
-				<p></p>
-
-				<div class="row">
-					<div class="col-md-4 col-lg-4">
-						ความดันโลหิต<font color="red">*</font> (กรอกให้ครบ 2 ช่อง)
-					</div>
-
-
-					<div class="col-md-2 col-lg-2">
-						อุณหภูมิร่างกาย<font color="red">*</font>
-					</div>
-
-					<div class="col-md-6 col-lg-6">
-						แพ้ยา (ถ้ามี)
-					</div>
-					
-				</div>
-
-				<div class="row">
-					<div class="col-md-2 col-lg-2"> 
-						<input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" required="required" title="">
-					</div>
-					<!-- <div class="col-xs-1">/</div> -->
-					<div class="col-md-2 col-lg-2"> 
-						<input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" required="required" title="">
-					</div>
-					
-					<div class="col-md-2 col-lg-2">
-						<input type="number" name="" id="input" class="form-control" value="" min="{5"} max="" step="" required="required" title="">
-					</div>
-					
-					<div class="col-md-6 col-lg-6">
-						<input type="text" name="" id="input" class="form-control" value=""  pattern="" title="">
-					</div>
-
-				</div>
-
-
-					
-
-				<!-- <p></p>
-
-				<div class="row">
-					
-				</div> -->
-
-			</div>
-		
-		<!-- <br> -->
-		<tr>
-			    <td style="text-align:left;"></td>
-			    <td>
-		{!!
-		Form::submit('บันทึกการตรวจคัดกรอง', ['class' => 'btn btn-primary'])
-		!!}
-		{!!
-		Form::button('ยกเลิก', ['class' => 'btn'])
-		!!}
-		<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-		<!-- <button type="button" class="btn btn-default">ยกเลิก</button> -->
-		</td>
-		</tr>
-		</form>
-
-
-
-	</div>
-</div>
+{!! Form::open([
+    "url" => "nurse/addScreeningRecord/create",
+    "method" => "POST",
+    "files" => true,
+    "class" => "form-register",
+])  !!}
+    <div class="box-login">
+        <h2 style="text-align:center;">บันทึกการตรวจคัดกรอง</h2>
+        @if(Session::has('flash_notice'))
+            <h3 style="color:red;text-align:center;">{{ Session::get('flash_notice') }}</h3>
+        @endif
+        <h3 style="color:red;text-align:center;"></h3>
+        <table align="center" id="drugsList">
+            <tr><p>
+                <td style="text-align:left;" valign="top">
+                    <label>HN ของผู้ป่วย<font color="red">*</font></label></td>
+                <td>
+                    {!! Form::text('HN', Input::old('กรอก HN ของผู้ป่วย'), [
+                        'placeholder' => 'กรอก HN ของผู้ป่วย',
+                        'class' => 'form-control',
+                        'maxlength' => 8,
+                    ]) !!}
+                    
+                    @if ($errors->has('HN'))
+                        <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
+                            {{ $errors->first('HN') }}
+                        </p>
+                    @endif
+                    </p>
+                </td>
+            </tr>
+            <tr><p>
+                <td style="text-align:left;" valign="top">
+                    <label>อาการเบื้องต้น<font color="red">*</font></label></td>
+                <td>
+                    {!! Form::textarea('symptom', Input::old('กรอกอาการเบื้องต้น'), [
+                        'placeholder' => 'กรอกอาการเบื้องต้น',
+                        'class' => 'form-control',
+                        'maxlength' => 1000,
+                        'size' => '50x2'
+                    ]) !!}
+                    
+                    @if ($errors->has('symptom'))
+                        <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
+                            {{ $errors->first('symptom') }}
+                        </p>
+                    @endif
+                    </p>
+                </td>
+            </tr>
+            <tr><p>
+                <td style="text-align:left;" valign="top">
+                    <label>น้ำหนัก<font color="red">*</font></label></td>
+                <td>
+                    {!! Form::text('weight', Input::old('กรอกน้ำหนักของผู้ป่วย'), [
+                        'placeholder' => 'กรอกน้ำหนักของผู้ป่วย',
+                        'class' => 'form-control',
+                    ]) !!}
+                    
+                    @if ($errors->has('weight'))
+                        <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
+                            {{ $errors->first('weight') }}
+                        </p>
+                    @endif
+                    </p>
+                </td>
+            </tr>
+            <tr><p>
+                <td style="text-align:left;" valign="top">
+                    <label>ส่วนสูง<font color="red">*</font></label></td>
+                <td>
+                    {!! Form::text('height', Input::old('กรอกส่วนสูงของผู้ป่วย'), [
+                        'placeholder' => 'กรอกส่วนสูงของผู้ป่วย',
+                        'class' => 'form-control',
+                        'maxlength' => 3,
+                    ]) !!}
+                    
+                    @if ($errors->has('height'))
+                        <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
+                            {{ $errors->first('height') }}
+                        </p>
+                    @endif
+                    </p>
+                </td>
+            </tr>
+            <tr><p>
+                <td style="text-align:left;" valign="top">
+                    <label>ชีพจร<font color="red">*</font></label></td>
+                <td>
+                    {!! Form::text('pulse', Input::old('กรอกชีพจรของผู้ป่วย'), [
+                        'placeholder' => 'กรอกชีพจรของผู้ป่วย',
+                        'class' => 'form-control',
+                        'maxlength' => 3,
+                    ]) !!}
+                    
+                    @if ($errors->has('pulse'))
+                        <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
+                            {{ $errors->first('pulse') }}
+                        </p>
+                    @endif
+                    </p>
+                </td>
+            </tr>
+            <tr><p>
+                <td style="text-align:left;" valign="top">
+                    <label>ความดันโลหิต Systolic<font color="red">*</font></label></td>
+                <td>
+                    {!! Form::text('bloodPressureS', Input::old('กรอกความดันโลหิต Systolic'), [
+                        'placeholder' => 'กรอกความดันโลหิต Systolic',
+                        'class' => 'form-control',
+                        'maxlength' => 3,
+                    ]) !!}
+                    
+                    @if ($errors->has('bloodPressureS'))
+                        <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
+                            {{ $errors->first('bloodPressureS') }}
+                        </p>
+                    @endif
+                    </p>
+                </td>
+            </tr>
+            <tr><p>
+                <td style="text-align:left;" valign="top">
+                    <label>ความดันโลหิต Diastolic<font color="red">*</font></label></td>
+                <td>
+                    {!! Form::text('bloodPressureD', Input::old('กรอกความดันโลหิต Diastolic'), [
+                        'placeholder' => 'กรอกความดันโลหิต Diastolic',
+                        'class' => 'form-control',
+                        'maxlength' => 3,
+                    ]) !!}
+                    
+                    @if ($errors->has('bloodPressureD'))
+                        <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
+                            {{ $errors->first('bloodPressureD') }}
+                        </p>
+                    @endif
+                    </p>
+                </td>
+            </tr>
+            <tr><p>
+                <td style="text-align:left;" valign="top">
+                    <label>อุณหภูมิร่างกาย<font color="red">*</font></label></td>
+                <td>
+                    {!! Form::text('bodyTemp', Input::old('กรอกอุณหภูมิร่างกายของผู้ป่วย'), [
+                        'placeholder' => 'กรอกอุณหภูมิร่างกายของผู้ป่วย',
+                        'class' => 'form-control',
+                    ]) !!}
+                    
+                    @if ($errors->has('bodyTemp'))
+                        <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
+                            {{ $errors->first('bodyTemp') }}
+                        </p>
+                    @endif
+                    </p>
+                </td>
+            </tr>
+            <tr><p>
+                <td style="text-align:left;" valign="top">
+                    <label>ยาที่ผู้ป่วยแพ้<font color="red">*</font></label></td>
+                <td>
+                    {!! Form::text('allergicDrug', Input::old('กรอกชื่อยาที่ผู้ป่วยแพ้ คั่นด้วย , ถ้ามากกว่า 1'), [
+                        'placeholder' => 'กรอกชื่อยาที่ผู้ป่วยแพ้ คั่นด้วย , ถ้ามากกว่า 1',
+                        'class' => 'form-control',
+                    ]) !!}
+                    
+                    @if ($errors->has('allergicDrug'))
+                        <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
+                            {{ $errors->first('allergicDrug') }}
+                        </p>
+                    @endif
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:left;"></td>
+                <td>{!! Form::submit('ตกลง', ['class' => 'btn btn-primary']) !!}{!! Form::close() !!}</td>
+                <td><form action="loginsuccess"><input type="submit" class="btn" value="ยกเลิก"></form></td>
+            </tr>
+        </table>
+    </div>
 @stop

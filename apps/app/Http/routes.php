@@ -38,23 +38,30 @@ Route::group(['prefix'=>'patient','middleware'=>'auth','namespace'=>'patient'],f
 
 Route::get('doctor/logout','Admins\LoginController@getLogout');
 Route::group(['prefix'=>'doctor','middleware'=>'auth','namespace'=>'doctor'],function(){
-	Route::get('loginsuccess', function(){return view('doctor.success');});
+	Route::get('loginsuccess', function(){return \View::make('doctor.success')->with('name',Session::get('name'))
+																			  ->with('surname',Session::get('surname'));});	
 	Route::get('prescribe', 'PrescribeController@prescribeForm');
-	Route::get('addMedicalRecord', 'MedicalRecordController@addMedicalRecordForm');
+	Route::post('prescribe/create', 'PrescribeController@prescribeCreate');
+	Route::get('addMedicalRecord', 'AddMedicalRecordController@addMedicalRecordForm');
+	Route::post('addMedicalRecord/create', 'AddMedicalRecordController@addMedicalRecordCreate');
 });
 
 
 Route::get('nurse/logout','Admins\LoginController@getLogout');
 Route::group(['prefix'=>'nurse','middleware'=>'auth','namespace'=>'nurse'],function(){
-	Route::get('loginsuccess', function(){return view('nurse.success');});
+	Route::get('loginsuccess', function(){return \View::make('nurse.success')->with('name',Session::get('name'))
+																			 ->with('surname',Session::get('surname'));});
 	Route::get('addScreeningRecord', 'AddScreeningRecordController@addScreeningRecordForm');
+	Route::post('addScreeningRecord/create', 'AddScreeningRecordController@addScreeningRecordCreate');
 });
 
 
 Route::get('pharmacist/logout','Admins\LoginController@getLogout');
 Route::group(['prefix'=>'pharmacist','middleware'=>'auth','namespace'=>'pharmacist'],function(){
-	Route::get('loginsuccess', function(){return view('pharmacist.success');});
+	Route::get('loginsuccess', function(){return \View::make('pharmacist.success')->with('name',Session::get('name'))
+																			      ->with('surname',Session::get('surname'));});
 	Route::get('requestNewDrugsList', 'RequestNewDrugsListController@requestNewDrugsListForm');
+	Route::get('requestNewDrugsList/create', 'RequestNewDrugsListController@requestNewDrugsListCreate');
 });
 
 
