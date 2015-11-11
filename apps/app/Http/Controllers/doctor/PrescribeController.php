@@ -18,23 +18,17 @@ class PrescribeController extends BaseController
 	{
 		return View::make('doctor.prescribe');
 	}
+
+	//create foo validation rule
+
 	public function prescribeCreate()
 	{
-		/*
-		$validator = Validator::make(Input::all()
-			,array('HN'=>'required|min:8|max:8'
-			,'description'=>'required|max:1000'
-			,'drugName'=>'required|max:100'
-			,'quantity'=>'required|max:20')
-			
-			,array('HN.required'=>'กรุณากรอก HN ของผู้ป่วย','HN.min'=>'กรุณากรอก HN ของผู้ป่วยให้ถูกต้อง','HN.max'=>'กรุณากรอก HN ของผู้ป่วยให้ถูกต้อง'
-			,'description.required'=>'กรุณากรอกอาการเบื้องต้น','description.max'=>'อาการเบื้องต้นยาวเกินไป'
-			,'drugName.required'=>'กรุณากรอกชื่อยา','drugName.max'=>'ชื่อยายาวเกินไป'
-			,'quantity.required'=>'กรุณากรอกปริมาณยา','quantity.max'=>'ปริมาณยายาวเกินไป')
-		);
-		
+		$v1 = array('HN'=>'min:8|hn_exist');
+		$v2 = array('HN.min'=>'กรุณากรอก HN ของผู้ป่วยไม่ครบ','hn_exist'=>'ไม่มีผู้ป่วย HN นี้');
+		$validator = Validator::make(Input::all(),$v1,$v2);
+
 		if ($validator->passes()) 
-		{*/
+		{
 			$Drugs = Input::get('D');
 			foreach($Drugs as $Drug) 
 			{
@@ -57,7 +51,7 @@ class PrescribeController extends BaseController
 				$addPrescribedDrug->save();
 			}
 			return Redirect::to('doctor/prescribe')->with('flash_notice','ดำเนินการสั่งยาสำเร็จ');
-		//}else{return Redirect::to('doctor/prescribe')->withErrors($validator)->withInput();}
+		}else{return Redirect::to('doctor/prescribe')->withErrors($validator)->withInput();}
 	}
 }
 			

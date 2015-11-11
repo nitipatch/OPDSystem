@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Validator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\DB;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Validator::extend('hn_exist', function($attribute, $value, $parameters, $validator) 
+        {
+            $users = DB::table('Users')->get();
+            foreach ($users as $user){ if($user->username == $value)return true; }
+            return false;
+        });
     }
 
     /**
