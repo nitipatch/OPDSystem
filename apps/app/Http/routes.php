@@ -33,6 +33,7 @@ Route::group(['prefix'=>'patient','middleware'=>'auth','namespace'=>'patient'],f
 																			   ->with('surname',Session::get('surname'));});
 	Route::get('makeAppointment', 'MakeAppointmentController@makeAppointmentForm');
 	Route::post('makeAppointment/create', 'MakeAppointmentController@makeAppointmentCreate');
+
 });
 
 

@@ -21,6 +21,7 @@
                     {!! Form::text('HN', Input::old('กรอก HN ของผู้ป่วย'), [
                         'placeholder' => 'กรอก HN ของผู้ป่วย',
                         'class' => 'form-control',
+                        'required' => 'required',
                         'maxlength' => 8,
                     ]) !!}
                     
@@ -40,6 +41,7 @@
                         'placeholder' => 'กรอกอาการ',
                         'class' => 'form-control',
                         'maxlength' => 1000,
+                        'required' => 'required',
                         'size' => '50x2'
                     ]) !!}
                     
@@ -60,7 +62,7 @@
                     foreach($diseases as $disease){array_push($diseasesList,$disease->ICD10." ".$disease->Disease);}
                     function withEmpty($selectList,$emptyLabel){return array(''=>$emptyLabel) + $selectList;} ?>
                     
-                    {!!Form::select('ICD10',withEmpty($diseasesList,'--เลือกรหัสโรค--'),null,['class'=>'form-control'])!!}
+                    {!!Form::select('ICD10',withEmpty($diseasesList,'--เลือกรหัสโรค--'),null,['required' => 'required','class'=>'form-control'])!!}
                     @if ($errors->has('ICD10'))
                         <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
                             {{ $errors->first('ICD10') }}

@@ -21,6 +21,7 @@
                     {!! Form::text('HN', Input::old('กรอก HN ของผู้ป่วย'), [
                         'placeholder' => 'กรอก HN ของผู้ป่วย',
                         'class' => 'form-control',
+                        'required' => 'required',
                         'maxlength' => 8,
                     ]) !!}
                     
@@ -40,6 +41,7 @@
                         'placeholder' => 'กรอกอาการเบื้องต้น',
                         'class' => 'form-control',
                         'maxlength' => 1000,
+                        'required' => 'required',
                         'size' => '50x2'
                     ]) !!}
                     
@@ -57,7 +59,9 @@
                 <td>
                     {!! Form::text('weight', Input::old('กรอกน้ำหนักของผู้ป่วย'), [
                         'placeholder' => 'กรอกน้ำหนักของผู้ป่วย',
+                        'required' => 'required',
                         'class' => 'form-control',
+                        'maxlength' => 3
                     ]) !!}
                     
                     @if ($errors->has('weight'))
@@ -75,6 +79,7 @@
                     {!! Form::text('height', Input::old('กรอกส่วนสูงของผู้ป่วย'), [
                         'placeholder' => 'กรอกส่วนสูงของผู้ป่วย',
                         'class' => 'form-control',
+                        'required' => 'required',
                         'maxlength' => 3,
                     ]) !!}
                     
@@ -93,6 +98,7 @@
                     {!! Form::text('pulse', Input::old('กรอกชีพจรของผู้ป่วย'), [
                         'placeholder' => 'กรอกชีพจรของผู้ป่วย',
                         'class' => 'form-control',
+                        'required' => 'required',
                         'maxlength' => 3,
                     ]) !!}
                     
@@ -111,6 +117,7 @@
                     {!! Form::text('bloodPressureS', Input::old('กรอกความดันโลหิต Systolic'), [
                         'placeholder' => 'กรอกความดันโลหิต Systolic',
                         'class' => 'form-control',
+                        'required' => 'required',
                         'maxlength' => 3,
                     ]) !!}
                     
@@ -129,6 +136,7 @@
                     {!! Form::text('bloodPressureD', Input::old('กรอกความดันโลหิต Diastolic'), [
                         'placeholder' => 'กรอกความดันโลหิต Diastolic',
                         'class' => 'form-control',
+                        'required' => 'required',
                         'maxlength' => 3,
                     ]) !!}
                     
@@ -146,7 +154,9 @@
                 <td>
                     {!! Form::text('bodyTemp', Input::old('กรอกอุณหภูมิร่างกายของผู้ป่วย'), [
                         'placeholder' => 'กรอกอุณหภูมิร่างกายของผู้ป่วย',
+                        'required' => 'required',
                         'class' => 'form-control',
+                        'maxlength' => 3
                     ]) !!}
                     
                     @if ($errors->has('bodyTemp'))
@@ -159,11 +169,12 @@
             </tr>
             <tr><p>
                 <td style="text-align:left;" valign="top">
-                    <label>ยาที่ผู้ป่วยแพ้<font color="red">*</font></label></td>
+                    <label>ยาที่ผู้ป่วยแพ้</label></td>
                 <td>
                     {!! Form::text('allergicDrug', Input::old('กรอกชื่อยาที่ผู้ป่วยแพ้ คั่นด้วย , ถ้ามากกว่า 1'), [
                         'placeholder' => 'กรอกชื่อยาที่ผู้ป่วยแพ้ คั่นด้วย , ถ้ามากกว่า 1',
                         'class' => 'form-control',
+                        'maxlength' => 1000
                     ]) !!}
                     
                     @if ($errors->has('allergicDrug'))

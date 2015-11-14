@@ -21,52 +21,56 @@ class MakeAppointmentController extends BaseController
 	public function makeAppointmentCreate()
 	{
 		$validator = Validator::make(Input::all()
-			,array('HN'=>'required|min:8|max:8'
-			,'cause'=>'required|max:1000'
+			,array('HN'=>'min:8'
 			,'doctor'=>'required_without:department'
-			,'department'=>'required_without:doctor'
-			,'apptDate'=>'required'
-			,'morning'=>'required')
+			,'department'=>'required_without:doctor')
 			
-			,array('HN'=>'กรุณากรอกHNของผู้ปว่ย'
-			,'HN.min'=>'กรอกHNของผู้ป่วยไม่ครบ'
-			,'HN.max'=>'กรอกHNของผู้ป่วยเกิน'
-			,'cause.required'=>'กรุณากรอกสาเหตุหรืออาการ'
-			,'cause.max'=>'สาเหตุหรืออาการยาวเกินไป'
+			,array('HN.min'=>'ท่านกรอก HN ของผู้ป่วยไม่ครบ'
 			,'doctor.required_without'=>'กรุณาเลือกแพทย์หรือแผนกที่ต้องการนัด'
-			,'department.required_without'=>'กรุณาเลือกแพทย์หรือแผนกที่ต้องการนัด'
-			,'apptDate.required'=>'กรุณาเลือกวันนัด'
-			,'morning.required'=>'กรุณาเลือกช่วงเวลานัด')
+			,'department.required_without'=>'กรุณาเลือกแพทย์หรือแผนกที่ต้องการนัด')
 		);
 
 		if ($validator->passes()) 
 		{ 
-			if(Input::get('doctor')>0)
+			if(Input::get('doctor')>=0)
 			{	
 				$depentOnDr = 1;
 				$n = Input::get('doctor');
 				$doctors = DB::table('users')->where('type','doctor')->get();
 				$i = 0; 
 				foreach($doctors as $doctor)
-					if(++$i==$n){ $doctorEmpID = $doctor->username; break; }
+					if($i++==$n){ $doctorEmpID = $doctor->username; break; }
 			}
-			else if(Input::get('department')>0)
+			else if(Input::get('department')>=0)
 			{
 				$depentOnDr = 0; 
 				$d = Input::get('department');
-				$departmentsList = ['','อายุรกรรม','ศัลยกรรม','ออร์โธปีดิกส์','กุมารเวชกรรม','สูตินรีเวช','ทันตกรรม','เวชปฏิบัติ','แพทย์เฉพาะทางอื่นๆ'];
+				$departmentsList = ['อายุรกรรม','ศัลยกรรม','ออร์โธปีดิกส์','กุมารเวชกรรม','สูตินรีเวช','ทันตกรรม','เวชปฏิบัติ','แพทย์เฉพาะทางอื่นๆ'];
 				$department = $departmentsList[$d];
 				$doctorEmpID = DB::table('users')->where('department',$department)->first()->username;
 			}
 
-			$addAppointment = new Appointment();
+			$addAppointment = new Appointment();			
 			$addAppointment->HN = Input::get('HN');
 			$addAppointment->dependOnDr = $depentOnDr;
-			$addAppointment->doctorEmpID = $doctorEmpID;
-			$addAppointment->appointmentDate = Input::get('apptDate');
-			$addAppointment->morning = Input::get('morning');
+			$addAppointment->doctorEmpID = $doctorEmpID;			
+			
+			$str = Input::get('apptDate');
+			$cut = strpos($str," ");
+			$len = strlen($str);
+			$date = substr($str,0,$cut);
+			$addAppointment->appointmentDate = $date;
+			if(strcmp(substr($str,$cut+1,$len-$cut-1),"เช้า")==0)$morning = 1; else $morning = 0; 
+			$addAppointment->morning = $morning;
+			
 			$addAppointment->symptomOrReason = Input::get('cause');
 			$addAppointment->save();
+
+			DB::table('ondutySchedule')->where('doctorEmpID',$doctorEmpID)
+										->where('date',$date)
+										->where('morning',$morning)
+										->update(array('appointed'=>1));
+
 			return Redirect::to('officer/makeAppointment')->with('flash_notice','ดำเนินการทำนัดสำเร็จ');
 		}
 		else{return Redirect::to('officer/makeAppointment')->withErrors($validator)->withInput();}

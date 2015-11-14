@@ -16,14 +16,9 @@
         <table align="center">
             <tr><p>
                 <td style="text-align:left;" valign="top">
-                    <label>HN ของผู้ป่วยที่ต้องการทำนัด<font color="red">*</font></label></td>
+                    <label>HN ของผู้ป่วย<font color="red">*</font></label></td>
                 <td>
-                    {!! Form::text('HN', Input::old('กรอก HN ของผู้ป่วย'), [
-                        'placeholder' => 'กรอก HN ของผู้ป่วย',
-                        'class' => 'form-control',
-                        'maxlength' => 8,
-                    ]) !!}
-                    
+                    <input required type="text" class="form-control" name="HN" maxlength="8" placeholder="กรอก HN ของผู้ป่วย">
                     @if ($errors->has('HN'))
                         <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
                             {{ $errors->first('HN') }}
@@ -40,6 +35,7 @@
                         'placeholder' => 'กรอกสาเหตุหรืออาการ',
                         'class' => 'form-control',
                         'maxlength' => 1000,
+                        'required' => 'required',
                         'size' => '50x2'
                     ]) !!}
                     
@@ -55,12 +51,15 @@
                 <td style="text-align:left;" valign="top">
                     <label>ชื่อแพทย์ที่ต้องการพบ<font color="red">*</font></label></td>
                 <td>
-                    <?php $doctorsList = [''];
+                    <?php $doctorsList = [];
                     $doctors = DB::table('users')->where('type','doctor')->get();
                     foreach($doctors as $doctor){array_push($doctorsList,$doctor->name." ".$doctor->surname);}
-                    function withEmpty($selectList,$emptyLabel){return array(''=>$emptyLabel) + $selectList;} ?>
+                    function withEmpty($selectList,$emptyLabel){return array('-1'=>$emptyLabel) + $selectList;} ?>
                     
-                    {!! Form::select('doctor', withEmpty($doctorsList,'--เลือกแพทย์--'),null,['class'=>'form-control']) !!}
+                    {!! Form::select('doctor', withEmpty($doctorsList,'--เลือกแพทย์--'),null,[
+                            'class'=>'form-control'
+                            ,'id'=>'doctor'
+                    ]) !!}
                     @if ($errors->has('doctor'))
                         <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
                             {{ $errors->first('doctor') }}
@@ -73,9 +72,12 @@
                 <td style="text-align:left;" valign="top">
                     <label>แผนกของแพทย์ที่ต้องการพบ<font color="red">*</font></label></td>
                 <td>
-                    <?php $departmentsList=['','อายุรกรรม','ศัลยกรรม','ออร์โธปีดิกส์','กุมารเวชกรรม','สูตินรีเวช','ทันตกรรม','เวชปฏิบัติ','แพทย์เฉพาะทางอื่นๆ'];?>
+                    <?php $departmentsList=['อายุรกรรม','ศัลยกรรม','ออร์โธปีดิกส์','กุมารเวชกรรม','สูตินรีเวช','ทันตกรรม','เวชปฏิบัติ','แพทย์เฉพาะทางอื่นๆ'];?>
                     
-                    {!!Form::select('department',withEmpty($departmentsList,'--เลือกแผนก--'),null,['class'=>'form-control'])!!}
+                    {!!Form::select('department',withEmpty($departmentsList,'--เลือกแผนก--'),null,[
+                            'class'=>'form-control'
+                            ,'id'=>'department'
+                    ])!!}
                     @if ($errors->has('department'))
                         <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
                             {{ $errors->first('department') }}
@@ -86,36 +88,65 @@
             </tr>  
             <tr><p>
                 <td style="text-align:left;" valign="top">
-                    <label>วันนัด<font color="red">*</font></label></td>
-                <td>
-                    {!! Form::date('apptDate', \Carbon\Carbon::now()) !!}
+                    <label>วันเวลานัด<font color="red">*</font></label></td>
+                <td> 
+                    <?php $datesList = [];?>
+                    
+                    {!! Form::select('apptDate', withEmpty($datesList,'--เลือกวันเวลานัด--'),null,[
+                            'required' => 'required'
+                            ,'class'=>'form-control'
+                            ,'id'=>'apptDate'
+                    ]) !!}
                     @if ($errors->has('apptDate'))
                         <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
                             {{ $errors->first('apptDate') }}
                         </p>
                     @endif
-                    </p>
                 </td>
             </tr>
-            <tr><p>
-                <td style="text-align:left;" valign="top">
-                    <label>ช่วงเวลา<font color="red">*</font></label></td>
-                <td>
-                    {!! Form::radio('morning',1) !!}เช้า
-                    {!! Form::radio('morning',0) !!}บ่าย
-                    @if ($errors->has('morning'))
-                        <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
-                            {{ $errors->first('morning') }}
-                        </p>
-                    @endif
-                    </p>
-                </td>
-            </tr>
+            <tr><td></td><td><legend></legend></td></tr>
             <tr>
                 <td style="text-align:left;"></td>
-                <td>{!! Form::submit('ตกลง', ['class' => 'btn btn-primary']) !!}{!! Form::close() !!}</td>
+                <td>{!! Form::submit('ตกลง', ['class' => 'btn btn-primary' , 'id' => 'test']) !!}{!! Form::close() !!}</td>
                 <td><form action="loginsuccess"><input type="submit" class="btn" value="ยกเลิก"></form></td>
             </tr>
         </table>
     </div>
+
+<script>
+    var doctorDD = document.getElementById("doctor");
+    var departmentDD = document.getElementById("department");
+    doctorDD.addEventListener("change",f);
+    departmentDD.addEventListener("change",f);
+
+    function f()
+    {
+        var fullname = doctorDD.options[doctorDD.selectedIndex].text;
+        var department = departmentDD.options[departmentDD.selectedIndex].text;
+
+        $.ajax({url: 'http://localhost/OPDSystem/apps/app/Http/Controllers/Ajax.php',
+                type: "post",
+                data: {fullname:fullname,department:department},
+                success: function(data)
+                {
+                    var dates = data.split("\n");
+                    $('#apptDate').empty();
+                    
+                    for(var i=0;i<=dates.length-2;i++)
+                    {    
+                        var ddl = document.getElementById('apptDate');
+                        var option = document.createElement("option");
+                        var cut = dates[i].indexOf(" ");
+                        var text = dates[i].substring(0,cut);
+                        if(dates[i][cut+1]=="1")text+=" เช้า";
+                        else text+=" บ่าย";
+                        option.text = text
+                        option.value = text;
+                        ddl.add(option);
+                    }
+                }
+        });
+    }
+</script>
+   
 @stop

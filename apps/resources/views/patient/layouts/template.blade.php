@@ -6,7 +6,27 @@
  	<meta name="viewport" content="width=device-width, initial-scale=1">
  	<meta name="description" content="">
  	<meta name="author" content="">
+ 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ 	
  	<title>Hospital OPD System</title>
+ 	<style>
+ 		.event {
+    			background-color: #42B373 !important;
+    			background-image :none !important;
+    			color: #ffffff !important;
+				}	
+	</style>
+	<script>
+    var availableDates = ['2014-11-10','2014-11-20','2014-11-30'];
+    function availableFunction(date) {
+    availday = date.getDate() + "-" + (date.getMonth()+1) + "-" + date.getFullYear();
+    if (jQuery.inArray(availday, availableDates) > -1) {return [true,"eventday",""];} 
+    else {return [true,"other",""];}
+    }
+    jQuery("#eventpicker").datepicker({beforeShowDay: availableFunction});
+
+</script>
+
 	<!-- Bootstrap Core CSS -->
  	@include('patient.layouts.inc-stylesheet')
  	@yield('stylesheet')

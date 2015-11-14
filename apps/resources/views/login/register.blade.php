@@ -14,8 +14,9 @@
         @endif
         <h3 style="color:red;text-align:center;"></h3>
         <table align="center">
-            <tr>
-                <td style="text-align:right;" valign="top"><label>เลขบัตรประจำตัวประชาชน</label></td>
+            <tr><p>
+                <td style="text-align:right;" valign="top">
+                    <label>เลขบัตรประจำตัวประชาชน<font color="red">*</font></label></td>
                 <td>
                     {!! Form::text('idenCardNo', Input::old('idenCardNo'), [
                         'placeholder' => 'เลขบัตรประจำตัวประชาชน',
@@ -27,10 +28,12 @@
                             {{ $errors->first('idenCardNo') }}
                         </p>
                     @endif
+                </p>
                 </td>
             </tr>
             <tr>
-                <td style="text-align:right;" valign="top"><label>ชื่อ</label></td>
+                <td style="text-align:right;" valign="top">
+                    <label>ชื่อ<font color="red">*</font></label></td>
                 <td>
                     {!! Form::text('name', Input::old('name'), [
                         'placeholder' => 'ชื่อ',
@@ -45,7 +48,8 @@
                 </td>
             </tr>
             <tr>
-                <td style="text-align:right;" valign="top"><label>นามสกุล</label></td>
+                <td style="text-align:right;" valign="top">
+                    <label>นามสกุล<font color="red">*</font></label></td>
                 <td>
                     {!! Form::text('surname', Input::old('surname'), [
                         'placeholder' => 'นามสกุล',
@@ -60,7 +64,8 @@
                 </td>
             </tr>
             <tr>
-                <td style="text-align:right;" valign="top"><label>ที่อยู่</label></td>
+                <td style="text-align:right;" valign="top">
+                    <label>ที่อยู่<font color="red">*</font></label></td>
                 <td>
                     {!! Form::text('address', Input::old('address'), [
                         'placeholder' => 'ที่อยู่',
@@ -75,7 +80,8 @@
                 </td>
             </tr>
             <tr>
-                <td style="text-align:right;" valign="top"><label>เบอร์โทรศัพท์</label></td>
+                <td style="text-align:right;" valign="top">
+                    <label>เบอร์โทรศัพท์<font color="red">*</font></label></td>
                 <td>
                     {!! Form::text('phoneNo', Input::old('phoneNo'), [
                         'placeholder' => 'เบอร์โทรศัพท์',
@@ -90,7 +96,8 @@
                 </td>
             </tr>
             <tr>
-                <td style="text-align:right;" valign="top"><label>อีเมล</label></td>
+                <td style="text-align:right;" valign="top">
+                    <label>อีเมล<font color="red">*</font></label></td>
                 <td>
                     {!! Form::text('emailAddr', Input::old('emailAddr'), [
                         'placeholder' => 'อีเมล',
@@ -105,7 +112,8 @@
                 </td>
             </tr>
             <tr>
-                <td style="text-align:right;" valign="top"><label>วันเดือนปีเกิด</label></td>
+                <td style="text-align:right;" valign="top">
+                    <label>วันเดือนปีเกิด<font color="red">*</font></label></td>
                 <td>
                     {!! Form::date('birthdate', \Carbon\Carbon::now()) !!}
                     @if ($errors->has('birthdate'))

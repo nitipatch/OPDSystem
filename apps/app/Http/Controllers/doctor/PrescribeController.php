@@ -24,7 +24,7 @@ class PrescribeController extends BaseController
 	public function prescribeCreate()
 	{
 		$v1 = array('HN'=>'min:8|hn_exist');
-		$v2 = array('HN.min'=>'กรุณากรอก HN ของผู้ป่วยไม่ครบ','hn_exist'=>'ไม่มีผู้ป่วย HN นี้');
+		$v2 = array('HN.min'=>'ท่านกรอก HN ของผู้ป่วยไม่ครบ','HN.hn_exist'=>'HN ที่ท่านกรอกไม่ตรงกับผู้ป่วยใดของโรงพยาบาล');
 		$validator = Validator::make(Input::all(),$v1,$v2);
 
 		if ($validator->passes()) 

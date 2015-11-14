@@ -20,15 +20,8 @@ class AddMedicalRecordController extends BaseController
 	}
 	public function addMedicalRecordCreate()
 	{
-		$validator = Validator::make(Input::all()
-			,array('HN'=>'required|min:8|max:8'
-			,'symptom'=>'required|max:1000'
-			,'ICD10'=>'required')
-			
-			,array('HN.required'=>'กรุณากรอก HN ของผู้ป่วย','HN.min'=>'กรุณากรอก HN ของผู้ป่วยให้ถูกต้อง','HN.max'=>'กรุณากรอก HN ของผู้ป่วยให้ถูกต้อง'
-			,'symptom.required'=>'กรุณากรอกอาการเบื้องต้น','symptom.max'=>'อาการเบื้องต้นยาวเกินไป'
-			,'ICD10.required'=>'กรุณาเลือกรหัสโรค')
-		);
+		$validator = Validator::make(Input::all(),array('HN'=>'min:8|hn_exist')
+					,array('HN.min'=>'ท่านกรอก HN ของผู้ป่วยไม่ครบ','HN.hn_exist'=>'HN ที่ท่านกรอกไม่ตรงกับผู้ป่วยใดของโรงพยาบาล'));
 
 		if ($validator->passes()) 
 		{ 

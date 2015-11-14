@@ -34,9 +34,10 @@ class LoginController extends Controller {
       
       $user = DB::table('users')->where('username',$username)->first();
       
+      if(isset($user)){
       Session::put('username', $user->username);
       Session::put('name', $user->name);
-      Session::put('surname', $user->surname);
+      Session::put('surname', $user->surname);}
 
       if(Auth::attempt(['username'=>$username,'password'=>$password,'type'=>'patient'],$request->has('remember')))
           return redirect()->intended('/login/patient');
@@ -53,7 +54,7 @@ class LoginController extends Controller {
       if(Auth::attempt(['username'=>$username,'password'=>$password,'type'=>'officer'],$request->has('remember')))
           return redirect()->intended('/login/officer');
       
-          return redirect()->back()->with('message',"Error!! Username or Password Incorrect. \nPlease try again.");;
+          return redirect()->back()->with('message',"ขออภัย username หรือ password ไม่ถูกต้อง\nกรุณาลองใหม่");;
     }
 
     // สำหรับทำการ Logout

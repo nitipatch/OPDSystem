@@ -24,6 +24,7 @@
 				</button>
 				<a class="navbar-brand">Hospital OPD System</a>
 			</div>
+	 		@include('login.layouts.inc-header')
 	 		@include('login.layouts.inc-left-sidebar')
 	 	</nav>
 
@@ -34,7 +35,7 @@
 		</div><!-- /.container-fluid -->
 		</div><!-- /#page-wrapper -->
  	</div><!-- /#wrapper --><!-- jQuery -->
- 	@include('login.layouts.inc-scripts')
+ 	@include('patient.layouts.inc-scripts')
  	@yield('scripts')
 
 </body>

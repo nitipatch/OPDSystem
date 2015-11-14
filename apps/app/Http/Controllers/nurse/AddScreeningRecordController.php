@@ -20,25 +20,8 @@ class AddScreeningRecordController extends BaseController
 	}
 	public function addScreeningRecordCreate()
 	{
-		$validator = Validator::make(Input::all()
-			,array('HN'=>'required|min:8|max:8'
-			,'symptom'=>'required|max:1000'
-			,'weight'=>'required'
-			,'height'=>'required|max:3'
-			,'bloodPressureS'=>'required|max:3'
-			,'bloodPressureD'=>'required|max:3'
-			,'bodyTemp'=>'required'
-			,'pulse'=>'required|max:3')
-			
-			,array('HN.required'=>'กรุณากรอก HN ของผู้ป่วย','HN.min'=>'กรุณากรอก HN ของผู้ป่วยให้ถูกต้อง','HN.max'=>'กรุณากรอก HN ของผู้ป่วยให้ถูกต้อง'
-			,'symptom.required'=>'กรุณากรอกอาการเบื้องต้น','symptom.max'=>'อาการเบื้องต้นยาวเกินไป'
-			,'weight.required'=>'กรุณากรอกส่วนสูง'
-			,'height.required'=>'กรุณากรอกนำ้หน้า','height.max'=>'กรอกน้ำหนักไม่ถูกต้อง'
-			,'bloodPressureS.required'=>'กรุณากรอกความดันโลหิต Systolic','bloodPressureS.max'=>'กรอกความดันโลหิต Systolic ไม่ถูกต้อง'
-			,'bloodPressureD.required'=>'กรุณากรอกความดันโลหิต Diastolic','bloodPressureD.max'=>'กรอกความดันโลหิต Diastolic ไม่ถูกต้อง'
-			,'bodyTemp.required'=>'กรุณากรอกอุณหภูมิร่างกาย'
-			,'pulse.required'=>'กรุณากรอกชีพจร','pulse.max'=>'กรอกชีพจรไม่ถูกต้อง')
-		);
+		$validator = Validator::make(Input::all(),array('HN'=>'min:8|hn_exist')
+					,array('HN.min'=>'ท่านกรอก HN ของผู้ป่วยไม่ครบ','HN.hn_exist'=>'HN ที่ท่านกรอกไม่ตรงกับผู้ป่วยใดของโรงพยาบาล'));
 
 		if ($validator->passes()) 
 		{ 
