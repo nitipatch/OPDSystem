@@ -33,7 +33,8 @@ class AddScreeningRecordController extends BaseController
 
 			$addScreeningRecord->HN = Input::get('HN');
 			date_default_timezone_set('Asia/Bangkok');
-			$addScreeningRecord->screenDate = date("Y-m-d H:i:s",time());
+			$addScreeningRecord->date = date("Y-m-d",time());
+			$addScreeningRecord->time = date("H:i:s",time());
 			$addScreeningRecord->symptom = Input::get('symptom');
 			$addScreeningRecord->weight = Input::get('weight');
 			$addScreeningRecord->height = Input::get('height');

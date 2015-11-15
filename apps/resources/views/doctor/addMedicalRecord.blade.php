@@ -57,7 +57,7 @@
                 <td style="text-align:left;" valign="top">
                     <label>รหัสโรค ICD-10<font color="red">*</font></label></td>
                 <td>
-                    <?php $diseasesList = [''];
+                    <?php $diseasesList = [];
                     $diseases = DB::table('ICD10_Disease')->get();
                     foreach($diseases as $disease){array_push($diseasesList,$disease->ICD10." ".$disease->Disease);}
                     function withEmpty($selectList,$emptyLabel){return array(''=>$emptyLabel) + $selectList;} ?>

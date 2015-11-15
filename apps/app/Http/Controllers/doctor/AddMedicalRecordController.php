@@ -29,13 +29,14 @@ class AddMedicalRecordController extends BaseController
 				$diseases = DB::table('ICD10_Disease')->get();
 				$i = 0; 
 				foreach($diseases as $disease)
-					if(++$i==$n){ $ICD10 = $disease->ICD10; break; }
+					if($i++==$n){ $ICD10 = $disease->ICD10; break; }
 
 			$addMedicalRecord = new MedicalRecord();
 			$addMedicalRecord->HN = Input::get('HN');
 			$addMedicalRecord->doctorEmpID = Session::get('username');
 			date_default_timezone_set('Asia/Bangkok');
-			$addMedicalRecord->date = date("Y-m-d H:i:s",time());
+			$addMedicalRecord->date = date("Y-m-d",time());
+			$addMedicalRecord->time = date("H:i:s",time());
 			$addMedicalRecord->symptom = Input::get('symptom');
 			$addMedicalRecord->ICD10 = $ICD10;			
 			$addMedicalRecord->save();

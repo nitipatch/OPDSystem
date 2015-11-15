@@ -5,7 +5,7 @@
     "url" => "doctor/prescribe/create",
     "method" => "POST",
     "files" => true,
-    "class" => "form-register",
+    "class" => "form-register"
 ])  !!}
     <div class="box-login">
         <h2 style="text-align:center;">สั่งยา</h2>

@@ -61,8 +61,8 @@ Route::get('pharmacist/logout','Admins\LoginController@getLogout');
 Route::group(['prefix'=>'pharmacist','middleware'=>'auth','namespace'=>'pharmacist'],function(){
 	Route::get('loginsuccess', function(){return \View::make('pharmacist.success')->with('name',Session::get('name'))
 																			      ->with('surname',Session::get('surname'));});
-	Route::get('requestNewDrugsList', 'RequestNewDrugsListController@requestNewDrugsListForm');
-	Route::get('requestNewDrugsList/create', 'RequestNewDrugsListController@requestNewDrugsListCreate');
+	Route::get('dispense', 'DispenseController@dispenseForm');
+	Route::post('dispense/create', 'DispenseController@dispenseCreate');
 });
 
 
