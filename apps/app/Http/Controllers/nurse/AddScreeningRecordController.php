@@ -30,11 +30,21 @@ class AddScreeningRecordController extends BaseController
 			for($i=0; $i<sizeof($allergicDrugsList) ;$i++)
 			if(!DB::table('HN_allergicDrug')->where('HN',Input::get('HN'))->where('allergicDrug',$allergicDrugsList[$i])->first())
 			DB::table('HN_allergicDrug')->insert(array('HN'=>Input::get('HN'), 'allergicDrug'=>$allergicDrugsList[$i]));
+			
+			date_default_timezone_set('Asia/Bangkok');
+			$date = date("Y-m-d",time());
+			$time = date("H:i:s",time());
+			$morning = 0;
+			if((int)date("H",time())<12)
+			$morning = 1;
+			DB::table('appointments')->where('HN',Input::get('HN'))
+									 ->where('appointmentDate',$date)
+									 ->where('morning',$morning)
+									 ->update(array('addScreeningRecordTime'=>$time));	
 
 			$addScreeningRecord->HN = Input::get('HN');
-			date_default_timezone_set('Asia/Bangkok');
-			$addScreeningRecord->date = date("Y-m-d",time());
-			$addScreeningRecord->time = date("H:i:s",time());
+			$addScreeningRecord->date = $date;
+			$addScreeningRecord->time = $time;
 			$addScreeningRecord->symptom = Input::get('symptom');
 			$addScreeningRecord->weight = Input::get('weight');
 			$addScreeningRecord->height = Input::get('height');

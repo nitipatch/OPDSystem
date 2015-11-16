@@ -27,11 +27,11 @@
                     </p>
                 </td>
             </tr>
-            <tr><td><label></label></td></tr>
-            <tr><td><label></label></td>
-            	<td style="text-align:center;" valign="top"><label>ยาตัวที่ 1</label></td>
+            <tr id='1x'><td><label></label></td></tr>
+            <tr id='1y'><td><label></label></td>
+            	<td style="text-align:center;" valign="top"><label>รายการยา</label></td>
             </tr>
-            <tr><p>
+            <tr id='1a'><p>
                 <td style="text-align:left;" valign="top">
                     <label>ชื่อยา<font color="red">*</font></label></td>
                 <td>
@@ -44,7 +44,7 @@
                     </p>
                 </td>
             </tr>
-            <tr><p>
+            <tr id='1b'><p>
                 <td style="text-align:left;" valign="top">
                     <label>ปริมาณ<font color="red">*</font></label></td>
                 <td>
@@ -57,7 +57,7 @@
                     </p>
                 </td>
             </tr>
-            <tr><p>
+            <tr id='1c'><p>
                 <td style="text-align:left;" valign="top">
                     <label>วิธีใช้<font color="red">*</font></label></td>
                 <td>
@@ -69,6 +69,7 @@
                     @endif
                     </p>
                 </td>
+                <td><button type="button" id='1' class="btn">ลบ</button></td>
             </tr>
         </table>
         <table align="center">
@@ -85,13 +86,28 @@
 
 <script>
 var c = 1;
+function f()
+{               $('.btn').click(function(){var v = this.id;
+                                document.getElementById(v+"x").remove();
+                                document.getElementById(v+"y").remove();
+                                document.getElementById(v+"a").remove();
+                                document.getElementById(v+"b").remove();
+                                document.getElementById(v+"c").remove();
+                            });
+}
 function clicked(e)
 {
     c++;
 	e.preventDefault();
-    $("#drugsTable").append('<tr><td><label></label></td></tr><tr><td><label></label></td><td style="text-align:center;" valign="top"><label>ยาตัวที่ '+c+'</label></td></tr><tr><p><td style="text-align:left;" valign="top"><label>ชื่อยา<font color="red">*</font></label></td><td><input required type="text" class="form-control" name="D['+c+'][1]" maxlength="100" placeholder="กรอกชื่อยา">@if ($errors->has("D['+c+'][1]"))<p style="color:red;font-size:14px;margin:0;padding:10px 0px;">{{ $errors->first("D['+c+'][1]") }}</p>@endif</p></td></tr><tr><p><td style="text-align:left;" valign="top"><label>ปริมาณ<font color="red">*</font></label></td><td><input required type="text" class="form-control" name="D['+c+'][2]" size="100" maxlength="20" placeholder="กรอกปริมาณยา">@if ($errors->has("D['+c+'][2]"))<p style="color:red;font-size:14px;margin:0;padding:10px 0px;">{{ $errors->first("D['+c+'][2]") }}</p>@endif</p></td></tr><tr><p><td style="text-align:left;" valign="top"><label>วิธีใช้<font color="red">*</font></label></td><td><textarea required type="input" row="2" column="50" class="form-control" name="D['+c+'][3]" maxlength="1000" placeholder="กรอกวิธีใช้ยา"></textarea>@if ($errors->has("D['+c+'][3]"))<p style="color:red;font-size:14px;margin:0;padding:10px 0px;">{{ $errors->first("D['+c+'][3]") }}</p>@endif</p></td></tr>');
+    $("#drugsTable").append('<tr id='+c+'x><td><label></label></td></tr><tr id='+c+'y><td><label></label></td><td style="text-align:center;" valign="top"><label>รายการยา</label></td></tr><tr id='+c+'a><p><td style="text-align:left;" valign="top"><label>ชื่อยา<font color="red">*</font></label></td><td><input required type="text" class="form-control" name="D['+c+'][1]" maxlength="100" placeholder="กรอกชื่อยา">@if ($errors->has("D['+c+'][1]"))<p style="color:red;font-size:14px;margin:0;padding:10px 0px;">{{ $errors->first("D['+c+'][1]") }}</p>@endif</p></td></tr><tr id='+c+'b><p><td style="text-align:left;" valign="top"><label>ปริมาณ<font color="red">*</font></label></td><td><input required type="text" class="form-control" name="D['+c+'][2]" size="100" maxlength="20" placeholder="กรอกปริมาณยา">@if ($errors->has("D['+c+'][2]"))<p style="color:red;font-size:14px;margin:0;padding:10px 0px;">{{ $errors->first("D['+c+'][2]") }}</p>@endif</p></td></tr><tr id='+c+'c><p><td style="text-align:left;" valign="top"><label>วิธีใช้<font color="red">*</font></label></td><td><textarea required type="input" row="2" column="50" class="form-control" name="D['+c+'][3]" maxlength="1000" placeholder="กรอกวิธีใช้ยา"></textarea>@if ($errors->has("D['+c+'][3]"))<p style="color:red;font-size:14px;margin:0;padding:10px 0px;">{{ $errors->first("D['+c+'][3]") }}</p>@endif</p></td><td><button type="button" id='+c+' class="btn">ลบ</button></td></tr>');
+    $('.btn').click(function(){var v = this.id;
+                                document.getElementById(v+"x").remove();
+                                document.getElementById(v+"y").remove();
+                                document.getElementById(v+"a").remove();
+                                document.getElementById(v+"b").remove();
+                                document.getElementById(v+"c").remove();
+                            });
 }
-
 </script>
 
 @stop

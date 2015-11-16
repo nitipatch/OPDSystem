@@ -19,8 +19,6 @@ class PrescribeController extends BaseController
 		return View::make('doctor.prescribe');
 	}
 
-	//create foo validation rule
-
 	public function prescribeCreate()
 	{
 		$v1 = array('HN'=>'min:8|hn_exist');
@@ -33,7 +31,7 @@ class PrescribeController extends BaseController
 			$pharmacists = DB::table('users')->where('type','pharmacist')->get();
 			foreach($pharmacists as $pharmacist)
 			{
-				$amount = count(DB::table('prescribedDrugs')->where('pharmacistEmpID',$pharmacist->username)->where('checked',0)->get());
+				$amount = count(DB::table('appointments')->where('pharmacistEmpID',$pharmacist->username)->whereNull('dispensedTime')->get());
 				if($amount<$min || $min==-1)
 				{
 					$min = $amount; 
@@ -41,6 +39,19 @@ class PrescribeController extends BaseController
 				}
 			}
 
+			date_default_timezone_set('Asia/Bangkok');
+			$date = date("Y-m-d",time());
+			$time = date("H:i:s",time());
+			$morning = 0;
+			if((int)date("H",time())<12)
+			$morning = 1;
+			DB::table('appointments')->where('HN',Input::get('HN'))
+									 ->where('doctorEmpID',Session::get('username'))
+									 ->where('appointmentDate',$date)
+									 ->where('morning',$morning)
+									 ->update(array('prescribedTime'=>$time,'pharmacistEmpID'=>$pharmacistEmpID));
+
+			
 			$Drugs = Input::get('D');
 			foreach($Drugs as $Drug) 
 			{
@@ -56,13 +67,11 @@ class PrescribeController extends BaseController
 				$addPrescribedDrug->HN = Input::get('HN');
 				$addPrescribedDrug->doctorEmpID = Session::get('username');
 				date_default_timezone_set('Asia/Bangkok');
-				$addPrescribedDrug->date = date("Y-m-d",time());
-				$addPrescribedDrug->time = date("H:i:s",time());
+				$addPrescribedDrug->date = $date;
+				$addPrescribedDrug->time = $time;
 				$addPrescribedDrug->drugName = $drugName;
 				$addPrescribedDrug->quantity = $quantity;	
 				$addPrescribedDrug->description = $description;
-				$addPrescribedDrug->pharmacistEmpID = $pharmacistEmpID;
-				$addPrescribedDrug->checked = 0;
  				$addPrescribedDrug->save();
 			}
 			return Redirect::to('doctor/prescribe')->with('flash_notice','ดำเนินการสั่งยาสำเร็จ');

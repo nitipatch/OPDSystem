@@ -24,30 +24,14 @@ class RegisterController extends BaseController
 		$user = DB::table('idenCardNo_HN')->where('idenCardNo',Input::get('idenCardNo'))->first();
 
 		$validator = Validator::make(Input::all()
-			,array('idenCardNo'=>'required|min:13|max:13'
-			,'name'=>'required|max:100'
-			,'surname'=>'required|max:200'
-			,'birthdate'=>'required'
-			,'address'=>'max:1000'
-			,'phoneNo'=>'required|min:9|max:10|unique:users'
-			,'emailAddr'=>'required|email|max:100|unique:users')
+			,array('idenCardNo'=>'min:13'
+			,'phoneNo'=>'min:9|unique:users'
+			,'emailAddr'=>'email|unique:users')
 			
-			,array('idenCardNo.required'=>'กรุณากรอกเลขบัตรประจำตัวประชาชน'
-			,'idenCardNo.min'=>'กรอกเลขบัตรประจำตัวประชาชนไม่ครบ13หลัก'
-			,'idenCardNo.max'=>'กรอกเลขบัตรประจำตัวประชาชนเกิน13หลัก'
-			,'name.required'=>'กรุณากรอกชื่อ'
-			,'name.max'=>'ชื่อยาวเกินไป'
-			,'surname.required'=>'กรุณานามสกุล'
-			,'surname.max'=>'นามสกุลยาวเกินไป'
-			,'birthdate.required'=>'กรุณากรอกวันเดือนปีเกิด'
-			,'address.max'=>'ที่อยู่ยาวเกินไป'
-			,'phoneNo.required'=>'กรุณากรอกเบอร์โทรศัพท์'
-			,'phoneNo.min'=>'เบอร์โทรศัพท์สั้นเกินไป'			
-			,'phoneNo.max'=>'เบอร์โทรศัพท์ยาวเกินไป'
+			,array('idenCardNo.min'=>'ท่านกรอกเลขบัตรประจำตัวประชาชนไม่ครบ13หลัก'
+			,'phoneNo.min'=>'ท่านกรอกเบอร์โทรศัพท์ไม่ครบ'			
 			,'phoneNo.unique'=>'เบอร์โทรศัพท์นี้มีอยู่ในระบบแล้ว'
-			,'emailAddr.required'=>'กรุณากรอกอีเมล'
 			,'emailAddr.email'=>'รูปแบบอีเมลไม่ถูกต้อง'			
-			,'emailAddr.max'=>'อีเมลยาวเกินไป'
 			,'emailAddr.unique'=>'อีเมลนี้มีอยู่ในระบบแล้ว')
 		);
 		if ($validator->passes()) { $addUser = new User();

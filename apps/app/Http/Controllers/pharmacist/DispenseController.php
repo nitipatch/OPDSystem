@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\DispensedDrug;
 use View;
 
 class DispenseController extends BaseController
@@ -17,32 +18,45 @@ class DispenseController extends BaseController
 	{
 		return View::make('pharmacist.dispense');
 	}
+
 	public function dispenseCreate()
 	{
-		$validator = Validator::make(Input::all(),array(),array());
-
-		if ($validator->passes()) 
-		{ 
-			$D = Input::get('D');
-			$i = 0; 
-			foreach($D as $item)
+		date_default_timezone_set('Asia/Bangkok');
+		$date = date("Y-m-d",time());
+		$time = date("H:i:s",time());
+		$morning = 0;
+		if((int)date("H",time())<12)
+		$morning = 1;
+			
+		$Drugs = Input::get('D');
+		foreach($Drugs as $Drug) 
+		{
+			$i=0;
+			foreach($Drug as $D)
 			{
 				$i++;
-				DB::table('prescribedDrugs')->where('HN',$D[$i][1])
-											->where('doctorEmpID',$D[$i][2])										
-											->where('date',$D[$i][3])
-											->where('time',$D[$i][4])
-											->where('pharmacistEmpID',Session::get('username'))
-											->where('drugName',$D[$i][5])
-											->update(array('checked'=>1
-															,'drugName'=>$D[$i][6]
-															,'quantity'=>$D[$i][7]
-															,'description'=>$D[$i][8]));
+					 if($i==1)$HN = $D;
+				else if($i==6)$drugName = $D;
+				else if($i==7)$quantity = $D;
+				else if($i==8)$description = $D;
 			}
-			
-			return Redirect::to('pharmacist/dispense')->with('flash_notice','ดำเนินการจ่ายยาสำเร็จ');
+			DB::table('appointments')->where('HN',$HN)
+									 ->where('pharmacistEmpID',Session::get('username'))
+									 ->where('appointmentDate',$date)
+									 ->where('morning',$morning)
+									 ->update(array('dispensedTime'=>$time));
+			$addDispensedDrug = new DispensedDrug();
+			$addDispensedDrug->HN = $HN;
+			$addDispensedDrug->pharmacistEmpID = Session::get('username');
+			date_default_timezone_set('Asia/Bangkok');
+			$addDispensedDrug->date = $date;
+			$addDispensedDrug->time = $time;
+			$addDispensedDrug->drugName = $drugName;
+			$addDispensedDrug->quantity = $quantity;	
+			$addDispensedDrug->description = $description;
+ 			$addDispensedDrug->save();
 		}
-		else{return Redirect::to('pharmacist/dispense')->withErrors($validator)->withInput();}
+		return Redirect::to('pharmacist/dispense')->with('flash_notice','ดำเนินการจ่ายยาสำเร็จ');
 	}
 }
 			

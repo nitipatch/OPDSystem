@@ -31,12 +31,23 @@ class AddMedicalRecordController extends BaseController
 				foreach($diseases as $disease)
 					if($i++==$n){ $ICD10 = $disease->ICD10; break; }
 
+			date_default_timezone_set('Asia/Bangkok');
+			$date = date("Y-m-d",time());
+			$time = date("H:i:s",time());
+			$morning = 0;
+			if((int)date("H",time())<12)
+			$morning = 1;
+			DB::table('appointments')->where('HN',Input::get('HN'))
+									 ->where('appointmentDate',$date)
+									 ->where('morning',$morning)
+									 ->update(array('addMedicalRecordTime'=>$time));	
+
 			$addMedicalRecord = new MedicalRecord();
 			$addMedicalRecord->HN = Input::get('HN');
 			$addMedicalRecord->doctorEmpID = Session::get('username');
 			date_default_timezone_set('Asia/Bangkok');
-			$addMedicalRecord->date = date("Y-m-d",time());
-			$addMedicalRecord->time = date("H:i:s",time());
+			$addMedicalRecord->date = $date;
+			$addMedicalRecord->time = $time;
 			$addMedicalRecord->symptom = Input::get('symptom');
 			$addMedicalRecord->ICD10 = $ICD10;			
 			$addMedicalRecord->save();
