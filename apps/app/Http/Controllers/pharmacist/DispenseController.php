@@ -24,9 +24,9 @@ class DispenseController extends BaseController
 		date_default_timezone_set('Asia/Bangkok');
 		$date = date("Y-m-d",time());
 		$time = date("H:i:s",time());
-		$morning = 0;
-		if((int)date("H",time())<12)
 		$morning = 1;
+		if((int)date("H",time())<12)
+		$morning = 0;
 			
 		$Drugs = Input::get('D');
 		foreach($Drugs as $Drug) 

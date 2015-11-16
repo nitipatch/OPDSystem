@@ -58,7 +58,7 @@ class MakeAppointmentController extends BaseController
 			$len = strlen($str);
 			$date = substr($str,0,$cut);
 			$addAppointment->appointmentDate = $date;
-			if(strcmp(substr($str,$cut+1,$len-$cut-1),"เช้า")==0)$morning = 1; else $morning = 0; 
+			if(strcmp(substr($str,$cut+1,$len-$cut-1),"เช้า")==0)$morning = 0; else $morning = 1; 
 			$addAppointment->morning = $morning;
 			
 			$addAppointment->symptomOrReason = Input::get('cause');

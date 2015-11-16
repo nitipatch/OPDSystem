@@ -18,13 +18,7 @@
                 <td style="text-align:left;" valign="top">
                     <label>HN ของผู้ป่วย<font color="red">*</font></label></td>
                 <td>
-                    {!! Form::text('HN', Input::old('กรอก HN ของผู้ป่วย'), [
-                        'placeholder' => 'กรอก HN ของผู้ป่วย',
-                        'class' => 'form-control',
-                        'required' => 'required',
-                        'maxlength' => 8,
-                    ]) !!}
-                    
+                    <input required id="HN" onchange="c(event)" type="text" class="form-control" name="HN" maxlength="8" placeholder="กรอก HN ของผู้ป่วย">
                     @if ($errors->has('HN'))
                         <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
                             {{ $errors->first('HN') }}
@@ -167,6 +161,7 @@
                     </p>
                 </td>
             </tr>
+            <tr><td></td><td id="allergicDrugs"></td></tr>
             <tr><p>
                 <td style="text-align:left;" valign="top">
                     <label>ยาที่ผู้ป่วยแพ้</label></td>
@@ -185,11 +180,28 @@
                     </p>
                 </td>
             </tr>
+        </table>
+        <br><br>
+        <table align="center">
             <tr>
-                <td style="text-align:left;"></td>
                 <td>{!! Form::submit('ตกลง', ['class' => 'btn btn-primary']) !!}{!! Form::close() !!}</td>
                 <td><form action="loginsuccess"><input type="submit" class="btn" value="ยกเลิก"></form></td>
             </tr>
         </table>
     </div>
+
+<script>
+function c(e){  
+                var v = $('#HN').val();
+                $.ajax({    url: 'http://localhost/OPDSystem/apps/app/Http/Controllers/nurse/Ajax.php',
+                            type: "post",
+                            data: {HN:v},
+                            success: function(data)
+                            {
+                                $('#allergicDrugs').html('<font color="red">'+data+'</font>');
+                            }
+                      });
+            }
+</script>
+
 @stop

@@ -103,10 +103,11 @@
                         </p>
                     @endif
                 </td>
-            </tr>
-            <tr><td></td><td><legend></legend></td></tr>
+            </tr>            
+        </table>
+        <br><br>
+        <table align="center">
             <tr>
-                <td style="text-align:left;"></td>
                 <td>{!! Form::submit('ตกลง', ['class' => 'btn btn-primary' , 'id' => 'test']) !!}{!! Form::close() !!}</td>
                 <td><form action="loginsuccess"><input type="submit" class="btn" value="ยกเลิก"></form></td>
             </tr>
@@ -138,7 +139,7 @@
                         var option = document.createElement("option");
                         var cut = dates[i].indexOf(" ");
                         var text = dates[i].substring(0,cut);
-                        if(dates[i][cut+1]=="1")text+=" เช้า";
+                        if(dates[i][cut+1]=="0")text+=" เช้า";
                         else text+=" บ่าย";
                         option.text = text
                         option.value = text;

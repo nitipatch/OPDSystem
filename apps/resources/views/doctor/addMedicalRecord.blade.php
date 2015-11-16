@@ -8,7 +8,7 @@
     "class" => "form-register",
 ])  !!}
     <div class="box-login">
-        <h2 style="text-align:center;">บันทึกการตรวจคัดกรอง</h2>
+        <h2 style="text-align:center;">บันทึกการรักษา</h2>
         @if(Session::has('flash_notice'))
             <h3 style="color:red;text-align:center;">{{ Session::get('flash_notice') }}</h3>
         @endif
@@ -71,10 +71,10 @@
                     </p>  
                 </td>
             </tr> 
-         
-       
+        </table>
+        <br><br>
+        <table align="center">
             <tr>
-                <td style="text-align:left;"></td>
                 <td>{!! Form::submit('ตกลง', ['class' => 'btn btn-primary']) !!}{!! Form::close() !!}</td>
                 <td><form action="loginsuccess"><input type="submit" class="btn" value="ยกเลิก"></form></td>
             </tr>
