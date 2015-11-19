@@ -18,7 +18,7 @@
                 <td style="text-align:left;" valign="top">
                     <label>HN ของผู้ป่วย<font color="red">*</font></label></td>
                 <td>
-                    <input required type="text" class="form-control" name="HN" maxlength="8" placeholder="กรอก HN ของผู้ป่วย">
+                    <input required id="HN" onKeyPress='return isHN("HN",this,event)' type="text" class="form-control" placeholder="เลข5หลัก/เลข2ตัวท้ายของปีพ.ศ.ที่สมัครสมาชิก" name="HN" maxlength="8" >
                     @if ($errors->has('HN'))
                         <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
                             {{ $errors->first('HN') }}

@@ -18,13 +18,7 @@
                 <td style="text-align:left;" valign="top">
                     <label>HN ของผู้ป่วย<font color="red">*</font></label></td>
                 <td>
-                    {!! Form::text('HN', Input::old('กรอก HN ของผู้ป่วย'), [
-                        'placeholder' => 'กรอก HN ของผู้ป่วย',
-                        'class' => 'form-control',
-                        'required' => 'required',
-                        'maxlength' => 8,
-                    ]) !!}
-                    
+                    <input required id="HN" onKeyPress='return isHN("HN",this,event)' type="text" class="form-control" placeholder="เลข5หลัก/เลข2ตัวท้ายของปีพ.ศ.ที่สมัครสมาชิก" name="HN" maxlength="8" >
                     @if ($errors->has('HN'))
                         <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
                             {{ $errors->first('HN') }}
@@ -35,16 +29,9 @@
             </tr>
             <tr><p>
                 <td style="text-align:left;" valign="top">
-                    <label>อาการ<font color="red">*</font></label></td>
+                    <label>อาการของโรค<font color="red">*</font></label></td>
                 <td>
-                    {!! Form::textarea('symptom', Input::old('กรอกอาการ'), [
-                        'placeholder' => 'กรอกอาการ',
-                        'class' => 'form-control',
-                        'maxlength' => 1000,
-                        'required' => 'required',
-                        'size' => '50x2'
-                    ]) !!}
-                    
+                    <textarea required name='symptom' placeholder='กรอกอาการของโรค' class='form-control' maxlength='1000' rows="2" cols="50"></textarea>
                     @if ($errors->has('symptom'))
                         <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
                             {{ $errors->first('symptom') }}

@@ -28,7 +28,7 @@ class AddScreeningRecordController extends BaseController
 			$addScreeningRecord = new ScreeningRecord();
 			$allergicDrugsList = explode(',',Input::get('allergicDrug'));
 			for($i=0; $i<sizeof($allergicDrugsList) ;$i++)
-			if(!DB::table('HN_allergicDrug')->where('HN',Input::get('HN'))->where('allergicDrug',$allergicDrugsList[$i])->first())
+			if(strlen($allergicDrugsList[$i]) > 0 && !DB::table('HN_allergicDrug')->where('HN',Input::get('HN'))->where('allergicDrug',$allergicDrugsList[$i])->first())
 			DB::table('HN_allergicDrug')->insert(array('HN'=>Input::get('HN'), 'allergicDrug'=>$allergicDrugsList[$i]));
 			
 			date_default_timezone_set('Asia/Bangkok');

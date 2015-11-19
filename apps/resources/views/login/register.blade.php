@@ -18,12 +18,7 @@
                 <td style="text-align:left;" valign="top">
                     <label>เลขบัตรประจำตัวประชาชน<font color="red">*</font></label></td>
                 <td>
-                    {!! Form::text('idenCardNo', Input::old('idenCardNo'), [
-                        'placeholder' => 'เลขบัตรประจำตัวประชาชน',
-                        'class' => 'form-control',
-                        'maxlength' => 13,
-                        'required' => 'required'
-                    ]) !!}
+                    <input required id='1' onKeyPress='return isInt(1,this,event,13)' type="text" name='idenCardNo' placeholder='เลขประจำตัวประชาชน13หลัก' class='form-control' maxlength='13'>
                     @if ($errors->has('idenCardNo'))
                         <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
                             {{ $errors->first('idenCardNo') }}
@@ -90,12 +85,7 @@
                 <td style="text-align:left;" valign="top">
                     <label>เบอร์โทรศัพท์<font color="red">*</font></label></td>
                 <td>
-                    {!! Form::text('phoneNo', Input::old('phoneNo'), [
-                        'placeholder' => 'เบอร์โทรศัพท์',
-                        'class' => 'form-control',
-                        'maxlength' => 10,
-                        'required' => 'required'
-                    ]) !!}
+                    <input required id='2' onKeyPress='return isInt(2,this,event,10)' type="text" name='phoneNo' placeholder='เบอร์โทรศัพท์9หรือ10ตัวเลข' class='form-control' maxlength='10'>
                     @if ($errors->has('phoneNo'))
                         <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
                             {{ $errors->first('phoneNo') }}
