@@ -34,7 +34,7 @@
 		</div><!-- /.container-fluid -->
 		</div><!-- /#page-wrapper -->
  	</div><!-- /#wrapper --><!-- jQuery -->
- 	@include('patient.layouts.inc-scripts')
+ 	@include('login.layouts.inc-scripts')
  	@yield('scripts')
 
 </body>
