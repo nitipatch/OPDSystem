@@ -23,13 +23,13 @@ class MakeAppointmentController extends BaseController
 		Session::put('HN',Input::get('HN'));
 		$validator = Validator::make(Input::all()
 			,array('HN'=>'min:8|hn_exist'
-			,'apptDate'=>'already_have_appointment'
+			,'apptDate'=>'already_have_appointment_officer'
 			,'doctor'=>'required_without:department'
 			,'department'=>'required_without:doctor')
 			
 			,array('HN.min'=>'ท่านกรอก HN ของผู้ป่วยไม่ครบ'
 			,'HN.hn_exist'=>'HN ที่ท่านกรอกไม่ตรงกับผู้ป่วยใดของโรงพยาบาล'
-			,'apptDate.already_have_appointment'=>'ผู้ป่วยคนนี้มีนัดแล้วในช่วงเวลาที่ท่านเลือก'
+			,'apptDate.already_have_appointment_officer'=>'ผู้ป่วยคนนี้มีนัดแล้วในช่วงเวลาที่ท่านเลือก'
 			,'doctor.required_without'=>'กรุณาเลือกแพทย์หรือแผนกที่ต้องการนัด'
 			,'department.required_without'=>'กรุณาเลือกแพทย์หรือแผนกที่ต้องการนัด')
 		);

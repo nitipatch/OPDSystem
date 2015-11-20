@@ -24,11 +24,13 @@ class RegisterController extends BaseController
 		$user = DB::table('idenCardNo_HN')->where('idenCardNo',Input::get('idenCardNo'))->first();
 
 		$validator = Validator::make(Input::all()
-			,array('idenCardNo'=>'min:13'
-			,'phoneNo'=>'min:9|unique:users'
+			,array('idenCardNo'=>'min:13|idenCardNo_exist|already_register'
+			,'phoneNo'=>'min:10|unique:users'
 			,'emailAddr'=>'email|unique:users')
 			
 			,array('idenCardNo.min'=>'ท่านกรอกเลขบัตรประจำตัวประชาชนไม่ครบ13หลัก'
+			,'idenCardNo.idenCardNo_exist'=>'ท่านยังไม่ได้ผูกเลขบัตรประจำตัวประชาชนกับโรงพยาบาล'
+			,'idenCardNo.already_register'=>'ท่านได้ทำการสมัครสมาชิกไปแล้ว'
 			,'phoneNo.min'=>'ท่านกรอกเบอร์โทรศัพท์ไม่ครบ'			
 			,'phoneNo.unique'=>'เบอร์โทรศัพท์นี้มีอยู่ในระบบแล้ว'
 			,'emailAddr.email'=>'รูปแบบอีเมลไม่ถูกต้อง'			
@@ -53,6 +55,11 @@ class RegisterController extends BaseController
   
 			$addUser->password = Hash::make($randomString);	
 			$addUser->save();
+
+			DB::table('idenCardNo_HN')->where('idenCardNo',Input::get('idenCardNo'))
+										->where('HN',$user->HN)
+										->update(array('registered'=>1));
+
 			return Redirect::to('login/register')->with('flash_notice' , $randomString);}
 		else{return Redirect::to('login/register')->withErrors($validator)
 			->withInput(Input::except('password'))
