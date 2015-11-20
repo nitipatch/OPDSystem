@@ -22,10 +22,12 @@ class MakeAppointmentController extends BaseController
 	{
 		$validator = Validator::make(Input::all()
 			,array('doctor'=>'required_without:department'
-			,'department'=>'required_without:doctor')
+			,'department'=>'required_without:doctor'
+			,'apptDate'=>'already_have_appointment')
 			
 			,array('doctor.required_without'=>'กรุณาเลือกแพทย์หรือแผนกที่ต้องการนัด'
-			,'department.required_without'=>'กรุณาเลือกแพทย์หรือแผนกที่ต้องการนัด')
+			,'department.required_without'=>'กรุณาเลือกแพทย์หรือแผนกที่ต้องการนัด'
+			,'apptDate.already_have_appointment'=>'ท่านมีนัดแล้วในช่วงเวลาที่ท่านเลือก')
 		);
 
 		if ($validator->passes()) 

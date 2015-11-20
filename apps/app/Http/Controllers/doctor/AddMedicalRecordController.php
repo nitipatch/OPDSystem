@@ -20,8 +20,11 @@ class AddMedicalRecordController extends BaseController
 	}
 	public function addMedicalRecordCreate()
 	{
-		$validator = Validator::make(Input::all(),array('HN'=>'min:8|hn_exist')
-					,array('HN.min'=>'ท่านกรอก HN ของผู้ป่วยไม่ครบ','HN.hn_exist'=>'HN ที่ท่านกรอกไม่ตรงกับผู้ป่วยใดของโรงพยาบาล'));
+		$validator = Validator::make(Input::all(),array('HN'=>'min:8|hn_exist|have_appointment_with_me')
+					,array('HN.min'=>'ท่านกรอก HN ของผู้ป่วยไม่ครบ'
+							,'HN.hn_exist'=>'HN ที่ท่านกรอกไม่ตรงกับผู้ป่วยใดของโรงพยาบาล'
+							,'HN.have_appointment_with_me'=>'ผู้ป่วยคนนี้ไม่ได้นัดกับท่านไว้ในช่วงเวลานี้'
+							));
 
 		if ($validator->passes()) 
 		{ 
