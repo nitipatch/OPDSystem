@@ -8,6 +8,7 @@
 
 
 <script src="{{asset('/assets/js/validate.js')}}"></script>
+<script src="{{asset('/assets/js/jquery.caret.js')}}"></script>
 
 
 <!-- Down below is new theme I add -->

@@ -83,9 +83,9 @@
             </tr>
             <tr><p>
                 <td style="text-align:left;" valign="top">
-                    <label>เบอร์โทรศัพท์<font color="red">*</font></label></td>
+                    <label>เบอร์โทรศัพท์มือถือ<font color="red">*</font></label></td>
                 <td>
-                    <input required id='2' onKeyPress='return isInt(2,this,event,10)' type="text" name='phoneNo' placeholder='เบอร์โทรศัพท์9หรือ10ตัวเลข' class='form-control' maxlength='10'>
+                    <input required id='2' onKeyPress='return isInt(2,this,event,10)' type="text" name='phoneNo' placeholder='เบอร์โทรศัพท์มือถือ10หลัก' class='form-control' maxlength='10'>
                     @if ($errors->has('phoneNo'))
                         <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
                             {{ $errors->first('phoneNo') }}
