@@ -24,12 +24,12 @@ class RegisterController extends BaseController
 		$user = DB::table('idenCardNo_HN')->where('idenCardNo',Input::get('idenCardNo'))->first();
 
 		$validator = Validator::make(Input::all()
-			,array('idenCardNo'=>'min:13|idenCardNo_exist|already_register'
+			,array('idenCardNo'=>'min:13|idencardno_exist|already_register'
 			,'phoneNo'=>'min:10|unique:users'
 			,'emailAddr'=>'email|unique:users')
 			
 			,array('idenCardNo.min'=>'ท่านกรอกเลขบัตรประจำตัวประชาชนไม่ครบ13หลัก'
-			,'idenCardNo.idenCardNo_exist'=>'ท่านยังไม่ได้ผูกเลขบัตรประจำตัวประชาชนกับโรงพยาบาล'
+			,'idenCardNo.idencardno_exist'=>'ท่านยังไม่ได้เป็นผู้ป่วยของโรงพยาบาล'
 			,'idenCardNo.already_register'=>'ท่านได้ทำการสมัครสมาชิกไปแล้ว'
 			,'phoneNo.min'=>'ท่านกรอกเบอร์โทรศัพท์ไม่ครบ'			
 			,'phoneNo.unique'=>'เบอร์โทรศัพท์นี้มีอยู่ในระบบแล้ว'

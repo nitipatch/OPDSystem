@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
             foreach ($users as $user){ if($user->username == $value)return true; }
             return false;
         });
-        Validator::extend('idenCardNo_exist', function($attribute, $value, $parameters, $validator) 
+        Validator::extend('idencardno_exist', function($attribute, $value, $parameters, $validator) 
         {
             $patients = DB::table('idenCardNo_HN')->get();
             foreach ($patients as $patient){ if($patient->idenCardNo == $value)return true; }

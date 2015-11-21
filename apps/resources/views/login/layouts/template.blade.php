@@ -7,7 +7,7 @@
  	<meta name="description" content="">
  	<meta name="author" content="">
  	<title>Hospital OPD System</title>
-	<!-- Bootstrap Core CSS -->
+
  	@include('login.layouts.inc-stylesheet')
  	@yield('stylesheet')
 </head>
@@ -16,13 +16,7 @@
  	<div id="wrapper"><!-- Navigation -->
 	 	<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand">Hospital OPD System</a>
+				<a class="navbar-brand" id="text">Hospital OPD System</a>
 			</div>
 	 		@include('login.layouts.inc-left-sidebar')
 	 	</nav>
