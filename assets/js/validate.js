@@ -96,6 +96,7 @@ function showAllergicDrugs(e)
             data: {HN : $('#HN').val()},
             success: function(data)
             {
+                if(data.length==0)data="-";   
                 $('#oldAllergicDrugs').html("ยาที่ผู้ป่วยแพ้" + '   <font color="red">'+data+'</font>');
             }
         });

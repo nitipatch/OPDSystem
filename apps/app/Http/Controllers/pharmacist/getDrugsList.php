@@ -18,6 +18,20 @@
 
 	$drugs = $conn->query("SELECT HN,doctorEmpID,date,time,drugName,quantity,description FROM prescribedDrugs");
 	$c = 0;
+	$allergicDrugsList = "";
+	$allergicDrugs = $conn->query("SELECT HN,allergicDrug FROM HN_allergicDrug");
+	while($allergicDrug = $allergicDrugs->fetch_assoc()) 
+	{
+	   	if(strcmp($allergicDrug['HN'] , $_POST['HN'])==0)
+	    {	    		
+	    	if(++$c>1) $allergicDrugsList .= ", ";
+	    	$allergicDrugsList .= $allergicDrug['allergicDrug'];
+	    }
+	}
+	$conn->close();
+
+
+	$c = 0;
 	while($drug = $drugs->fetch_assoc()) 
 	{
 		if(strcmp($drug['HN'],$_POST['HN'])==0
@@ -34,8 +48,12 @@
 			if($c==1)
 			{	
 				echo  '<tr><td><label></label></td></tr><tr><td><label></label></td></tr><tr><td><label></label></td></tr>';
-				echo  '<tr><td><label></label></td><td style="text-align:center;" valign="top"><label>'."ผู้ป่วย: ".$drug['HN']."_____แพทย์สั่งยา: ".$drug['doctorEmpID']."_____วันเวลาสั่งยา: ".$drug['date']." ".$drug['time'].'</label></td></tr>';
-				echo  '<tr><td><label></label></td><td style="text-align:center;" valign="top"><label>'."ผลสรุปอาการ: ".$symptom."_____รหัสโรค ICD-10: ".$ICD10.'</label></td></tr>';
+				echo  '<tr><td><label></label></td><td style="text-align:center;" valign="top"><label>'."แพทย์: <font color='red'>".$drug['doctorEmpID'].'</font></label></td></tr>';
+				echo  '<tr><td><label></label></td><td style="text-align:center;" valign="top"><label>'."ผู้ป่วย: <font color='red'>".$drug['HN'].'</font></label></td></tr>';
+				echo  '<tr><td><label></label></td><td style="text-align:center;" valign="top"><label>'."ผลสรุปอาการ:  <font color='red'>".$symptom.'</font></label></td></tr>';
+				echo  '<tr><td><label></label></td><td style="text-align:center;" valign="top"><label>'."รหัสโรค ICD-10:  <font color='red'>".$ICD10.'</font></label></td></tr>';
+				echo  '<tr><td><label></label></td><td style="text-align:center;" valign="top"><label>'."วันเวลาสั่งยา:  <font color='red'>".$drug['date']." ".$drug['time'].'</font></label></td></tr>';
+				echo  '<tr><td><label></label></td><td style="text-align:center;" valign="top"><label>'."ยาที่ผู้ป่วยแพ้: <font color='red'>".$allergicDrugsList.'</font></label></td></tr>';
 			}			
 			echo  '<tr id=d-'.$c.'-9><td><label></label></td></tr><tr id=d-'.$c.'-10><td><label></label></td></tr>';
 

@@ -85,7 +85,71 @@ class AppServiceProvider extends ServiceProvider
                 return true;
             }                                        
             return false;
-        });    
+        });
+        Validator::extend('already_addscreeningrecord', function($attribute, $value, $parameters, $validator) 
+        {
+            $appointments = DB::table('appointments')->get();
+            foreach ($appointments as $appointment)
+            { 
+                date_default_timezone_set('Asia/Bangkok');
+                $date = date("Y-m-d",time());
+                $time = date("H:i:s",time());
+                $morning = 1;
+                if((int)date("H",time())<12)
+                $morning = 0;
+                if(isset($appointment->addScreeningRecordTime) && $appointment->HN == $value && $appointment->appointmentDate == $date && $appointment->morning == $morning)
+                return false;
+            }                                        
+            return true;
+        });
+        Validator::extend('already_addscreeningrecord', function($attribute, $value, $parameters, $validator) 
+        {
+            $appointments = DB::table('appointments')->get();
+            foreach ($appointments as $appointment)
+            { 
+                date_default_timezone_set('Asia/Bangkok');
+                $date = date("Y-m-d",time());
+                $time = date("H:i:s",time());
+                $morning = 1;
+                if((int)date("H",time())<12)
+                $morning = 0;
+                if(isset($appointment->addScreeningRecordTime) && $appointment->HN == $value && $appointment->appointmentDate == $date && $appointment->morning == $morning)
+                return false;
+            }                                        
+            return true;
+        });
+        Validator::extend('already_addmedicalrecord', function($attribute, $value, $parameters, $validator) 
+        {
+            $appointments = DB::table('appointments')->get();
+            foreach ($appointments as $appointment)
+            { 
+                date_default_timezone_set('Asia/Bangkok');
+                $date = date("Y-m-d",time());
+                $time = date("H:i:s",time());
+                $morning = 1;
+                if((int)date("H",time())<12)
+                $morning = 0;
+                if(isset($appointment->addMedicalRecordTime) && $appointment->HN == $value && $appointment->appointmentDate == $date && $appointment->morning == $morning)
+                return false;
+            }                                        
+            return true;
+        });
+        Validator::extend('already_prescribe', function($attribute, $value, $parameters, $validator) 
+        {
+            $appointments = DB::table('appointments')->get();
+            foreach ($appointments as $appointment)
+            { 
+                date_default_timezone_set('Asia/Bangkok');
+                $date = date("Y-m-d",time());
+                $time = date("H:i:s",time());
+                $morning = 1;
+                if((int)date("H",time())<12)
+                $morning = 0;
+                if(isset($appointment->prescribedTime) && $appointment->HN == $value && $appointment->appointmentDate == $date && $appointment->morning == $morning)
+                return false;
+            }                                        
+            return true;
+        });      
         Validator::extend('have_appointment_with_me', function($attribute, $value, $parameters, $validator) 
         {
             $appointments = DB::table('appointments')->get();

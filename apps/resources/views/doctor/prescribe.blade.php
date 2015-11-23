@@ -18,7 +18,7 @@
                 <td style="text-align:left;" valign="top">
                     <label>HN ของผู้ป่วย<font color="red">*</font></label></td>
                 <td>
-                    <input required id="HN" onKeyPress='return isHN("HN",this,event)' type="text" class="form-control" placeholder="เลข5หลัก/เลข2ตัวท้ายของปีพ.ศ.ที่สมัครสมาชิก" name="HN" maxlength="8" >
+                    <input required id="HN" onKeyPress='return isHN("HN",this,event)' onchange="showAllergicDrugs(event)" type="text" class="form-control" placeholder="เลข5หลัก/เลข2ตัวท้ายของปีพ.ศ.ที่สมัครสมาชิก" name="HN" maxlength="8" >
                     @if ($errors->has('HN'))
                         <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
                             {{ $errors->first('HN') }}
@@ -27,6 +27,7 @@
                     </p>
                 </td>
             </tr>
+            <tr><td></td><td style="text-align:left;" valign="top"><label id="oldAllergicDrugs"></label></td></tr>
             <tr id='1x'><td><label></label></td></tr>
             <tr id='1y'><td><label></label></td>
             	<td style="text-align:center;" valign="top"><label>รายการยา</label></td>

@@ -21,10 +21,11 @@ class PrescribeController extends BaseController
 
 	public function prescribeCreate()
 	{
-		$validator = Validator::make(Input::all(),array('HN'=>'min:8|hn_exist|have_appointment_with_me')
+		$validator = Validator::make(Input::all(),array('HN'=>'min:8|hn_exist|have_appointment_with_me|already_prescribe')
 					,array('HN.min'=>'ท่านกรอก HN ของผู้ป่วยไม่ครบ'
 							,'HN.hn_exist'=>'HN ที่ท่านกรอกไม่ตรงกับผู้ป่วยใดของโรงพยาบาล'
 							,'HN.have_appointment_with_me'=>'ผู้ป่วยคนนี้ไม่ได้นัดกับท่านไว้ในช่วงเวลานี้'
+							,'HN.already_prescribe'=>'ท่านได้ทำการสั่งยาให้ผู้ป่วยคนนี้ไปแล้ว'
 							));
 
 		if ($validator->passes()) 

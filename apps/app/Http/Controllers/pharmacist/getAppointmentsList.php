@@ -4,7 +4,7 @@
 	$appointments = $conn->query("SELECT HN,doctorEmpID,appointmentDate,morning,symptomOrReason,addMedicalRecordTime,prescribedTime,dispensedTime,pharmacistEmpID FROM appointments");
 	
 	echo '<tr><td colspan=6 height="35" align="center">เลือกรายการสั่งยาที่ท่านต้องการดำเนินการจ่ายยา</td></tr>';
-	echo '<tr><td height="25">ผู้ป่วย</td><td height="25">แพทย์สั่งยา</td><td height="25">วันพบแพทย์</td><td height="25">เวลาสั่งยา</td><td height="25">เวลาบันทึกการรักษา</td><td></td></tr>';
+	echo '<tr><td height="25">ผู้ป่วย</td><td height="25">แพทย์</td><td height="25">วันพบแพทย์</td><td height="25">เวลาสั่งยา</td><td height="25">เวลาบันทึกการรักษา</td><td></td></tr>';
 	$i = 0;
 	while($appointment = $appointments->fetch_assoc()) 
 	{
