@@ -134,12 +134,12 @@
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-6">
-                <td style="text-align:left;" valign="top"><label id="allergicDrugs">ยาที่ผู้ป่วยแพ้</label></td>
+                <td style="text-align:left;" valign="top"><label id="oldAllergicDrugs">ยาที่ผู้ป่วยแพ้</label></td>
                 <td>
                     <input type="text" name='allergicDrugs' placeholder='กรอกยาที่ผู้ป่วยแพ้ ถ้ามีหลายยาให้คั่นด้วยคอมม่า' class='form-control' maxlength='1000'>
-                    @if ($errors->has('allergicDrug'))
+                    @if ($errors->has('allergicDrugs'))
                         <p style="color:red;font-size:14px;margin:0;padding:10px 0px;">
-                            {{ $errors->first('allergicDrug') }}
+                            {{ $errors->first('allergicDrugs') }}
                         </p>
                     @endif
                     </p>

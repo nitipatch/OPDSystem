@@ -29,7 +29,7 @@ class AddScreeningRecordController extends BaseController
 		if ($validator->passes()) 
 		{ 
 			$addScreeningRecord = new ScreeningRecord();
-			$allergicDrugsList = explode(',',Input::get('allergicDrug'));
+			$allergicDrugsList = explode(',',Input::get('allergicDrugs'));
 			for($i=0; $i<sizeof($allergicDrugsList) ;$i++)
 			if(strlen($allergicDrugsList[$i]) > 0 && !DB::table('HN_allergicDrug')->where('HN',Input::get('HN'))->where('allergicDrug',$allergicDrugsList[$i])->first())
 			DB::table('HN_allergicDrug')->insert(array('HN'=>Input::get('HN'), 'allergicDrug'=>$allergicDrugsList[$i]));
