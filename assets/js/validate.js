@@ -91,7 +91,7 @@ function isInt(index,myfield,e,length)
 
 
 function showAllergicDrugs(e)
-{  alert('s');
+{
     $.ajax({ url: 'http://localhost/OPDSystem/apps/app/Http/Controllers/nurse/getAllergicDrug.php',
             type: "post",
             data: {HN : $('#HN').val()},
@@ -103,11 +103,11 @@ function showAllergicDrugs(e)
         });
 }
 
-function searchICD10(e)
-{  alert('saa');
+function searchICD(e)
+{  alert('I am search ICD function');
     $.ajax({ url: 'http://localhost/OPDSystem/apps/app/Http/Controllers/doctor/getICD10.php',
             type: "post",
-            data: {searchICD100 : $('#searchICD10').val()},
+            data: {searchICD10 : $('#searchICD10').val()},
             success: function(data)
             {
                 alert(data);

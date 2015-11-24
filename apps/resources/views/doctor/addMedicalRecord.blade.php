@@ -44,7 +44,7 @@
             	<td style="text-align:left;" valign="top">
                     <label>ค้นหา ICD-10 ด้วยชื่อโรค<font color="red">*</font></label></td>
                 <td>
-                    <input required id="searchICD10" type="text" class="form-control" placeholder="กรอกโรคที่ต้องการค้นหา" maxlength="8" onchange="searchICD10(event)" >
+                    <input required id="searchICD10" type="text" class="form-control" placeholder="กรอกโรคที่ต้องการค้นหา" maxlength="8" onchange="searchICD(event)" >
                 </td>
             </tr>
           	<tr><p>
