@@ -77,14 +77,15 @@
     </div>
 
 <script>
+    $('#ICD10').empty();
     var icd10DD = document.getElementById("ICD10");//แก้ด้วยครัช
     icd10DD.addEventListener("change",f);
     //departmentDD.addEventListener("change",g);
-    //var dpm = <?php echo json_encode($dpm);?>;
+    
 
     function f()
     {
-        //$("#ICD10").val(dpm[icd10DD.selectedIndex]);
+        
         var icd10 = icd10DD.options[icd10DD.selectedIndex].text;
         //var department = departmentDD.options[departmentDD.selectedIndex].text;
 
@@ -93,20 +94,15 @@
                 data: {icd10:icd10},
                 success: function(data)
                 {
-                    var dates = data.split("\n");
-                    $('#apptDate').empty();
+                    var icd10s = data.split("\n");
+                    $('#ICD10').empty();
                     
-                    for(var i=0;i<=dates.length-2;i++)
+                    for(var i=0;i<icd10s.length;i++)
                     {    
-                        var ddl = document.getElementById('apptDate');
-                        //var option = document.createElement("option");
-                        var cut = dates[i].indexOf(" ");
-                        var text = dates[i].substring(0,cut);
-                        if(dates[i][cut+1]=="0")text+=" เช้า";
-                        else text+=" บ่าย";
-                        //option.text = text
-                        //option.value = text;
-                        ddl.add(option);
+                        echo $icd10s[i].PHP_EOL;
+                        //echo "hello";
+                        var disease = document.getElementById('ICD10');
+                        disease.add(icd10s[i]);
                     }
                 }
         });

@@ -1,7 +1,4 @@
 <?php 
-
-	
-
 	$conn = new mysqli("localhost","root","","testdatabase");
 	$conn->set_charset('utf8');
 	// echo "...";
@@ -9,12 +6,12 @@
 	    //$ = 0;
 	    while($disease = $diseases->fetch_assoc()) 
 	    {
-	    	if(strpos($disease['Disease'] , $_POST['searchICD10'] ) != NULL && strlen($_POST['searchICD10']))
-	    	{
-	    		//if(++$c>1) echo ", ";
-	    		echo $disease['Disease'].PHP_EOL;
-
-	    	}
+	    	echo $disease['Disease']." \"".strpos($disease['Disease'] , $_POST['searchICD10'] )." \"".PHP_EOL;
+	    	// if(strlen($_POST['searchICD10']) >= 3 
+	    	// 	&& strpos($disease['Disease'] , $_POST['searchICD10'] ) !== NULL)
+	    	// {
+	    	// 	echo $disease['Disease'].PHP_EOL;
+	    	// }
 	    }
  
 
