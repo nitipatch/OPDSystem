@@ -91,7 +91,8 @@ function isInt(index,myfield,e,length)
 
 
 function showAllergicDrugs(e)
-{  $.ajax({ url: 'http://localhost/OPDSystem/apps/app/Http/Controllers/nurse/getAllergicDrug.php',
+{  alert('s');
+    $.ajax({ url: 'http://localhost/OPDSystem/apps/app/Http/Controllers/nurse/getAllergicDrug.php',
             type: "post",
             data: {HN : $('#HN').val()},
             success: function(data)
@@ -100,4 +101,19 @@ function showAllergicDrugs(e)
                 $('#oldAllergicDrugs').html("ยาที่ผู้ป่วยแพ้" + '   <font color="red">'+data+'</font>');
             }
         });
+}
+
+function searchICD10(e)
+{  alert('saa');
+    $.ajax({ url: 'http://localhost/OPDSystem/apps/app/Http/Controllers/doctor/getICD10.php',
+            type: "post",
+            data: {searchICD100 : $('#searchICD10').val()},
+            success: function(data)
+            {
+                alert(data);
+                //if(data.length==0)data="-";   
+                //$('#oldAllergicDrugs').html("ยาที่ผู้ป่วยแพ้" + '   <font color="red">'+data+'</font>');
+            }
+        });
+
 }
