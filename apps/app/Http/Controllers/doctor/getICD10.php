@@ -9,10 +9,10 @@
 	    //$ = 0;
 	    while($disease = $diseases->fetch_assoc()) 
 	    {
-	    	if(strpos($disease['Disease'] , $_POST['searchICD10'] ) > 0 && strlen($_POST['searchICD10']))
+	    	if(strpos($disease['Disease'] , $_POST['searchICD10'] ) !== 0 && strlen($_POST['searchICD10']))
 	    	{
 	    		//if(++$c>1) echo ", ";
-	    		echo $disease['Disease'];
+	    		echo $disease['Disease'].PHP_EOL;
 
 	    	}
 	    }
