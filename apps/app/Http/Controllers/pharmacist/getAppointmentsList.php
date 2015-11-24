@@ -1,7 +1,7 @@
 <?php
 	$conn = new mysqli("localhost","root","","testdatabase");
 	$conn->set_charset('utf8');
-	$appointments = $conn->query("SELECT HN,doctorEmpID,appointmentDate,morning,symptomOrReason,addScreeningRecordTime,addMedicalRecordTime,prescribedTime,dispensedTime,pharmacistEmpID FROM appointments");
+	$appointments = $conn->query("SELECT HN,doctorEmpID,appointmentDate,morning,symptomOrReason,addScreeningRecordTime,addMedicalRecordTime,prescribedTime,dispensedTime,dispensedStatus,pharmacistEmpID FROM appointments");
 	
 	echo '<tr><td colspan=8 height="35" align="center">เลือกรายการสั่งยาที่ท่านต้องการดำเนินการจ่ายยา</td></tr>';
 	echo '<tr><td align="center" height="25">ผู้ป่วย</td><td align="center" height="25">แพทย์</td><td align="center" height="25">วันพบแพทย์</td><td align="center" height="25">ช่วง</td>';
@@ -9,7 +9,7 @@
 	$i = 0;
 	while($appointment = $appointments->fetch_assoc()) 
 	{
-		if(strcmp($appointment['pharmacistEmpID'],$_POST['pharmacistEmpID'])==0 && !isset($appointment['dispensedTime']))
+		if(strcmp($appointment['pharmacistEmpID'],$_POST['pharmacistEmpID'])==0 && isset($appointment['addMedicalRecordTime']) && $appointment['dispensedStatus']==0)
 		{
 	    	$i++;
 			$D[1] = $appointment['HN'];

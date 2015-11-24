@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\PrescribedDrug;
+use App\MedicalRecord;
 use View;
 
 class AddMedicalRecordAndPrescribeController extends BaseController
@@ -21,6 +22,7 @@ class AddMedicalRecordAndPrescribeController extends BaseController
 
 	public function addMedicalRecordAndPrescribeCreate()
 	{
+
 		date_default_timezone_set('Asia/Bangkok');
 		$date = date("Y-m-d",time());
 		$time = date("H:i:s",time());
@@ -29,6 +31,7 @@ class AddMedicalRecordAndPrescribeController extends BaseController
 		$morning = 0;
 			
 		$Drugs = Input::get('D');
+		if(count($Drugs)>0)
 		foreach($Drugs as $Drug) 
 		{
 			$i=0;
@@ -40,16 +43,10 @@ class AddMedicalRecordAndPrescribeController extends BaseController
 				else if($i==7)$quantity = $D;
 				else if($i==8)$description = $D;
 			}
-			DB::table('appointments')->where('HN',$HN)
-									 ->where('doctorEmpID',Session::get('username'))
-									 ->where('appointmentDate',$date)
-									 ->where('morning',$morning)
-									 ->update(array('addMedicalRecordTime'=>$time,'prescribedTime'=>$time));
-
+			
 			$addPrescribedDrug = new PrescribedDrug();
 			$addPrescribedDrug->HN = $HN;
 			$addPrescribedDrug->doctorEmpID = Session::get('username');
-			date_default_timezone_set('Asia/Bangkok');
 			$addPrescribedDrug->date = $date;
 			$addPrescribedDrug->time = $time;
 			$addPrescribedDrug->drugName = $drugName;
@@ -57,6 +54,22 @@ class AddMedicalRecordAndPrescribeController extends BaseController
 			$addPrescribedDrug->description = $description;
  			$addPrescribedDrug->save();
 		}
+
+			DB::table('appointments')->where('HN',Input::get("patientHN"))
+									 ->where('doctorEmpID',Session::get('username'))
+									 ->where('appointmentDate',$date)
+									 ->where('morning',$morning)
+									 ->update(array('addMedicalRecordTime'=>$time,'prescribedTime'=>$time));
+
+			$addMedicalRecord = new MedicalRecord();
+			$addMedicalRecord->HN = Input::get("patientHN");
+			$addMedicalRecord->doctorEmpID = Session::get('username');
+			$addMedicalRecord->date = $date;
+			$addMedicalRecord->time = $time;
+			$addMedicalRecord->symptom = Input::get('symptom');
+			$addMedicalRecord->ICD10 = substr(Input::get('ICD10'),0,strpos(Input::get('ICD10')," "));			
+			$addMedicalRecord->save();
+
 		return Redirect::to('doctor/addMedicalRecordAndPrescribe')->with('flash_notice','ดำเนินการบันทึกการรักษาและสั่งยาสำเร็จ');
 	}
 }

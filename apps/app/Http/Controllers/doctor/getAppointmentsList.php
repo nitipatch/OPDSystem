@@ -22,7 +22,7 @@
 				.'</td><td align="center" height="25" id='.$i.'-2>'.$D[2]
 				.'</td><td align="center" height="25" id='.$i.'-3>'.$morning
 				.'</td><td align="center" height="25" id='.$i.'-4>'.$D[4]
-				.'</td><td align="center" height="25"><button type="button" id='.$i.' class="btn btn-primary" style="width:100%">จ่ายยา</button></td></tr>';
+				.'</td><td align="center" height="25"><button type="button" id='.$i.' class="btn btn-primary" style="width:100%">รักษา</button></td></tr>';
 		}
 	}
 

@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\DispensedDrug;
 use View;
 
 class DispenseController extends BaseController
@@ -28,7 +27,9 @@ class DispenseController extends BaseController
 		if((int)date("H",time())<12)
 		$morning = 0;
 			
+		/*
 		$Drugs = Input::get('D');
+		if(count($Drugs)>0)
 		foreach($Drugs as $Drug) 
 		{
 			$i=0;
@@ -40,23 +41,17 @@ class DispenseController extends BaseController
 				else if($i==7)$quantity = $D;
 				else if($i==8)$description = $D;
 			}
-			DB::table('appointments')->where('HN',$HN)
-									 ->where('pharmacistEmpID',Session::get('username'))
-									 ->where('appointmentDate',$date)
-									 ->where('morning',$morning)
-									 ->update(array('dispensedTime'=>$time));
-			$addDispensedDrug = new DispensedDrug();
-			$addDispensedDrug->HN = $HN;
-			$addDispensedDrug->pharmacistEmpID = Session::get('username');
-			date_default_timezone_set('Asia/Bangkok');
-			$addDispensedDrug->date = $date;
-			$addDispensedDrug->time = $time;
-			$addDispensedDrug->drugName = $drugName;
-			$addDispensedDrug->quantity = $quantity;	
-			$addDispensedDrug->description = $description;
- 			$addDispensedDrug->save();
-		}
-		return Redirect::to('pharmacist/dispense')->with('flash_notice','ดำเนินการจ่ายยาสำเร็จ');
+		}*/
+
+		DB::table('appointments')->where('HN',Input::get('patientHN'))
+								->where('pharmacistEmpID',Session::get('username'))
+								->where('appointmentDate',$date)
+								->where('morning',$morning)
+								->update(array('dispensedTime'=>$time,'dispensedStatus'=>Input::get('status')));
+		
+		$msg="จ่ายยา";if(Input::get('status')==1)$msg="ขอรายการยาใหม่";
+
+		return Redirect::to('pharmacist/dispense')->with('flash_notice','ดำเนินการ'.$msg.'สำเร็จ');
 	}
 }
 			

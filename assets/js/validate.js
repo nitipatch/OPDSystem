@@ -104,15 +104,25 @@ function showAllergicDrugs(e)
 }
 
 function searchICD(e)
-{  alert('I am search ICD function');
+{  
     $.ajax({ url: 'http://localhost/OPDSystem/apps/app/Http/Controllers/doctor/getICD10.php',
             type: "post",
             data: {searchICD10 : $('#searchICD10').val()},
             success: function(data)
             {
-                alert(data);
-                //if(data.length==0)data="-";   
-                //$('#oldAllergicDrugs').html("ยาที่ผู้ป่วยแพ้" + '   <font color="red">'+data+'</font>');
+                var diseases = data.split("\n");
+                    $('#diseasesDD').empty();
+                    
+                    for(var i=0;i<=diseases.length-2;i++)
+                    {    
+                        var ddl = document.getElementById('diseasesDD');
+                        var option = document.createElement("option");
+                        //var cut = diseases[i].indexOf(" ");
+                        //var text = diseases[i].substring(0,cut);
+                        option.text = diseases[i];
+                        option.value = diseases[i];
+                        ddl.add(option);
+                    }
             }
         });
 

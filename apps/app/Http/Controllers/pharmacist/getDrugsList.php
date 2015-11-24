@@ -49,6 +49,7 @@
 
 
 	$c = 0;
+	echo  '<tr><td><input value='.$_POST['HN'].' type="hidden" name="patientHN"></td></tr>';
 	while($drug = $drugs->fetch_assoc()) 
 	{
 		if(strcmp($drug['HN'],$_POST['HN'])==0
