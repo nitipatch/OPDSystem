@@ -43,8 +43,12 @@ Route::group(['prefix'=>'doctor','middleware'=>'auth','namespace'=>'doctor'],fun
 																			  ->with('surname',Session::get('surname'));});	
 	Route::get('prescribe', 'PrescribeController@prescribeForm');
 	Route::post('prescribe/create', 'PrescribeController@prescribeCreate');
+	Route::get('changePrescribedDrugs', 'ChangePrescribedDrugsController@changePrescribedDrugsForm');
+	Route::post('changePrescribedDrugs/create', 'ChangePrescribedDrugsController@changePrescribedDrugsCreate');	
 	Route::get('addMedicalRecord', 'AddMedicalRecordController@addMedicalRecordForm');
 	Route::post('addMedicalRecord/create', 'AddMedicalRecordController@addMedicalRecordCreate');
+	Route::get('addMedicalRecordAndPrescribe', 'AddMedicalRecordAndPrescribeController@addMedicalRecordAndPrescribeForm');
+	Route::post('addMedicalRecordAndPrescribe/create', 'AddMedicalRecordAndPrescribeController@addMedicalRecordAndPrescribeCreate');
 });
 
 

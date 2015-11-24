@@ -14,7 +14,6 @@
 -->
 	
 	<li><a href="dispense"><i class="fa fa-pencil fa-fw"></i>จ่ายยา</a></li>
-	<li><a href="5.html"><i class="fa fa-times fa-fw"></i>ดูประวัติการแพ้ยา</a></li>
 	<li><a href="2.html"><i class="fa fa-table fa-fw"></i>ดูประวัติการได้รับยา</a></li>
 	<li><a href="logout"><i class="fa fa-unlock fa-fw"></i>ออกจากระบบ</a></li>
 

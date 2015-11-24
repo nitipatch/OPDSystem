@@ -87,7 +87,7 @@
 
 <script>
 var c = 1;
-function f()
+function f1()
 {               $('.btn').click(function(){var v = this.id;
                                 document.getElementById(v+"x").remove();
                                 document.getElementById(v+"y").remove();

@@ -16,29 +16,29 @@
 		<a><i class="fa fa-bar-chart-o fa-fw"></i>ยา<span class="fa arrow"></span></a>
 		<ul class="nav nav-second-level">
 			<li><a href="prescribe"><i class="fa fa-edit fa-fw"></i>สั่งยา</a></li>
-			<li><a href="1"><i class="fa fa-edit fa-fw"></i>เปลี่ยนรายการยา</a></li>
-			<li><a href="2"><i class="fa fa-edit fa-fw"></i>ดูประวัติการแพ้ยา</a></li>
-			<li><a href="3"><i class="fa fa-edit fa-fw"></i>ดูประวัติการได้รับยา</a></li>
+			<li><a href="changePrescribedDrugs"><i class="fa fa-edit fa-fw"></i>เปลี่ยนรายการยา</a></li>
+			<li><a href="1"><i class="fa fa-edit fa-fw"></i>ดูประวัติการได้รับยา</a></li>
 		</ul>
 	</li>
 
 	<li>
 		<a><i class="fa fa-bar-chart-o fa-fw"></i>การรักษา<span class="fa arrow"></span></a>
 		<ul class="nav nav-second-level">
+			<li><a href="addMedicalRecordAndPrescribe"><i class="fa fa-edit fa-fw"></i>บันทึกการรักษาและสั่งยา</a></li>
 			<li><a href="addMedicalRecord"><i class="fa fa-edit fa-fw"></i>บันทึกการรักษา</a></li>
-			<li><a href="4"><i class="fa fa-edit fa-fw"></i>ดูประวัติการรักษา</a></li>
+			<li><a href="2"><i class="fa fa-edit fa-fw"></i>ดูประวัติการรักษา</a></li>
 		</ul>
 	</li>
 
 	<li>
 		<a><i class="fa fa-bar-chart-o fa-fw"></i>วันเวลาออกตรวจ<span class="fa arrow"></span></a>
 		<ul class="nav nav-second-level">
-			<li><a href="5"><i class="fa fa-edit fa-fw"></i>ดูวันเวลาออกตรวจ</a></li>
-			<li><a href="6"><i class="fa fa-edit fa-fw"></i>ยกเลิกวันเวลาออกตรวจ</a></li>
+			<li><a href="3"><i class="fa fa-edit fa-fw"></i>ดูวันเวลาออกตรวจ</a></li>
+			<li><a href="4"><i class="fa fa-edit fa-fw"></i>ยกเลิกวันเวลาออกตรวจ</a></li>
 		</ul>
 	</li>
 
-	<li><a href="logout"><i class="fa fa-table fa-fw"></i>ดูรายชื่อผู้ป่วยที่นัด</a></li>
+	<li><a href="5"><i class="fa fa-table fa-fw"></i>ดูรายชื่อผู้ป่วยที่นัด</a></li>
 	<li><a href="logout"><i class="fa fa-unlock fa-fw"></i>ออกจากระบบ</a></li>
 
 <!--
