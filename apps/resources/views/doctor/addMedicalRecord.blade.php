@@ -77,21 +77,20 @@
     </div>
 
 <script>
-    var icd10DD = document.getElementById("doctor");//แก้ด้วยครัช
-    var departmentDD = document.getElementById("department");
-    doctorDD.addEventListener("change",f);
-    departmentDD.addEventListener("change",g);
-    var dpm = <?php echo json_encode($dpm);?>;
+    var icd10DD = document.getElementById("ICD10");//แก้ด้วยครัช
+    icd10DD.addEventListener("change",f);
+    //departmentDD.addEventListener("change",g);
+    //var dpm = <?php echo json_encode($dpm);?>;
 
     function f()
     {
-        $("#department").val(dpm[doctorDD.selectedIndex]);
-        var fullname = doctorDD.options[doctorDD.selectedIndex].text;
-        var department = departmentDD.options[departmentDD.selectedIndex].text;
+        //$("#ICD10").val(dpm[icd10DD.selectedIndex]);
+        var icd10 = icd10DD.options[icd10DD.selectedIndex].text;
+        //var department = departmentDD.options[departmentDD.selectedIndex].text;
 
-        $.ajax({url: 'http://localhost/OPDSystem/apps/app/Http/Controllers/getApptDate.php',
+        $.ajax({url: 'http://localhost/OPDSystem/apps/app/Http/Controllers/doctor/getICD10.php',
                 type: "post",
-                data: {fullname:fullname,department:department},
+                data: {icd10:icd10},
                 success: function(data)
                 {
                     var dates = data.split("\n");
@@ -100,48 +99,19 @@
                     for(var i=0;i<=dates.length-2;i++)
                     {    
                         var ddl = document.getElementById('apptDate');
-                        var option = document.createElement("option");
+                        //var option = document.createElement("option");
                         var cut = dates[i].indexOf(" ");
                         var text = dates[i].substring(0,cut);
                         if(dates[i][cut+1]=="0")text+=" เช้า";
                         else text+=" บ่าย";
-                        option.text = text
-                        option.value = text;
+                        //option.text = text
+                        //option.value = text;
                         ddl.add(option);
                     }
                 }
         });
     }
 
-    function g()
-    {   
-        $("#doctor").val('-1');
-        var fullname = doctorDD.options[doctorDD.selectedIndex].text;
-        var department = departmentDD.options[departmentDD.selectedIndex].text;
-
-        $.ajax({url: 'http://localhost/OPDSystem/apps/app/Http/Controllers/getApptDate.php',
-                type: "post",
-                data: {fullname:fullname,department:department},
-                success: function(data)
-                {
-                    var dates = data.split("\n");
-                    $('#apptDate').empty();
-                    
-                    for(var i=0;i<=dates.length-2;i++)
-                    {    
-                        var ddl = document.getElementById('apptDate');
-                        var option = document.createElement("option");
-                        var cut = dates[i].indexOf(" ");
-                        var text = dates[i].substring(0,cut);
-                        if(dates[i][cut+1]=="0")text+=" เช้า";
-                        else text+=" บ่าย";
-                        option.text = text
-                        option.value = text;
-                        ddl.add(option);
-                    }
-                }
-        });
-    }
 </script>
 
 @stop
