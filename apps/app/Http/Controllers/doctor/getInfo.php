@@ -46,8 +46,8 @@
           <tr><td colspan=2><textarea required name="symptom" placeholder="กรอกอาการของโรค" class="form-control" maxlength="1000" rows="2" cols="50"></textarea></td></tr>';
 
 	echo  '<tr><td><label></label></td></tr>';
-    echo '<tr><td colspan=2 style="text-align:left;" valign="top"><label>ค้นหารหัสโรค ICD-10 ด้วยชื่อโรค<font color="red">*</font></label></td></tr>
-          <tr><td colspan=2><input required id="searchICD10" type="text" class="form-control" placeholder="กรอกโรคที่ต้องการค้นหา" maxlength="8" onchange="searchICD(event)" ></td></tr>';
+    echo '<tr><td colspan=2 style="text-align:left;" valign="top"><label>ค้นหารหัสโรค ICD-10 ด้วยชื่อโรค</label></td></tr>
+          <tr><td colspan=2><input required id="searchICD10" type="text" class="form-control" placeholder="กรอกโรคที่ต้องการค้นหา อย่างน้อย 3 ตัวอักษร" onchange="searchICD(event)" ></td></tr>';
 
 	echo  '<tr><td><label></label></td></tr>';    
     echo '<tr><td colspan=2 style="text-align:left;" valign="top"><label>รหัสโรค ICD-10<font color="red">*</font></label></td></tr>
@@ -61,9 +61,9 @@
     echo  '<tr><td><input value='.$_POST['morning'].' id=d-'.$c.'-3 type="hidden" name="D['.$c.'][3]"></td></tr>';
     echo  '<tr><td><input value='.$_POST['HN'].' id=d-'.$c.'-4 type="hidden" name="D['.$c.'][4]"></td></tr>';
     echo  '<tr><td><input value='.$_POST['HN'].' id=d-'.$c.'-5 type="hidden" name="D['.$c.'][5]"></td></tr>';
-	echo  '<tr id=d-'.$c.'-6><p><td style="text-align:left;" valign="top"><label>ชื่อยา</label></td><td><input required type="text" class="form-control" name="D['.$c.'][6]" maxlength="100" placeholder="กรอกชื่อยา"></p></p></td></tr>'
-		 .'<tr id=d-'.$c.'-7><p><td style="text-align:left;" valign="top"><label>ปริมาณ</label></td><td><input required type="text" class="form-control" name="D['.$c.'][7]" size="100" maxlength="20" placeholder="กรอกปริมาณยา"></p></td></tr>'
-		 .'<tr id=d-'.$c.'-8><p><td style="text-align:left;" valign="top"><label>วิธีใช้</label></td><td><textarea required type="input" row="2" column="50" class="form-control" name="D['.$c.'][8]" maxlength="1000" placeholder="กรอกวิธีใช้ยา">'.$drug['description'].'</textarea></p></td>'
+	echo  '<tr id=d-'.$c.'-6><p><td style="text-align:left;" valign="top"><label>ชื่อยา<font color="red">*</font></label></td><td><input required type="text" class="form-control" name="D['.$c.'][6]" maxlength="100" placeholder="กรอกชื่อยา"></p></p></td></tr>'
+		 .'<tr id=d-'.$c.'-7><p><td style="text-align:left;" valign="top"><label>ปริมาณ<font color="red">*</font></label></td><td><input required type="text" class="form-control" name="D['.$c.'][7]" size="100" maxlength="20" placeholder="กรอกปริมาณยา"></p></td></tr>'
+		 .'<tr id=d-'.$c.'-8><p><td style="text-align:left;" valign="top"><label>วิธีใช้<font color="red">*</font></label></td><td><textarea required type="input" row="2" column="50" class="form-control" name="D['.$c.'][8]" maxlength="1000" placeholder="กรอกวิธีใช้ยา">'.$drug['description'].'</textarea></p></td>'
 		 .'<td><button type="button" id=d-'.$c.' class="btn">ลบ</button></td></tr>';
 	
 
