@@ -17,10 +17,12 @@
     
         <table width="800" Border=2 Bordercolor=Blue align="center" id="appointmentsTable"></table>
         <table align="left" id="drugsTable"></table>
+        
         <input type="hidden" value=2 id="status" name="status">
+        
         <table align="center">
             <tr><td><label></label></td></tr>
-            <tr><td><label></label></td></tr>
+            <tr><tr colspan=6><textarea placeholder="รายละเอียดของยาที่ผิดกรณีขอรายการยาใหม่" rows="3" cols="50" type="input" name="comment" id="comment" style="display:none;" class="form-control"></textarea></td><tr>
             <tr>
                 <td></td>
                 <td id="ok" style="display:none;align:center">{!! Form::submit('ตกลง', ['class' => 'btn btn-primary']) !!}{!! Form::close() !!}</td>
@@ -56,6 +58,7 @@ function f()
                     for(var i=1;i<=<?php echo count($appointments);?>;i++)
                         $('#'+i).click(function(){  $('#ok').css('display','inline');
                                                     $('#request').css('display','inline');
+                                                    $('#comment').css('display','inline');
                                                     var ID = this.id;
                                                     var d1 = $('#'+ID+'-1').html();
                                                     var d2 = $('#'+ID+'-2').html();

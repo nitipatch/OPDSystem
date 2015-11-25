@@ -1,7 +1,7 @@
 <?php
 	$conn = new mysqli("localhost","root","","testdatabase");
 	$conn->set_charset('utf8');
-	$appointments = $conn->query("SELECT HN,doctorEmpID,appointmentDate,morning,symptomOrReason,addScreeningRecordTime,addMedicalRecordTime,prescribedTime,dispensedTime,dispensedStatus,pharmacistEmpID FROM appointments");
+	$appointments = $conn->query("SELECT HN,doctorEmpID,appointmentDate,morning,symptomOrReason,addScreeningRecordTime,addMedicalRecordTime,prescribedTime,dispensedTime,dispensedStatus,comment,pharmacistEmpID FROM appointments");
 	
 	echo '<tr><td colspan=8 height="35" align="center">เลือกรายการนัดที่ท่านต้องการดำเนินการบันทึกการรักษาและสั่งยา</td></tr>';
 	echo '<tr><td align="center" height="25">ผู้ป่วย</td><td align="center" height="25">วันพบแพทย์</td><td align="center" height="25">ช่วง</td>';
@@ -19,8 +19,10 @@
 			$D[5] = $appointment['addMedicalRecordTime'];
 			$D[6] = $appointment['prescribedTime'];
 			$D[7] = $appointment['dispensedTime'];
+			$D[8] = $appointment['comment'];
 			$morning="เช้า";if($D[3]==1)$morning="บ่าย";
 			
+			echo '<td style="display:none" id='.$i.'-8>'.$D[8].'</td>';
 			echo  '<tr><td align="center" height="25" id='.$i.'-1>'.$D[1]
 				.'</td><td align="center" height="25" id='.$i.'-2>'.$D[2]
 				.'</td><td align="center" height="25" id='.$i.'-3>'.$morning

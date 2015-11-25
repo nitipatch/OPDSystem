@@ -62,6 +62,7 @@ function f()
                                                     var d5 = $('#'+ID+'-5').html();
                                                     var d6 = $('#'+ID+'-6').html();
                                                     var d7 = $('#'+ID+'-7').html();
+                                                    var d8 = $('#'+ID+'-8').html();
                                                     $.ajax({url: 'http://localhost/OPDSystem/apps/app/Http/Controllers/doctor/getDrugsList.php',
                                                             type: "post",
                                                             data: {doctorEmpID:<?php echo Session::get('username');?>
@@ -71,7 +72,8 @@ function f()
                                                                     ,addScreeningRecordTime:d4
                                                                     ,addMedicalRecordTime:d5
                                                                     ,prescribedTime:d6
-                                                                    ,dispensedTime:d7},
+                                                                    ,dispensedTime:d7
+                                                                    ,comment:d8},
                                                                 success: function(data)
                                                                 {
                                                                     $("#drugsTable").empty();

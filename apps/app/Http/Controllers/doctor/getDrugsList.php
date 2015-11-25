@@ -72,6 +72,7 @@
 				echo  '<tr><td colspan="2" style="text-align:left;" valign="top"><label>'."เวลาบันทึกการตรวจคัดกรอง:  <font color='red'>".$_POST['addScreeningRecordTime']."</font> น้ำหนัก:  <font color='red'>".$weight."</font> ส่วนสูง:  <font color='red'>".$height."</font> ความดันโลหิต:  <font color='red'>".$bloodPressure."</font> ชีพจร:  <font color='red'>".$pulse."</font> อุณหภูมิร่างกาย:  <font color='red'>".$bodyTemp.'</font></label></td></tr>';
 				echo  '<tr><td colspan="2" style="text-align:left;" valign="top"><label>'."เวลาบันทึกการรักษา:  <font color='red'>".$_POST['addMedicalRecordTime']."</font> ผลสรุปอาการ:  <font color='red'>".$symptom."</font> รหัสโรค ICD-10:  <font color='red'>".$ICD10.'</font></label></td></tr>';
 				echo  '<tr><td colspan="2" style="text-align:left;" valign="top"><label>'."เวลาสั่งยา:  <font color='red'>".$drug['time']."</font> ยาที่ผู้ป่วยแพ้: <font color='red'>".$allergicDrugsList.'</font></label></td></tr>';
+				echo  '<tr><td colspan="2" style="text-align:left;" valign="top"><label>'."คอมเม้นยาที่ผิดจากเภสัชกร:  <font color='red'>".$_POST['comment'].'</font></label></td></tr>';
 			}			
 			echo  '<tr id=d-'.$c.'-9><td><label></label></td></tr><tr id=d-'.$c.'-10><td><label></label></td></tr>';
 

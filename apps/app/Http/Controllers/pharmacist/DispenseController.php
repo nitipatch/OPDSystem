@@ -41,15 +41,23 @@ class DispenseController extends BaseController
 				else if($i==7)$quantity = $D;
 				else if($i==8)$description = $D;
 			}
-		}*/
-
+		}*/		
+		$msg="จ่ายยา";
 		DB::table('appointments')->where('HN',Input::get('patientHN'))
 								->where('pharmacistEmpID',Session::get('username'))
 								->where('appointmentDate',$date)
 								->where('morning',$morning)
 								->update(array('dispensedTime'=>$time,'dispensedStatus'=>Input::get('status')));
 		
-		$msg="จ่ายยา";if(Input::get('status')==1)$msg="ขอรายการยาใหม่";
+		if(Input::get('status')==1)
+		{
+			$msg="ขอรายการยาใหม่";
+			DB::table('appointments')->where('HN',Input::get('patientHN'))
+									->where('pharmacistEmpID',Session::get('username'))
+									->where('appointmentDate',$date)
+									->where('morning',$morning)
+									->update(array('comment'=>Input::get('comment')));
+		}
 
 		return Redirect::to('pharmacist/dispense')->with('flash_notice','ดำเนินการ'.$msg.'สำเร็จ');
 	}
