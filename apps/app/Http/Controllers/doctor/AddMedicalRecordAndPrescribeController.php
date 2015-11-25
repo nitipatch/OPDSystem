@@ -54,12 +54,25 @@ class AddMedicalRecordAndPrescribeController extends BaseController
 			$addPrescribedDrug->description = $description;
  			$addPrescribedDrug->save();
 		}
+			
+			$pharmacists = DB::table('pharmacistQueue')->get();
+			$prev = 0;
+			foreach($pharmacists as $pharmacist){$firstPharmacist = $pharmacist->pharmacistEmpID;break;}
+			foreach($pharmacists as $pharmacist)
+			{
+				if($prev==1){$pharmacistEmpID = $pharmacist->pharmacistEmpID;$prev=0;break;}
+				$prev = $pharmacist->queue;
+			}
+			if($prev==1)$pharmacistEmpID = $firstPharmacist;
 
+			DB::table('pharmacistQueue')->where('queue',1)->update(array('queue'=>0));
+			DB::table('pharmacistQueue')->where('pharmacistEmpID',$pharmacistEmpID)->update(array('queue'=>1));	
+	
 			DB::table('appointments')->where('HN',Input::get("patientHN"))
 									 ->where('doctorEmpID',Session::get('username'))
 									 ->where('appointmentDate',$date)
 									 ->where('morning',$morning)
-									 ->update(array('addMedicalRecordTime'=>$time,'prescribedTime'=>$time));
+									 ->update(array('addMedicalRecordTime'=>$time,'prescribedTime'=>$time,'pharmacistEmpID'=>$pharmacistEmpID));
 
 			$addMedicalRecord = new MedicalRecord();
 			$addMedicalRecord->HN = Input::get("patientHN");

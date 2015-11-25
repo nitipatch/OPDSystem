@@ -33,6 +33,8 @@
 	}
 	$c = 1;
 	echo  '<tr><td><input value='.$_POST['HN'].' type="hidden" name="patientHN"></td></tr>';
+	echo  '<tr><td><input value='.$_POST['appointmentDate'].' type="hidden" name="appointmentDate"></td></tr>';
+	echo  '<tr><td><input value='.$_POST['morning'].' type="hidden" name="morning"></td></tr>';
 
 	echo  '<tr><td><label></label></td></tr><tr><td><label></label></td></tr><tr><td><label></label></td></tr>';
 	echo  '<tr><td colspan="2" style="text-align:left;" valign="top"><label>'."ผู้ป่วย:  <font color='red'>".$_POST['HN']."</font> วันพบแพทย์: <font color='red'>".$_POST['appointmentDate'].'</font> ช่วง: <font color="red">'.$morning.'</font></label></td>';				
@@ -55,8 +57,8 @@
 
 	echo  '<tr id=d-'.$c.'-9><td><label></label></td></tr><tr id=d-'.$c.'-10><td><label></label></td></tr>';
 	echo  '<tr><td><input value='.$_POST['HN'].' id=d-'.$c.'-1 type="hidden" name="D['.$c.'][1]"></td></tr>';
-    echo  '<tr><td><input value='.$_POST['HN'].' id=d-'.$c.'-2 type="hidden" name="D['.$c.'][2]"></td></tr>';
-    echo  '<tr><td><input value='.$_POST['HN'].' id=d-'.$c.'-3 type="hidden" name="D['.$c.'][3]"></td></tr>';
+    echo  '<tr><td><input value='.$_POST['appointmentDate'].' id=d-'.$c.'-2 type="hidden" name="D['.$c.'][2]"></td></tr>';
+    echo  '<tr><td><input value='.$_POST['morning'].' id=d-'.$c.'-3 type="hidden" name="D['.$c.'][3]"></td></tr>';
     echo  '<tr><td><input value='.$_POST['HN'].' id=d-'.$c.'-4 type="hidden" name="D['.$c.'][4]"></td></tr>';
     echo  '<tr><td><input value='.$_POST['HN'].' id=d-'.$c.'-5 type="hidden" name="D['.$c.'][5]"></td></tr>';
 	echo  '<tr id=d-'.$c.'-6><p><td style="text-align:left;" valign="top"><label>ชื่อยา</label></td><td><input required type="text" class="form-control" name="D['.$c.'][6]" maxlength="100" placeholder="กรอกชื่อยา"></p></p></td></tr>'

@@ -17,7 +17,6 @@ Route::post('login/register/create', 'Admins\RegisterController@registerCreate')
 
 
 Route::controller('login/loginframe','Admins\LoginController'); 
-// Start Online Page
 Route::group(['prefix'=>'login','middleware'=>'auth','namespace'=>'Admins'],function(){
 	Route::get('patient','LoginController@patient');
 	Route::get('doctor','LoginController@doctor');
